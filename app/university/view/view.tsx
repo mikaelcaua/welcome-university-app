@@ -39,7 +39,7 @@ export default function UniversitiesScreen() {
 
         <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
           <Text style={styles.headerTitle}>Instituições</Text>
-          <Text style={styles.headerSubtitle}>Selecione sua universidade</Text>
+          <Text style={styles.headerSubtitle}>Selecione a universidade de sua preferência</Text>
 
           <FormInput
             control={form.control}
@@ -82,11 +82,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   header: {
-    paddingHorizontal: theme.spacing.l,
-    paddingBottom: theme.spacing.l,
+    paddingHorizontal: theme.spacing.m,
     backgroundColor: theme.colors.primary,
-    borderBottomLeftRadius: theme.borderRadius.xl,
-    borderBottomRightRadius: theme.borderRadius.xl,
     ...theme.shadows.default,
     zIndex: 10,
   },
@@ -97,8 +94,8 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     ...theme.text.body,
-    color: theme.colors.primaryLight,
-    marginBottom: theme.spacing.l,
+    color: theme.colors.white,
+    marginBottom: theme.spacing.m,
   },
   searchInput: {
     backgroundColor: theme.colors.surface,
