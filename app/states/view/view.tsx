@@ -11,16 +11,17 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { BrazilMap, FormInput } from '@/components';
+import { FormInput } from '@/components';
 import { State } from '@/interfaces';
 import { theme } from '@/theme';
 
 import { StateCardSearch } from '../components/StateCardSearch';
+import { StateCardSelectable } from '../components/StateCardSelectable';
 import { useStatesViewModel } from './viewmodel';
 
 export default function StatesScreen() {
-  const { loading, data, selectState, form, filteredStates, isSearching } = useStatesViewModel();
-
+  const { loading, selectedState, selectState, filteredStates, handleNext, form } =
+    useStatesViewModel();
   const insets = useSafeAreaInsets();
 
   const renderStateItem = ({ item }: { item: State }) => (
@@ -52,56 +53,29 @@ export default function StatesScreen() {
         </View>
 
         <View style={styles.content}>
-          {isSearching ? (
-            <FlatList
-              data={filteredStates}
-              keyExtractor={(item) => item.code}
-              renderItem={renderStateItem}
-              ListEmptyComponent={
-                <View style={styles.emptyContainer}>
-                  <Text style={styles.emptyText}>Nenhum estado encontrado.</Text>
-                </View>
-              }
-              contentContainerStyle={styles.listContent}
-              showsVerticalScrollIndicator={false}
-              keyboardShouldPersistTaps="handled"
-            />
-          ) : (
-            <View style={styles.mapWrapper}>
-              <View style={styles.mapContainer}>
-                <BrazilMap onSelectState={selectState} />
+          <FlatList
+            data={filteredStates}
+            keyExtractor={(item) => item.code}
+            renderItem={renderStateItem}
+            ListEmptyComponent={
+              <View style={styles.emptyContainer}>
+                {!loading && <Text style={styles.emptyText}>Nenhum estado encontrado.</Text>}
               </View>
-              <Text style={styles.mapHint}>Toque em um estado no mapa</Text>
-            </View>
-          )}
+            }
+            contentContainerStyle={styles.listContent}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+          />
         </View>
 
         <View style={styles.footer}>
-          {loading && (
+          {loading ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color={theme.colors.loading} />
               <Text style={styles.loadingText}>Carregando informações...</Text>
             </View>
-          )}
-
-          {!loading && data && (
-            <View style={styles.resultCard}>
-              <View style={styles.resultHeader}>
-                <View>
-                  <Text style={styles.resultLabel}>Estado Selecionado</Text>
-                  <Text style={styles.resultTitle}>{data.name}</Text>
-                </View>
-                <View style={styles.resultBadge}>
-                  <Text style={styles.resultBadgeText}>{data.code}</Text>
-                </View>
-              </View>
-
-              <View style={styles.divider} />
-
-              <View style={styles.jsonContainer}>
-                <Text style={styles.resultJson}>{JSON.stringify(data, null, 2)}</Text>
-              </View>
-            </View>
+          ) : (
+            selectedState && <StateCardSelectable state={selectedState} onNext={handleNext} />
           )}
         </View>
       </View>
@@ -142,22 +116,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
-  mapWrapper: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  mapContainer: {
-    width: '90%',
-    aspectRatio: 1,
-    maxHeight: 400,
-  },
-  mapHint: {
-    ...theme.text.caption,
-    marginTop: theme.spacing.m,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-  },
   listContent: {
     padding: theme.spacing.m,
   },
@@ -170,64 +128,25 @@ const styles = StyleSheet.create({
     color: theme.colors.textLight,
   },
   footer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
     padding: theme.spacing.m,
+    backgroundColor: 'transparent',
   },
   loadingContainer: {
     alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.colors.surface,
     padding: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    ...theme.shadows.default,
+    marginBottom: theme.spacing.m,
   },
   loadingText: {
     marginTop: theme.spacing.s,
     color: theme.colors.textLight,
     fontSize: 12,
-  },
-  resultCard: {
-    backgroundColor: theme.colors.surface,
-    padding: theme.spacing.l,
-    borderRadius: theme.borderRadius.l,
-    ...theme.shadows.strong,
-  },
-  resultHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-  },
-  resultLabel: {
-    fontSize: 10,
-    textTransform: 'uppercase',
-    color: theme.colors.textLight,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  resultTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: theme.colors.text,
-  },
-  resultBadge: {
-    backgroundColor: theme.colors.primary,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-  },
-  resultBadgeText: {
-    color: theme.colors.textInverted,
-    fontWeight: 'bold',
-    fontSize: 14,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: theme.colors.border,
-    marginVertical: theme.spacing.m,
-  },
-  jsonContainer: {
-    backgroundColor: theme.colors.surfaceAlt,
-    padding: theme.spacing.m,
-    borderRadius: theme.borderRadius.m,
-  },
-  resultJson: {
-    fontFamily: 'monospace',
-    fontSize: 12,
-    color: theme.colors.secondary,
   },
 });

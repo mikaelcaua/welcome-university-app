@@ -1,2 +1,2 @@
-export * from './BrazilMap';
+export * from './Button';
 export * from './FormInput';

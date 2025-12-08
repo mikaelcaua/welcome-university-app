@@ -3,18 +3,15 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { State } from '@/interfaces';
-
 import { SearchFormData, searchSchema } from '../schemas/searchStateSchema';
 import { useStateService } from '../services/service';
 
 export function useStatesViewModel() {
   const [loading, setLoading] = useState(false);
-  const [selectedData, setSelectedData] = useState<State | undefined>(undefined);
+  const [selectedState, setSelectedState] = useState<State | undefined>(undefined);
 
   const [allStates, setAllStates] = useState<State[]>([]);
   const [filteredStates, setFilteredStates] = useState<State[]>([]);
-
-  const [isSearching, setIsSearching] = useState(false);
 
   const { getStateByCode, getAllStates } = useStateService();
 
@@ -31,12 +28,10 @@ export function useStatesViewModel() {
 
   useEffect(() => {
     if (!searchQuery) {
-      setIsSearching(false);
-      setFilteredStates([]);
+      setFilteredStates(allStates);
       return;
     }
 
-    setIsSearching(true);
     const lowerQuery = searchQuery.toLowerCase();
 
     const filtered = allStates.filter(
@@ -50,19 +45,22 @@ export function useStatesViewModel() {
 
   async function loadStatesList() {
     try {
+      setLoading(true);
       const list = await getAllStates();
       setAllStates(list);
+      setFilteredStates(list);
     } catch (e) {
       console.error('Erro ao carregar lista de estados', e);
+    } finally {
+      setLoading(false);
     }
   }
 
   async function selectState(code: string) {
     try {
       setLoading(true);
-
       const result = await getStateByCode(code);
-      setSelectedData(result);
+      setSelectedState(result);
     } catch (e) {
       console.error(e);
     } finally {
@@ -70,12 +68,19 @@ export function useStatesViewModel() {
     }
   }
 
+  function handleNext() {
+    console.log('Avançar com estado:', selectedState);
+  }
+
   return {
     loading,
-    data: selectedData,
+
+    selectedState,
     selectState,
-    form,
     filteredStates,
-    isSearching,
+
+    form,
+
+    handleNext,
   };
 }
