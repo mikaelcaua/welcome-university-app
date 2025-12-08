@@ -16,6 +16,10 @@ export function useWelcomeUniversityNavigation() {
     router.push('/course_and_subject/view/view');
   }
 
+  function goToExamsScreen() {
+    router.push('/exam/view/view');
+  }
+
   function goBack() {
     if (router.canGoBack()) {
       router.back();
@@ -26,6 +30,7 @@ export function useWelcomeUniversityNavigation() {
     goToStatesScreen,
     goToUniversitiesScreen,
     goToCoursesAndSubjectsScreen,
+    goToExamsScreen,
     goBack,
   };
 }

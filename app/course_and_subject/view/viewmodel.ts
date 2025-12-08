@@ -20,7 +20,8 @@ export function useCourseSubjectViewModel() {
     useSelectedFiltersStore();
 
   const { getCoursesByUniversity, getSubjectsByCourse } = useCourseSubjectService();
-  const navigation = useWelcomeUniversityNavigation();
+
+  const { goToExamsScreen } = useWelcomeUniversityNavigation();
 
   const form = useForm<CourseSubjectFormData>({
     resolver: zodResolver(courseSubjectSchema),
@@ -65,7 +66,7 @@ export function useCourseSubjectViewModel() {
     setSelectedCourseId(data.courseId);
     setSelectedSubjectId(data.subjectId);
 
-    console.log('Filtros Salvos! Navegando para exams...');
+    goToExamsScreen();
   };
 
   return {
