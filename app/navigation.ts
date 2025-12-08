@@ -12,9 +12,9 @@ export function useWelcomeUniversityNavigation() {
     router.push('/university/view/view');
   }
 
-  //   function goToCoursesScreen() {
-  //     router.push('/courses/view/view');
-  //   }
+  function goToCoursesAndSubjectsScreen() {
+    router.push('/course_and_subject/view/view');
+  }
 
   function goBack() {
     if (router.canGoBack()) {
@@ -25,7 +25,7 @@ export function useWelcomeUniversityNavigation() {
   return {
     goToStatesScreen,
     goToUniversitiesScreen,
-    // goToCoursesScreen,
+    goToCoursesAndSubjectsScreen,
     goBack,
   };
 }

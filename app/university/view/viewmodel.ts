@@ -18,7 +18,7 @@ export function useUniversityViewModel() {
   const [filteredUniversities, setFilteredUniversities] = useState<University[]>([]);
 
   const { selectedStateId, setSelectedUniversityId } = useSelectedFiltersStore();
-  const { goBack } = useWelcomeUniversityNavigation();
+  const { goBack, goToCoursesAndSubjectsScreen } = useWelcomeUniversityNavigation();
 
   const { getUniversitiesByState } = useUniversityService();
 
@@ -68,8 +68,7 @@ export function useUniversityViewModel() {
   function handleSelectUniversity(universityId: number) {
     setSelectedUniversityId(universityId);
 
-    // Navega
-    // goToCoursesScreen();
+    goToCoursesAndSubjectsScreen();
   }
 
   return {
