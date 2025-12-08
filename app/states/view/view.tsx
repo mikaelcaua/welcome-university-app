@@ -3,49 +3,51 @@ import {
   ActivityIndicator,
   FlatList,
   Keyboard,
-  Pressable,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BrazilMap, FormInput } from '@/components';
 import { State } from '@/interfaces';
 import { theme } from '@/theme';
 
+import { StateCardSearch } from '../components/StateCardSearch';
 import { useStatesViewModel } from './viewmodel';
 
 export default function StatesScreen() {
   const { loading, data, selectState, form, filteredStates, isSearching } = useStatesViewModel();
 
+  const insets = useSafeAreaInsets();
+
   const renderStateItem = ({ item }: { item: State }) => (
-    <Pressable
-      style={({ pressed }) => [styles.listItem, pressed && styles.listItemPressed]}
+    <StateCardSearch
+      state={item}
       onPress={() => {
         Keyboard.dismiss();
         selectState(item.code);
       }}
-    >
-      <View style={styles.codeBadge}>
-        <Text style={styles.codeText}>{item.code}</Text>
-      </View>
-      <Text style={styles.stateName}>{item.name}</Text>
-    </Pressable>
+    />
   );
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Bem-vindo à Universidade</Text>
-          <Text style={styles.headerSubtitle}>Selecione um estado no mapa ou busque abaixo</Text>
+      <View style={[styles.container, { paddingBottom: insets.bottom }]}>
+        <StatusBar barStyle="dark-content" backgroundColor={theme.colors.surface} />
+
+        <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
+          <Text style={styles.headerTitle}>Portal da Universidade</Text>
+          <Text style={styles.headerSubtitle}>Explore as unidades por estado</Text>
 
           <FormInput
             control={form.control}
             name="query"
-            placeholder="Buscar estado (Ex: SP, Bahia...)"
+            placeholder="Buscar estado (ex: SP, Amazonas...)"
             style={styles.searchInput}
+            placeholderTextColor={theme.colors.textLight}
           />
         </View>
 
@@ -55,30 +57,50 @@ export default function StatesScreen() {
               data={filteredStates}
               keyExtractor={(item) => item.code}
               renderItem={renderStateItem}
-              ListEmptyComponent={<Text style={styles.emptyText}>Nenhum estado encontrado.</Text>}
+              ListEmptyComponent={
+                <View style={styles.emptyContainer}>
+                  <Text style={styles.emptyText}>Nenhum estado encontrado.</Text>
+                </View>
+              }
               contentContainerStyle={styles.listContent}
               showsVerticalScrollIndicator={false}
+              keyboardShouldPersistTaps="handled"
             />
           ) : (
-            <View style={styles.mapContainer}>
-              <BrazilMap onSelectState={selectState} />
+            <View style={styles.mapWrapper}>
+              <View style={styles.mapContainer}>
+                <BrazilMap onSelectState={selectState} />
+              </View>
+              <Text style={styles.mapHint}>Toque em um estado no mapa</Text>
             </View>
           )}
         </View>
 
         <View style={styles.footer}>
-          {loading && <ActivityIndicator size="large" color={theme.colors.loading} />}
+          {loading && (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="large" color={theme.colors.loading} />
+              <Text style={styles.loadingText}>Carregando informações...</Text>
+            </View>
+          )}
 
           {!loading && data && (
             <View style={styles.resultCard}>
               <View style={styles.resultHeader}>
-                <Text style={styles.resultTitle}>{data.name}</Text>
+                <View>
+                  <Text style={styles.resultLabel}>Estado Selecionado</Text>
+                  <Text style={styles.resultTitle}>{data.name}</Text>
+                </View>
                 <View style={styles.resultBadge}>
                   <Text style={styles.resultBadgeText}>{data.code}</Text>
                 </View>
               </View>
+
               <View style={styles.divider} />
-              <Text style={styles.resultJson}>{JSON.stringify(data, null, 2)}</Text>
+
+              <View style={styles.jsonContainer}>
+                <Text style={styles.resultJson}>{JSON.stringify(data, null, 2)}</Text>
+              </View>
             </View>
           )}
         </View>
@@ -90,104 +112,92 @@ export default function StatesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F7FA',
+    backgroundColor: theme.colors.background,
   },
   header: {
-    paddingTop: 60,
-    paddingHorizontal: theme.spacing.m,
-    paddingBottom: theme.spacing.s,
-    backgroundColor: '#FFFFFF',
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
+    paddingHorizontal: theme.spacing.l,
+    paddingBottom: theme.spacing.l,
+    backgroundColor: theme.colors.surface,
+    borderBottomLeftRadius: theme.borderRadius.xl,
+    borderBottomRightRadius: theme.borderRadius.xl,
+    ...theme.shadows.default,
     zIndex: 10,
   },
   headerTitle: {
-    ...theme.text.title,
-    fontSize: 24,
+    ...theme.text.header,
     color: theme.colors.primary,
-    marginBottom: 4,
+    marginBottom: theme.spacing.xs,
   },
   headerSubtitle: {
     ...theme.text.body,
-    color: '#666',
-    marginBottom: theme.spacing.m,
+    color: theme.colors.textLight,
+    marginBottom: theme.spacing.l,
   },
   searchInput: {
-    backgroundColor: '#F0F2F5',
-    borderWidth: 0,
+    backgroundColor: theme.colors.surfaceAlt,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.m,
   },
   content: {
     flex: 1,
+  },
+  mapWrapper: {
+    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   mapContainer: {
-    width: '100%',
-    aspectRatio: 0.95,
-    maxHeight: 500,
-    alignSelf: 'center',
+    width: '90%',
+    aspectRatio: 1,
+    maxHeight: 400,
+  },
+  mapHint: {
+    ...theme.text.caption,
+    marginTop: theme.spacing.m,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
   listContent: {
     padding: theme.spacing.m,
   },
-  listItem: {
-    flexDirection: 'row',
+  emptyContainer: {
     alignItems: 'center',
-    backgroundColor: '#FFF',
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.s,
-    borderRadius: theme.borderRadius.m,
-    elevation: 2,
-  },
-  listItemPressed: {
-    backgroundColor: '#F0F0F0',
-  },
-  codeBadge: {
-    backgroundColor: theme.colors.primary,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: theme.spacing.m,
-  },
-  codeText: {
-    color: '#FFF',
-    fontWeight: 'bold',
-  },
-  stateName: {
-    fontSize: 16,
-    color: theme.colors.text,
-    fontWeight: '500',
+    marginTop: theme.spacing.xl,
   },
   emptyText: {
-    textAlign: 'center',
-    marginTop: 40,
-    color: '#999',
-    fontSize: 16,
+    ...theme.text.body,
+    color: theme.colors.textLight,
   },
   footer: {
     padding: theme.spacing.m,
   },
+  loadingContainer: {
+    alignItems: 'center',
+    padding: theme.spacing.m,
+  },
+  loadingText: {
+    marginTop: theme.spacing.s,
+    color: theme.colors.textLight,
+    fontSize: 12,
+  },
   resultCard: {
-    backgroundColor: '#FFF',
+    backgroundColor: theme.colors.surface,
     padding: theme.spacing.l,
     borderRadius: theme.borderRadius.l,
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
+    ...theme.shadows.strong,
   },
   resultHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: theme.spacing.s,
+    alignItems: 'flex-start',
+  },
+  resultLabel: {
+    fontSize: 10,
+    textTransform: 'uppercase',
+    color: theme.colors.textLight,
+    fontWeight: 'bold',
+    marginBottom: 4,
   },
   resultTitle: {
     fontSize: 22,
@@ -195,24 +205,29 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
   },
   resultBadge: {
-    backgroundColor: '#E3F2FD',
+    backgroundColor: theme.colors.primary,
     paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
   },
   resultBadgeText: {
-    color: theme.colors.primary,
+    color: theme.colors.textInverted,
     fontWeight: 'bold',
+    fontSize: 14,
   },
   divider: {
     height: 1,
-    backgroundColor: '#EEE',
-    marginVertical: theme.spacing.s,
+    backgroundColor: theme.colors.border,
+    marginVertical: theme.spacing.m,
+  },
+  jsonContainer: {
+    backgroundColor: theme.colors.surfaceAlt,
+    padding: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
   },
   resultJson: {
-    ...theme.text.body,
-    fontSize: 12,
     fontFamily: 'monospace',
-    color: '#555',
+    fontSize: 12,
+    color: theme.colors.secondary,
   },
 });

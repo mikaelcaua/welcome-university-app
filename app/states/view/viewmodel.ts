@@ -23,11 +23,11 @@ export function useStatesViewModel() {
     defaultValues: { query: '' },
   });
 
+  const searchQuery = form.watch('query');
+
   useEffect(() => {
     loadStatesList();
   }, []);
-
-  const searchQuery = form.watch('query');
 
   useEffect(() => {
     if (!searchQuery) {
