@@ -1,12 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useWelcomeUniversityNavigation } from '@/app/navigation';
 import { University } from '@/interfaces';
+import { useSelectedFiltersStore } from '@/store';
 
-import { searchSchema } from '@/app/states/schemas/searchStateSchema';
-import { SearchFormData } from '../schemas/searchUniversitySchema';
+import {
+  SearchUniversityFormData,
+  searchUniversitySchema,
+} from '../schemas/searchUniversitySchema';
 import { useUniversityService } from '../service/useUniversityService';
 
 export function useUniversityViewModel() {
@@ -14,29 +17,32 @@ export function useUniversityViewModel() {
   const [allUniversities, setAllUniversities] = useState<University[]>([]);
   const [filteredUniversities, setFilteredUniversities] = useState<University[]>([]);
 
-  const { stateId } = useLocalSearchParams<{ stateId: string }>();
+  const { selectedStateId, setSelectedUniversityId } = useSelectedFiltersStore();
+  const { goBack } = useWelcomeUniversityNavigation();
 
   const { getUniversitiesByState } = useUniversityService();
 
-  const form = useForm<SearchFormData>({
-    resolver: zodResolver(searchSchema),
+  const form = useForm<SearchUniversityFormData>({
+    resolver: zodResolver(searchUniversitySchema),
     defaultValues: { query: '' },
   });
 
   const searchQuery = form.watch('query');
 
   useEffect(() => {
-    if (stateId) {
-      loadUniversities(Number(stateId));
+    if (selectedStateId) {
+      loadUniversities(selectedStateId);
+    } else {
+      console.warn('Nenhum estado selecionado');
+      goBack();
     }
-  }, [stateId]);
+  }, [selectedStateId]);
 
   useEffect(() => {
     if (!searchQuery) {
       setFilteredUniversities(allUniversities);
       return;
     }
-
     const lowerQuery = searchQuery.toLowerCase();
     const filtered = allUniversities.filter(
       (uni) =>
@@ -60,9 +66,10 @@ export function useUniversityViewModel() {
   }
 
   function handleSelectUniversity(universityId: number) {
-    console.log('Universidade selecionada:', universityId);
-    // Navegar para a próxima tela (Ex: Cursos)
-    // router.push(`/courses?universityId=${universityId}`);
+    setSelectedUniversityId(universityId);
+
+    // Navega
+    // goToCoursesScreen();
   }
 
   return {

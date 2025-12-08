@@ -1,7 +1,7 @@
 import z from 'zod';
 
-const searchUniversitySchema = z.object({
+export const searchUniversitySchema = z.object({
   query: z.string(),
 });
 
-export type SearchFormData = z.infer<typeof searchUniversitySchema>;
+export type SearchUniversityFormData = z.infer<typeof searchUniversitySchema>;

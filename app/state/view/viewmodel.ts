@@ -2,20 +2,25 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useWelcomeUniversityNavigation } from '@/app/navigation';
 import { State } from '@/interfaces';
-import { SearchFormData, searchSchema } from '../schemas/searchStateSchema';
+import { useSelectedFiltersStore } from '@/store';
+
+import { SearchStateFormData, searchStateSchema } from '../schemas/searchStateSchema';
 import { useStateService } from '../services/service';
 
 export function useStatesViewModel() {
   const [loading, setLoading] = useState(false);
-
   const [allStates, setAllStates] = useState<State[]>([]);
   const [filteredStates, setFilteredStates] = useState<State[]>([]);
 
   const { getAllStates } = useStateService();
 
-  const form = useForm<SearchFormData>({
-    resolver: zodResolver(searchSchema),
+  const { setSelectedStateId } = useSelectedFiltersStore();
+  const { goToUniversitiesScreen } = useWelcomeUniversityNavigation();
+
+  const form = useForm<SearchStateFormData>({
+    resolver: zodResolver(searchStateSchema),
     defaultValues: { query: '' },
   });
 
@@ -30,15 +35,12 @@ export function useStatesViewModel() {
       setFilteredStates(allStates);
       return;
     }
-
     const lowerQuery = searchQuery.toLowerCase();
-
     const filtered = allStates.filter(
       (state) =>
         state.name.toLowerCase().includes(lowerQuery) ||
         state.code.toLowerCase().includes(lowerQuery)
     );
-
     setFilteredStates(filtered);
   }, [searchQuery, allStates]);
 
@@ -55,14 +57,13 @@ export function useStatesViewModel() {
     }
   }
 
-  function handleNext(id: number) {
-    console.log('Avançar com estado:', id);
-  }
-
   async function selectState(id: number) {
     try {
       setLoading(true);
-      handleNext(id);
+
+      setSelectedStateId(id);
+
+      goToUniversitiesScreen();
     } catch (e) {
       console.error(e);
     } finally {
@@ -72,10 +73,8 @@ export function useStatesViewModel() {
 
   return {
     loading,
-
     selectState,
     filteredStates,
-
     form,
   };
 }
