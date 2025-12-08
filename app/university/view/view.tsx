@@ -39,7 +39,7 @@ export default function UniversitiesScreen() {
 
         <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
           <Text style={styles.headerTitle}>Instituições</Text>
-          <Text style={styles.headerSubtitle}>Selecione a universidade de sua preferência</Text>
+          <Text style={styles.headerSubtitle}>Selecione a universidade onde você estuda.</Text>
 
           <FormInput
             control={form.control}
@@ -54,7 +54,7 @@ export default function UniversitiesScreen() {
         <View style={styles.content}>
           {loading ? (
             <View style={styles.loadingContainer}>
-              <ActivityIndicator size="large" color={theme.colors.loading} />
+              <ActivityIndicator size="large" color={theme.colors.primary} />
               <Text style={styles.loadingText}>Buscando instituições...</Text>
             </View>
           ) : (
@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   header: {
-    paddingHorizontal: theme.spacing.m,
-    paddingBottom: theme.spacing.l,
+    paddingHorizontal: theme.spacing.l,
+    paddingBottom: theme.spacing.xl,
     backgroundColor: theme.colors.primary,
     borderBottomLeftRadius: theme.borderRadius.xl,
     borderBottomRightRadius: theme.borderRadius.xl,
@@ -93,19 +93,21 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   headerTitle: {
-    ...theme.text.header,
+    fontWeight: 'bold',
+    fontSize: 28,
     color: theme.colors.white,
     marginBottom: theme.spacing.xs,
   },
   headerSubtitle: {
-    ...theme.text.body,
-    color: theme.colors.blue[100], 
-    marginBottom: theme.spacing.m,
+    fontSize: 16,
+    color: theme.colors.blue[100],
+    marginBottom: theme.spacing.l,
   },
   searchInput: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: theme.colors.white,
     borderWidth: 0,
     ...theme.shadows.soft,
+    height: 52,
   },
   content: {
     flex: 1,
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     marginTop: theme.spacing.m,
-    ...theme.text.body,
+    fontSize: 14,
     color: theme.colors.textLight,
   },
   emptyContainer: {
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.xxl,
   },
   emptyText: {
-    ...theme.text.body,
+    fontSize: 16,
     color: theme.colors.textLight,
     textAlign: 'center',
   },

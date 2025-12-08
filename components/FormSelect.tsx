@@ -1,8 +1,19 @@
-import { useState } from 'react';
-import { Control, Controller, FieldValues, Path } from 'react-hook-form';
-import { FlatList, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
 import { theme } from '@/theme';
+import { MaterialIcons } from '@expo/vector-icons';
+import React, { useMemo, useState } from 'react';
+import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import {
+  FlatList,
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 interface Option {
   id: number;
@@ -16,7 +27,7 @@ interface FormSelectProps<T extends FieldValues> {
   placeholder?: string;
   options: Option[];
   disabled?: boolean;
-  error?: string;   
+  error?: string;
   onSelectCallback?: (id: number) => void;
 }
 
@@ -31,6 +42,18 @@ export function FormSelect<T extends FieldValues>({
   onSelectCallback,
 }: FormSelectProps<T>) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filtra as opções em tempo real baseado na busca
+  const filteredOptions = useMemo(() => {
+    if (!searchQuery) return options;
+    return options.filter((opt) => opt.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  }, [options, searchQuery]);
+
+  function handleClose() {
+    setModalVisible(false);
+    setSearchQuery(''); // Limpa busca ao fechar
+  }
 
   return (
     <View style={styles.container}>
@@ -44,6 +67,7 @@ export function FormSelect<T extends FieldValues>({
 
           return (
             <>
+              {/* O Input "Trigger" */}
               <Pressable
                 style={[
                   styles.input,
@@ -58,53 +82,96 @@ export function FormSelect<T extends FieldValues>({
                     !selectedOption && styles.placeholderText,
                     disabled && styles.disabledText,
                   ]}
+                  numberOfLines={1}
                 >
                   {selectedOption ? selectedOption.name : placeholder}
                 </Text>
-                <Text style={styles.chevron}>▼</Text>
+
+                <MaterialIcons
+                  name="keyboard-arrow-down"
+                  size={24}
+                  color={disabled ? theme.colors.textLight : theme.colors.text}
+                />
               </Pressable>
 
+              {/* O Modal Bottom Sheet */}
               <Modal
                 visible={modalVisible}
                 animationType="slide"
                 transparent={true}
-                onRequestClose={() => setModalVisible(false)}
+                onRequestClose={handleClose}
               >
-                <View style={styles.modalOverlay}>
-                  <View style={styles.modalContent}>
-                    <View style={styles.modalHeader}>
-                      <Text style={styles.modalTitle}>{label || 'Selecione'}</Text>
-                      <TouchableOpacity onPress={() => setModalVisible(false)}>
-                        <Text style={styles.closeButton}>Fechar</Text>
-                      </TouchableOpacity>
-                    </View>
-
-                    <FlatList
-                      data={options}
-                      keyExtractor={(item) => String(item.id)}
-                      renderItem={({ item }) => (
-                        <TouchableOpacity
-                          style={styles.optionItem}
-                          onPress={() => {
-                            onChange(item.id);
-                            if (onSelectCallback) onSelectCallback(item.id);
-                            setModalVisible(false);
-                          }}
-                        >
-                          <Text
-                            style={[
-                              styles.optionText,
-                              value === item.id && styles.selectedOptionText,
-                            ]}
-                          >
-                            {item.name}
-                          </Text>
-                          {value === item.id && <Text style={styles.checkIcon}>✓</Text>}
+                <KeyboardAvoidingView
+                  behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                  style={{ flex: 1 }}
+                >
+                  {/* Overlay Escuro (Clicar fecha) */}
+                  <Pressable style={styles.modalOverlay} onPress={handleClose}>
+                    {/* Conteúdo do Modal (Clicar não fecha) */}
+                    <Pressable style={styles.modalContent} onPress={(e) => e.stopPropagation()}>
+                      {/* Header com Título e Fechar */}
+                      <View style={styles.modalHeader}>
+                        <Text style={styles.modalTitle}>{label || 'Selecione uma opção'}</Text>
+                        <TouchableOpacity onPress={handleClose} style={styles.closeButton}>
+                          <MaterialIcons name="close" size={24} color={theme.colors.textLight} />
                         </TouchableOpacity>
-                      )}
-                    />
-                  </View>
-                </View>
+                      </View>
+
+                      {/* Campo de Busca */}
+                      <View style={styles.searchContainer}>
+                        <MaterialIcons
+                          name="search"
+                          size={20}
+                          color={theme.colors.textLight}
+                          style={styles.searchIcon}
+                        />
+                        <TextInput
+                          style={styles.searchInput}
+                          placeholder="Filtrar opções..."
+                          placeholderTextColor={theme.colors.textLight}
+                          value={searchQuery}
+                          onChangeText={setSearchQuery}
+                        />
+                      </View>
+
+                      {/* Lista de Opções */}
+                      <FlatList
+                        data={filteredOptions}
+                        keyExtractor={(item) => String(item.id)}
+                        showsVerticalScrollIndicator={false}
+                        contentContainerStyle={styles.listContent}
+                        ListEmptyComponent={
+                          <Text style={styles.emptyText}>Nenhuma opção encontrada</Text>
+                        }
+                        renderItem={({ item }) => (
+                          <TouchableOpacity
+                            style={[
+                              styles.optionItem,
+                              value === item.id && styles.selectedOptionItem,
+                            ]}
+                            onPress={() => {
+                              onChange(item.id);
+                              if (onSelectCallback) onSelectCallback(item.id);
+                              handleClose();
+                            }}
+                          >
+                            <Text
+                              style={[
+                                styles.optionText,
+                                value === item.id && styles.selectedOptionText,
+                              ]}
+                            >
+                              {item.name}
+                            </Text>
+                            {value === item.id && (
+                              <MaterialIcons name="check" size={20} color={theme.colors.primary} />
+                            )}
+                          </TouchableOpacity>
+                        )}
+                      />
+                    </Pressable>
+                  </Pressable>
+                </KeyboardAvoidingView>
               </Modal>
             </>
           );
@@ -126,36 +193,37 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
     color: theme.colors.text,
   },
+  // Estilos do Input Trigger
   input: {
-    backgroundColor: theme.colors.surfaceAlt,
+    backgroundColor: theme.colors.surface,
     borderRadius: theme.borderRadius.m,
     paddingHorizontal: theme.spacing.m,
-    height: 48,
+    height: 50, // Altura confortável
     borderWidth: 1,
     borderColor: theme.colors.border,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    ...theme.shadows.soft,
   },
   disabledInput: {
-    backgroundColor: theme.colors.gray,
-    borderColor: theme.colors.gray,
+    backgroundColor: theme.colors.slate[100],
+    borderColor: theme.colors.slate[200],
+    opacity: 0.7,
   },
   inputError: {
     borderColor: theme.colors.error,
+    borderWidth: 1,
   },
   inputText: {
     fontSize: 14,
     color: theme.colors.text,
+    flex: 1, // Para o texto não sobrepor o ícone
   },
   placeholderText: {
     color: theme.colors.textLight,
   },
   disabledText: {
-    color: theme.colors.black,
-  },
-  chevron: {
-    fontSize: 12,
     color: theme.colors.textLight,
   },
   errorText: {
@@ -164,17 +232,23 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.xs,
     marginLeft: theme.spacing.xs,
   },
+  chevron: {
+    marginLeft: theme.spacing.s,
+  },
+
+  // Estilos do Modal
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.6)', // Mais escuro para foco
     justifyContent: 'flex-end',
   },
   modalContent: {
     backgroundColor: theme.colors.surface,
     borderTopLeftRadius: theme.borderRadius.l,
     borderTopRightRadius: theme.borderRadius.l,
-    maxHeight: '60%',
+    height: '70%', // Ocupa 70% da tela
     paddingBottom: theme.spacing.xl,
+    ...theme.shadows.strong,
   },
   modalHeader: {
     flexDirection: 'row',
@@ -186,28 +260,61 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     ...theme.text.title,
+    fontSize: 18,
   },
   closeButton: {
-    color: theme.colors.primary,
-    fontWeight: 'bold',
+    padding: 4, // Área de toque maior
+  },
+
+  // Estilos da Busca
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.surfaceAlt,
+    margin: theme.spacing.m,
+    paddingHorizontal: theme.spacing.m,
+    borderRadius: theme.borderRadius.m,
+    height: 44,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+  },
+  searchIcon: {
+    marginRight: theme.spacing.s,
+  },
+  searchInput: {
+    flex: 1,
+    height: '100%',
+    color: theme.colors.text,
+    fontSize: 14,
+  },
+
+  // Estilos da Lista
+  listContent: {
+    paddingBottom: theme.spacing.xl,
   },
   optionItem: {
-    padding: theme.spacing.m,
+    paddingVertical: theme.spacing.m,
+    paddingHorizontal: theme.spacing.l,
     borderBottomWidth: 1,
-    borderBottomColor: theme.colors.surfaceAlt,
+    borderBottomColor: theme.colors.slate[100],
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  selectedOptionItem: {
+    backgroundColor: theme.colors.primaryLight,
   },
   optionText: {
-    ...theme.text.body,
     fontSize: 16,
+    color: theme.colors.text,
   },
   selectedOptionText: {
     color: theme.colors.primary,
     fontWeight: 'bold',
   },
-  checkIcon: {
-    color: theme.colors.primary,
-    fontWeight: 'bold',
+  emptyText: {
+    textAlign: 'center',
+    marginTop: theme.spacing.l,
+    color: theme.colors.textLight,
   },
 });

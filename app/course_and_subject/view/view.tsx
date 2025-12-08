@@ -22,48 +22,59 @@ export default function CourseSubjectScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <StatusBar barStyle="dark-content" backgroundColor={theme.colors.surface} />
+      <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
       <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
-        <Text style={styles.headerTitle}>O que você deseja estudar?</Text>
+        <Text style={styles.headerTitle}>O que você estuda?</Text>
         <Text style={styles.headerSubtitle}>
-          Estamos quase lá universitário! Selecione o curso e a matéria para encontrar as provas.
+          Filtre por curso e disciplina para encontrar as provas exatas.
         </Text>
       </View>
 
-      <ScrollView contentContainerStyle={styles.content}>
-        <FormSelect
-          control={form.control}
-          name="courseId"
-          label="Curso"
-          placeholder={loadingCourses ? 'Carregando cursos...' : 'Selecione o curso'}
-          options={courses}
-          disabled={loadingCourses}
-          onSelectCallback={onSelectCourse}
-          error={form.formState.errors.courseId?.message}
-        />
-        <FormSelect
-          control={form.control}
-          name="subjectId"
-          label="Disciplina"
-          placeholder={
-            !isCourseSelected
-              ? 'Selecione um curso primeiro'
-              : loadingSubjects
-              ? 'Carregando disciplinas...'
-              : 'Selecione a disciplina'
-          }
-          options={subjects}
-          disabled={!isCourseSelected || loadingSubjects}
-          error={form.formState.errors.subjectId?.message}
-        />
-      </ScrollView>
+      <View style={styles.formCardContainer}>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.formSection}>
+            <FormSelect
+              control={form.control}
+              name="courseId"
+              label="SELECIONE O CURSO"
+              placeholder={loadingCourses ? 'Carregando cursos...' : 'Toque para escolher...'}
+              options={courses}
+              disabled={loadingCourses}
+              onSelectCallback={onSelectCourse}
+              error={form.formState.errors.courseId?.message}
+            />
+          </View>
+
+          <View style={styles.formSection}>
+            <FormSelect
+              control={form.control}
+              name="subjectId"
+              label="SELECIONE A DISCIPLINA"
+              placeholder={
+                !isCourseSelected
+                  ? 'Escolha um curso acima primeiro'
+                  : loadingSubjects
+                  ? 'Carregando disciplinas...'
+                  : 'Toque para escolher...'
+              }
+              options={subjects}
+              disabled={!isCourseSelected || loadingSubjects}
+              error={form.formState.errors.subjectId?.message}
+            />
+          </View>
+        </ScrollView>
+      </View>
 
       <View style={styles.footer}>
         <Button
-          title="Buscar Provas"
+          title="Ver Provas Disponíveis"
           onPress={onSubmit}
           isLoading={loadingCourses || loadingSubjects}
+          style={styles.searchButton}
         />
       </View>
     </View>
@@ -77,26 +88,46 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: theme.spacing.l,
-    paddingBottom: theme.spacing.l,
-    backgroundColor: theme.colors.surface,
-    ...theme.shadows.default,
-    zIndex: 10,
-    marginBottom: theme.spacing.m,
+    paddingBottom: theme.spacing.xxl + 20,
+    backgroundColor: theme.colors.primary,
+    zIndex: 0,
   },
   headerTitle: {
-    ...theme.text.header,
-    color: theme.colors.primary,
+    fontWeight: 'bold',
+    fontSize: 26,
+    color: theme.colors.white,
     marginBottom: theme.spacing.xs,
   },
   headerSubtitle: {
-    ...theme.text.body,
-    color: theme.colors.textLight,
+    fontSize: 16,
+    color: theme.colors.blue[100],
+    lineHeight: 22,
+    maxWidth: '90%',
   },
-  content: {
-    padding: theme.spacing.l,
+  formCardContainer: {
+    flex: 1,
+    backgroundColor: theme.colors.surface,
+    borderTopLeftRadius: theme.borderRadius.xl,
+    borderTopRightRadius: theme.borderRadius.xl,
+    marginTop: -theme.spacing.xl,
+    ...theme.shadows.strong,
+    paddingTop: theme.spacing.xl,
+  },
+  scrollContent: {
+    paddingHorizontal: theme.spacing.l,
+    paddingBottom: 100,
+  },
+  formSection: {
+    marginBottom: theme.spacing.l,
   },
   footer: {
     padding: theme.spacing.l,
-    backgroundColor: 'transparent',
+    backgroundColor: theme.colors.surface,
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.border,
+  },
+  searchButton: {
+    height: 56,
+    backgroundColor: theme.colors.green[600],
   },
 });
