@@ -1,3 +1,4 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -21,7 +22,8 @@ export function StateCardSearch({ state, onPress }: StateCardSearchProps) {
 
       <View style={styles.content}>
         <Text style={styles.name}>{state.name}</Text>
-        <Text style={styles.icon}>›</Text>
+
+        <MaterialIcons name="chevron-right" size={24} color={theme.colors.textLight} />
       </View>
     </Pressable>
   );
@@ -67,10 +69,5 @@ const styles = StyleSheet.create({
     ...theme.text.title,
     fontSize: 16,
     color: theme.colors.text,
-  },
-  icon: {
-    fontSize: 20,
-    color: theme.colors.textLight,
-    fontWeight: 'bold',
   },
 });

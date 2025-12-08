@@ -1,8 +1,8 @@
+import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { University } from '@/interfaces';
-
 import { theme } from '@/theme';
 
 interface UniversityCardProps {
@@ -17,9 +17,7 @@ export function UniversityCard({ university, onPress }: UniversityCardProps) {
       onPress={onPress}
     >
       <View style={styles.iconContainer}>
-        <Text style={styles.iconText}>
-          {university.abbreviation ? university.abbreviation.substring(0, 2) : 'U'}
-        </Text>
+        <FontAwesome5 name="university" size={18} color={theme.colors.primary} />
       </View>
 
       <View style={styles.content}>
@@ -27,7 +25,7 @@ export function UniversityCard({ university, onPress }: UniversityCardProps) {
         {university.abbreviation && <Text style={styles.subName}>{university.abbreviation}</Text>}
       </View>
 
-      <Text style={styles.arrow}>›</Text>
+      <MaterialIcons name="chevron-right" size={24} color={theme.colors.textLight} />
     </Pressable>
   );
 }
@@ -42,7 +40,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     ...theme.shadows.soft,
     borderWidth: 1,
-    borderColor: 'transparent',
+    borderColor: theme.colors.border,
   },
   containerPressed: {
     backgroundColor: theme.colors.surfaceAlt,
@@ -57,11 +55,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: theme.spacing.m,
   },
-  iconText: {
-    color: theme.colors.primary,
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
   content: {
     flex: 1,
   },
@@ -73,11 +66,5 @@ const styles = StyleSheet.create({
   subName: {
     ...theme.text.caption,
     marginTop: 2,
-  },
-  arrow: {
-    fontSize: 24,
-    color: theme.colors.textLight,
-    fontWeight: 'bold',
-    marginLeft: theme.spacing.s,
   },
 });

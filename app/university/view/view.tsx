@@ -45,6 +45,7 @@ export default function UniversitiesScreen() {
             control={form.control}
             name="query"
             placeholder="Buscar universidade (Ex: UFMA, USP...)"
+            iconName="search"
             style={styles.searchInput}
             placeholderTextColor={theme.colors.textLight}
           />
@@ -63,6 +64,7 @@ export default function UniversitiesScreen() {
               renderItem={renderItem}
               contentContainerStyle={styles.listContent}
               showsVerticalScrollIndicator={false}
+              keyboardShouldPersistTaps="handled"
               ListEmptyComponent={
                 <View style={styles.emptyContainer}>
                   <Text style={styles.emptyText}>Nenhuma universidade encontrada.</Text>
@@ -83,7 +85,10 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: theme.spacing.m,
+    paddingBottom: theme.spacing.l,
     backgroundColor: theme.colors.primary,
+    borderBottomLeftRadius: theme.borderRadius.xl,
+    borderBottomRightRadius: theme.borderRadius.xl,
     ...theme.shadows.default,
     zIndex: 10,
   },
@@ -94,7 +99,7 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     ...theme.text.body,
-    color: theme.colors.white,
+    color: theme.colors.blue[100], 
     marginBottom: theme.spacing.m,
   },
   searchInput: {
@@ -117,6 +122,7 @@ const styles = StyleSheet.create({
   loadingText: {
     marginTop: theme.spacing.m,
     ...theme.text.body,
+    color: theme.colors.textLight,
   },
   emptyContainer: {
     alignItems: 'center',

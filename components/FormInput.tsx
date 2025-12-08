@@ -1,13 +1,25 @@
-import { theme } from '@/theme';
+import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
-import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextInput,
+  TextInputProps,
+  View,
+  ViewStyle,
+} from 'react-native';
 
-interface FormInputProps<T extends FieldValues> extends TextInputProps {
+import { theme } from '@/theme';
+
+interface FormInputProps<T extends FieldValues> extends Omit<TextInputProps, 'style'> {
   control: Control<T>;
   name: Path<T>;
   label?: string;
   error?: string;
+  iconName?: keyof typeof MaterialIcons.glyphMap;
+  style?: StyleProp<ViewStyle>;
 }
 
 export function FormInput<T extends FieldValues>({
@@ -16,6 +28,7 @@ export function FormInput<T extends FieldValues>({
   label,
   error,
   style,
+  iconName,
   ...rest
 }: FormInputProps<T>) {
   return (
@@ -26,14 +39,31 @@ export function FormInput<T extends FieldValues>({
         control={control}
         name={name}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={[styles.input, error ? styles.inputError : null, style]}
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-            placeholderTextColor="#999"
-            {...rest}
-          />
+          <View
+            style={[
+              styles.inputContainer,
+              error ? styles.inputError : null,
+              style, // Agora o TS sabe que isso é um ViewStyle
+            ]}
+          >
+            {iconName && (
+              <MaterialIcons
+                name={iconName}
+                size={20}
+                color={theme.colors.textLight}
+                style={styles.icon}
+              />
+            )}
+
+            <TextInput
+              style={styles.input}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              placeholderTextColor={theme.colors.textLight}
+              {...rest}
+            />
+          </View>
         )}
       />
 
@@ -53,21 +83,30 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.xs,
     color: theme.colors.text,
   },
-  input: {
-    backgroundColor: theme.colors.surface,
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.surfaceAlt,
     borderRadius: theme.borderRadius.m,
-    padding: theme.spacing.m,
-    fontSize: 16,
     borderWidth: 1,
-    borderColor: 'transparent',
+    borderColor: theme.colors.border,
+    height: 48,
+    paddingHorizontal: theme.spacing.m,
+  },
+  input: {
+    flex: 1,
+    fontSize: 14,
     color: theme.colors.text,
+    height: '100%',
+  },
+  icon: {
+    marginRight: theme.spacing.s,
   },
   inputError: {
-    borderColor: 'red',
-    borderWidth: 1,
+    borderColor: theme.colors.error,
   },
   errorText: {
-    color: 'red',
+    color: theme.colors.error,
     fontSize: 12,
     marginTop: theme.spacing.xs,
     marginLeft: theme.spacing.xs,

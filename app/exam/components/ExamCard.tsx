@@ -1,11 +1,13 @@
-import { Exam, ExamType } from '@/interfaces';
-import { theme } from '@/theme';
+import { FontAwesome } from '@expo/vector-icons';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { Exam, ExamType } from '@/interfaces';
+import { theme } from '@/theme';
+
 interface ExamCardProps {
   exam: Exam;
-  index: number; // Usado para escalonar a animação (stagger)
+  index: number;
 }
 
 const typeLabels: Record<ExamType, string> = {
@@ -20,7 +22,7 @@ const typeColors: Record<ExamType, string> = {
   PROVA1: theme.colors.blue[100],
   PROVA2: theme.colors.blue[100],
   PROVA3: theme.colors.blue[100],
-  RECUPERACAO: theme.colors.orange ? theme.colors.orange[100] : '#FFEDD5', // Fallback se não tiver orange
+  RECUPERACAO: theme.colors.orange[100],
   FINAL: theme.colors.red[100],
 };
 
@@ -28,12 +30,11 @@ const textTypeColors: Record<ExamType, string> = {
   PROVA1: theme.colors.blue[700],
   PROVA2: theme.colors.blue[700],
   PROVA3: theme.colors.blue[700],
-  RECUPERACAO: theme.colors.orange ? theme.colors.orange[700] : '#C2410C',
+  RECUPERACAO: theme.colors.orange[700],
   FINAL: theme.colors.red[700],
 };
 
 export function ExamCard({ exam, index }: ExamCardProps) {
-  // Animação: Opacidade e Posição Y
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(20)).current;
 
@@ -42,7 +43,7 @@ export function ExamCard({ exam, index }: ExamCardProps) {
       Animated.timing(fadeAnim, {
         toValue: 1,
         duration: 400,
-        delay: index * 100, // Efeito cascata
+        delay: index * 100,
         useNativeDriver: true,
       }),
       Animated.timing(translateY, {
@@ -73,9 +74,9 @@ export function ExamCard({ exam, index }: ExamCardProps) {
         style={({ pressed }) => [styles.container, pressed && styles.pressed]}
         onPress={handleOpenPdf}
       >
-        {/* Ícone PDF Simulado */}
+        {/* Ícone PDF */}
         <View style={styles.iconContainer}>
-          <Text style={styles.pdfText}>PDF</Text>
+          <FontAwesome name="file-pdf-o" size={20} color={theme.colors.pdf} />
         </View>
 
         <View style={styles.content}>
@@ -85,7 +86,7 @@ export function ExamCard({ exam, index }: ExamCardProps) {
           </Text>
         </View>
 
-        {/* Badge do Tipo (P1, P2...) */}
+        {/* Badge do Tipo */}
         <View style={[styles.badge, { backgroundColor: typeColors[exam.type] }]}>
           <Text style={[styles.badgeText, { color: textTypeColors[exam.type] }]}>
             {typeLabels[exam.type]}
@@ -115,17 +116,12 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 8,
-    backgroundColor: theme.colors.red[50], // Fundo vermelho bem claro
+    backgroundColor: theme.colors.red[50],
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: theme.spacing.m,
     borderWidth: 1,
     borderColor: theme.colors.red[100],
-  },
-  pdfText: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: theme.colors.pdf,
   },
   content: {
     flex: 1,
