@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  ActivityIndicator,
   FlatList,
   Keyboard,
   StatusBar,
@@ -16,12 +15,10 @@ import { State } from '@/interfaces';
 import { theme } from '@/theme';
 
 import { StateCardSearch } from '../components/StateCardSearch';
-import { StateCardSelectable } from '../components/StateCardSelectable';
 import { useStatesViewModel } from './viewmodel';
 
 export default function StatesScreen() {
-  const { loading, selectedState, selectState, filteredStates, handleNext, form } =
-    useStatesViewModel();
+  const { loading, selectState, filteredStates, form } = useStatesViewModel();
   const insets = useSafeAreaInsets();
 
   const renderStateItem = ({ item }: { item: State }) => (
@@ -29,7 +26,7 @@ export default function StatesScreen() {
       state={item}
       onPress={() => {
         Keyboard.dismiss();
-        selectState(item.code);
+        selectState(item.id);
       }}
     />
   );
@@ -40,8 +37,8 @@ export default function StatesScreen() {
         <StatusBar barStyle="dark-content" backgroundColor={theme.colors.surface} />
 
         <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
-          <Text style={styles.headerTitle}>Portal da Universidade</Text>
-          <Text style={styles.headerSubtitle}>Explore as unidades por estado</Text>
+          <Text style={styles.headerTitle}>Olá, Universitário!</Text>
+          <Text style={styles.headerSubtitle}>Antes de começar, por favor escolha seu estado</Text>
 
           <FormInput
             control={form.control}
@@ -67,17 +64,6 @@ export default function StatesScreen() {
             keyboardShouldPersistTaps="handled"
           />
         </View>
-
-        <View style={styles.footer}>
-          {loading ? (
-            <View style={styles.loadingContainer}>
-              <ActivityIndicator size="large" color={theme.colors.loading} />
-              <Text style={styles.loadingText}>Carregando informações...</Text>
-            </View>
-          ) : (
-            selectedState && <StateCardSelectable state={selectedState} onNext={handleNext} />
-          )}
-        </View>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -89,23 +75,20 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   header: {
-    paddingHorizontal: theme.spacing.l,
-    paddingBottom: theme.spacing.l,
-    backgroundColor: theme.colors.surface,
-    borderBottomLeftRadius: theme.borderRadius.xl,
-    borderBottomRightRadius: theme.borderRadius.xl,
+    paddingHorizontal: theme.spacing.m,
+    backgroundColor: theme.colors.primary,
     ...theme.shadows.default,
     zIndex: 10,
   },
   headerTitle: {
     ...theme.text.header,
-    color: theme.colors.primary,
+    color: theme.colors.white,
     marginBottom: theme.spacing.xs,
   },
   headerSubtitle: {
     ...theme.text.body,
-    color: theme.colors.textLight,
-    marginBottom: theme.spacing.l,
+    color: theme.colors.white,
+    marginBottom: theme.spacing.m,
   },
   searchInput: {
     backgroundColor: theme.colors.surfaceAlt,

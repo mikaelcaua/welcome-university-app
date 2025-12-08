@@ -8,12 +8,11 @@ import { useStateService } from '../services/service';
 
 export function useStatesViewModel() {
   const [loading, setLoading] = useState(false);
-  const [selectedState, setSelectedState] = useState<State | undefined>(undefined);
 
   const [allStates, setAllStates] = useState<State[]>([]);
   const [filteredStates, setFilteredStates] = useState<State[]>([]);
 
-  const { getStateByCode, getAllStates } = useStateService();
+  const { getAllStates } = useStateService();
 
   const form = useForm<SearchFormData>({
     resolver: zodResolver(searchSchema),
@@ -56,11 +55,14 @@ export function useStatesViewModel() {
     }
   }
 
-  async function selectState(code: string) {
+  function handleNext(id: number) {
+    console.log('Avançar com estado:', id);
+  }
+
+  async function selectState(id: number) {
     try {
       setLoading(true);
-      const result = await getStateByCode(code);
-      setSelectedState(result);
+      handleNext(id);
     } catch (e) {
       console.error(e);
     } finally {
@@ -68,19 +70,12 @@ export function useStatesViewModel() {
     }
   }
 
-  function handleNext() {
-    console.log('Avançar com estado:', selectedState);
-  }
-
   return {
     loading,
 
-    selectedState,
     selectState,
     filteredStates,
 
     form,
-
-    handleNext,
   };
 }

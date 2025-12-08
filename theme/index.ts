@@ -15,6 +15,12 @@ export const theme = {
     border: '#E5E7EB',
     loading: '#0056D2',
     error: '#EF4444',
+
+    white: '#FFFFFF',
+    black: '#000000',
+    green: '#22C55E',
+    red: '#EF4444',
+    gray: '#9CA3AF',
   },
 
   spacing: {
