@@ -178,7 +178,7 @@ export function useExamSubmissionViewModel() {
   }
 
   function goToProfile() {
-    router.push("/(tabs)/perfil/view/view");
+    router.push("/(tabs)/perfil");
   }
 
   async function handlePickImage() {
