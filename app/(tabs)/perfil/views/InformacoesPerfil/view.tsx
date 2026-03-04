@@ -88,13 +88,6 @@ export default function ProfileScreen() {
 
               <View style={styles.actionsRow}>
                 <Button
-                  title={isRefreshing ? "Atualizando..." : "Atualizar perfil"}
-                  onPress={handleRefreshProfile}
-                  isLoading={isRefreshing}
-                  variant="outline"
-                  style={styles.actionButton}
-                />
-                <Button
                   title="Sair"
                   onPress={handleLogout}
                   variant="outline"

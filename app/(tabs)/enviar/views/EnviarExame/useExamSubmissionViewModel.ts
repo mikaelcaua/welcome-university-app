@@ -179,7 +179,7 @@ export function useExamSubmissionViewModel() {
   }
 
   function goToProfile() {
-    router.push("/(tabs)/perfil");
+    router.push("/perfil");
   }
 
   async function handlePickImage() {

@@ -21,7 +21,7 @@ export function useCourseSubjectViewModel() {
   const { selectedUniversityId, setSelectedCourseId, setSelectedSubjectId } =
     useSelectedFiltersStore();
   const { getCoursesByUniversity, getSubjectsByCourse } = useCourseSubjectService();
-  const { goToExamsScreen } = useWelcomeUniversityNavigation();
+  const { goBack, goToExamsScreen } = useWelcomeUniversityNavigation();
 
   const form = useForm<CourseSubjectFormData>({
     resolver: zodResolver(courseSubjectSchema),
@@ -80,5 +80,6 @@ export function useCourseSubjectViewModel() {
     onSelectCourse,
     onSubmit: form.handleSubmit(onSubmit),
     isCourseSelected: !!form.watch('courseId'),
+    goBack,
   };
 }

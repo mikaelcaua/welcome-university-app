@@ -1,4 +1,11 @@
-import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button, FormSelect } from '@/components';
@@ -16,6 +23,7 @@ export default function CourseSubjectScreen() {
     isCourseSelected,
     loadingCourses,
     loadingSubjects,
+    goBack,
   } = useCourseSubjectViewModel();
 
   const insets = useSafeAreaInsets();
@@ -25,7 +33,12 @@ export default function CourseSubjectScreen() {
       <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
       <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
-        <Text style={styles.headerTitle}>O que você estuda?</Text>
+        <View style={styles.headerTopRow}>
+          <TouchableOpacity onPress={goBack} style={styles.backButton}>
+            <Text style={styles.backText}>←</Text>
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>O que você estuda?</Text>
+        </View>
         <Text style={styles.headerSubtitle}>
           Filtre por curso e disciplina para encontrar as provas exatas.
         </Text>
@@ -92,11 +105,25 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
     zIndex: 0,
   },
+  headerTopRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.xs,
+  },
+  backButton: {
+    marginRight: theme.spacing.s,
+    paddingVertical: theme.spacing.xs,
+    paddingRight: theme.spacing.xs,
+  },
+  backText: {
+    fontSize: 22,
+    color: theme.colors.white,
+    fontWeight: '500',
+  },
   headerTitle: {
     fontWeight: 'bold',
     fontSize: 26,
     color: theme.colors.white,
-    marginBottom: theme.spacing.xs,
   },
   headerSubtitle: {
     fontSize: 16,

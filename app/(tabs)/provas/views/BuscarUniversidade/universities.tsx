@@ -5,6 +5,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -18,7 +19,7 @@ import { UniversityCard } from '../../components/University/UniversityCard';
 import { useUniversityViewModel } from './useUniversityViewModel';
 
 export default function UniversitiesScreen() {
-  const { loading, filteredUniversities, form, handleSelectUniversity } =
+  const { loading, filteredUniversities, form, handleSelectUniversity, goBack } =
     useUniversityViewModel();
   const insets = useSafeAreaInsets();
 
@@ -38,7 +39,12 @@ export default function UniversitiesScreen() {
         <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
 
         <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
-          <Text style={styles.headerTitle}>Instituições</Text>
+          <View style={styles.headerTopRow}>
+            <TouchableOpacity onPress={goBack} style={styles.backButton}>
+              <Text style={styles.backText}>←</Text>
+            </TouchableOpacity>
+            <Text style={styles.headerTitle}>Instituições</Text>
+          </View>
           <Text style={styles.headerSubtitle}>Selecione a universidade onde você estuda.</Text>
 
           <FormInput
@@ -92,11 +98,25 @@ const styles = StyleSheet.create({
     ...theme.shadows.default,
     zIndex: 10,
   },
+  headerTopRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: theme.spacing.xs,
+  },
+  backButton: {
+    marginRight: theme.spacing.s,
+    paddingVertical: theme.spacing.xs,
+    paddingRight: theme.spacing.xs,
+  },
+  backText: {
+    fontSize: 22,
+    color: theme.colors.white,
+    fontWeight: '500',
+  },
   headerTitle: {
     fontWeight: 'bold',
     fontSize: 28,
     color: theme.colors.white,
-    marginBottom: theme.spacing.xs,
   },
   headerSubtitle: {
     fontSize: 16,

@@ -79,5 +79,6 @@ export function useUniversityViewModel() {
     filteredUniversities,
     form,
     handleSelectUniversity,
+    goBack,
   };
 }
