@@ -1,7 +1,10 @@
-import { Course } from './Course';
+import { CourseSummary } from './Course';
 
-export interface Subject {
+export interface SubjectSummary {
   id: number;
   name: string;
-  course: Course;
+}
+
+export interface Subject extends SubjectSummary {
+  course: CourseSummary;
 }

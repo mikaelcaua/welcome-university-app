@@ -1,0 +1,897 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "provasScreen",
+      "name": "Tab 1 - Ver Provas",
+      "x": 80,
+      "y": 80,
+      "width": 402,
+      "height": 874,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "cornerRadius": 28,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#E4E4E7"
+      },
+      "children": [
+        {
+          "type": "frame",
+          "id": "provasStatus",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [0, 24],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "provasTime",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600",
+              "fill": "#18181B"
+            },
+            {
+              "type": "text",
+              "id": "provasStatusText",
+              "content": "LTE 100%",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "fill": "#71717A"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "provasContent",
+          "name": "Content",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [0, 24, 24, 24],
+          "children": [
+            {
+              "type": "frame",
+              "id": "provasHeader",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "provasEyebrow",
+                  "content": "PROVAS",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#71717A"
+                },
+                {
+                  "type": "text",
+                  "id": "provasTitle",
+                  "content": "Encontre provas aprovadas por disciplina",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "600",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "text",
+                  "id": "provasSubtitle",
+                  "content": "Fluxo público para navegar pela estrutura acadêmica e consultar apenas material aprovado.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": "#71717A"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "provasHero",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 20,
+              "fill": "#EFF6FF",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#2563EB"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "provasHeroEyebrow",
+                  "content": "FLUXO PÚBLICO",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#2563EB"
+                },
+                {
+                  "type": "text",
+                  "id": "provasHeroTitle",
+                  "content": "Estado → universidade → curso → disciplina → provas",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "text",
+                  "id": "provasHeroBody",
+                  "content": "Ideal para o catálogo público e para filtro por período após a disciplina estar definida.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": "#71717A"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "provasFiltersCard",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "filtersLabel",
+                  "content": "FILTROS ACADÊMICOS",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#71717A"
+                },
+                {
+                  "type": "text",
+                  "id": "filtersBody",
+                  "content": "Selectors em cascata para estado, universidade, curso e disciplina.",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "500",
+                  "fill": "#18181B"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "provasListCard",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "listPeriod",
+                  "content": "2025.2",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#2563EB"
+                },
+                {
+                  "type": "text",
+                  "id": "listTitle",
+                  "content": "Cálculo II · Prova 2",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "text",
+                  "id": "listBody",
+                  "content": "PDF aprovado, pronto para consulta pública.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": "#71717A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "provasTabShell",
+          "width": "fill_container",
+          "padding": [12, 21, 21, 21],
+          "children": [
+            {
+              "type": "frame",
+              "id": "provasTabBar",
+              "width": "fill_container",
+              "height": 62,
+              "layout": "horizontal",
+              "gap": 4,
+              "padding": 4,
+              "cornerRadius": 36,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "provasTabActive",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#2563EB",
+                  "cornerRadius": 26,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "provasTabActiveText",
+                      "content": "PROVAS",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "provasTabSend",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "provasTabSendText",
+                      "content": "ENVIAR",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500",
+                      "fill": "#71717A"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "provasTabProfile",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "provasTabProfileText",
+                      "content": "PERFIL",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500",
+                      "fill": "#71717A"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "sendScreen",
+      "name": "Tab 2 - Enviar Prova",
+      "x": 562,
+      "y": 80,
+      "width": 402,
+      "height": 874,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "cornerRadius": 28,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#E4E4E7"
+      },
+      "children": [
+        {
+          "type": "frame",
+          "id": "sendStatus",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [0, 24],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "sendTime",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600",
+              "fill": "#18181B"
+            },
+            {
+              "type": "text",
+              "id": "sendStatusText",
+              "content": "LTE 100%",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "fill": "#71717A"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "sendContent",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [0, 24, 24, 24],
+          "children": [
+            {
+              "type": "frame",
+              "id": "sendHeader",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sendEyebrow",
+                  "content": "ENVIAR",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#71717A"
+                },
+                {
+                  "type": "text",
+                  "id": "sendTitle",
+                  "content": "Submeta uma prova em PDF",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "600",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "text",
+                  "id": "sendSubtitle",
+                  "content": "Tab protegida para usuários autenticados com formulário e upload.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": "#71717A"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sendAuthCard",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 20,
+              "fill": "#EFF6FF",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#2563EB"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sendAuthLabel",
+                  "content": "ACESSO AUTENTICADO",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#2563EB"
+                },
+                {
+                  "type": "text",
+                  "id": "sendAuthTitle",
+                  "content": "Nome, ano, semestre, tipo, disciplina e PDF",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "text",
+                  "id": "sendAuthBody",
+                  "content": "A submissão cria uma prova com status PENDING e aguarda revisão.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": "#71717A"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sendStateCard",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sendStateLabel",
+                  "content": "STATUS",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#71717A"
+                },
+                {
+                  "type": "text",
+                  "id": "sendStateBody",
+                  "content": "Visitante vê bloqueio amigável; autenticado vê o formulário completo com selectors em cascata.",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "500",
+                  "fill": "#18181B"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sendCta",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": 16,
+              "cornerRadius": 16,
+              "fill": "#2563EB",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sendCtaLabel",
+                  "content": "CTA",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#FFFFFF"
+                },
+                {
+                  "type": "text",
+                  "id": "sendCtaBody",
+                  "content": "Enviar para revisão",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "fill": "#FFFFFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "sendTabShell",
+          "width": "fill_container",
+          "padding": [12, 21, 21, 21],
+          "children": [
+            {
+              "type": "frame",
+              "id": "sendTabBar",
+              "width": "fill_container",
+              "height": 62,
+              "layout": "horizontal",
+              "gap": 4,
+              "padding": 4,
+              "cornerRadius": 36,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sendTabProofs",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sendTabProofsText",
+                      "content": "PROVAS",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500",
+                      "fill": "#71717A"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "sendTabActive",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#2563EB",
+                  "cornerRadius": 26,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sendTabActiveText",
+                      "content": "ENVIAR",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "sendTabProfile",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sendTabProfileText",
+                      "content": "PERFIL",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500",
+                      "fill": "#71717A"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "profileScreen",
+      "name": "Tab 3 - Perfil",
+      "x": 1044,
+      "y": 80,
+      "width": 402,
+      "height": 874,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "cornerRadius": 28,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#E4E4E7"
+      },
+      "children": [
+        {
+          "type": "frame",
+          "id": "profileStatus",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [0, 24],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "profileTime",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600",
+              "fill": "#18181B"
+            },
+            {
+              "type": "text",
+              "id": "profileStatusText",
+              "content": "LTE 100%",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "fill": "#71717A"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "profileContent",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [0, 24, 24, 24],
+          "children": [
+            {
+              "type": "frame",
+              "id": "profileHeader",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "profileEyebrow",
+                  "content": "PERFIL",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#71717A"
+                },
+                {
+                  "type": "text",
+                  "id": "profileTitle",
+                  "content": "Autenticação e dados do usuário",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "600",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "text",
+                  "id": "profileSubtitle",
+                  "content": "Tela para cadastro, login, sessão autenticada e leitura de /users/me.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": "#71717A"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "profileSessionCard",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 20,
+              "fill": "#EFF6FF",
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#2563EB"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "profileSessionLabel",
+                  "content": "SESSÃO",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#2563EB"
+                },
+                {
+                  "type": "text",
+                  "id": "profileSessionTitle",
+                  "content": "Login, cadastro e papel do usuário",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "fill": "#18181B"
+                },
+                {
+                  "type": "text",
+                  "id": "profileSessionBody",
+                  "content": "Depois do login, a tab mostra nome, email, role e ações protegidas como logout e refresh do perfil.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": "#71717A"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "profileLoggedOutCard",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "profileLoggedOutLabel",
+                  "content": "DESLOGADO",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#71717A"
+                },
+                {
+                  "type": "text",
+                  "id": "profileLoggedOutBody",
+                  "content": "Alternância entre entrar e criar conta no mesmo contexto.",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "500",
+                  "fill": "#18181B"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "profileLoggedInCard",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "cornerRadius": 16,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "id": "profileLoggedInLabel",
+                  "content": "LOGADO",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1,
+                  "fill": "#71717A"
+                },
+                {
+                  "type": "text",
+                  "id": "profileLoggedInBody",
+                  "content": "Nome, email, role e espaço para futuros fluxos de revisão e administração.",
+                  "fontFamily": "Inter",
+                  "fontSize": 15,
+                  "fontWeight": "500",
+                  "fill": "#18181B"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "profileTabShell",
+          "width": "fill_container",
+          "padding": [12, 21, 21, 21],
+          "children": [
+            {
+              "type": "frame",
+              "id": "profileTabBar",
+              "width": "fill_container",
+              "height": 62,
+              "layout": "horizontal",
+              "gap": 4,
+              "padding": 4,
+              "cornerRadius": 36,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#E4E4E7"
+              },
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "profileTabProofs",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "profileTabProofsText",
+                      "content": "PROVAS",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500",
+                      "fill": "#71717A"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "profileTabSend",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "profileTabSendText",
+                      "content": "ENVIAR",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500",
+                      "fill": "#71717A"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "profileTabActive",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#2563EB",
+                  "cornerRadius": 26,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "profileTabActiveText",
+                      "content": "PERFIL",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

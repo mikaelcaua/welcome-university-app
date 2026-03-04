@@ -1,7 +1,10 @@
-import { University } from './University';
+import { UniversitySummary } from './University';
 
-export interface Course {
+export interface CourseSummary {
   id: number;
   name: string;
-  university: University;
+}
+
+export interface Course extends CourseSummary {
+  university: UniversitySummary;
 }
