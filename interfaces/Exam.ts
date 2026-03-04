@@ -21,7 +21,6 @@ export interface ExamPeriodQuery {
 }
 
 export interface ExamUploadRequest {
-  name: string;
   examYear: number;
   semester: 1 | 2;
   type: ExamType;

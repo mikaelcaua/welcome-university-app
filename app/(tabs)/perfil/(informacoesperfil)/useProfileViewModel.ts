@@ -16,8 +16,16 @@ export function useProfileViewModel() {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const { register, login, refresh, getAuthenticatedUser } = useAuthService();
-  const { accessToken, refreshToken, user, isAuthenticated, setSession, setUser, clearSession } =
-    useAuthStore();
+  const {
+    accessToken,
+    refreshToken,
+    user,
+    isAuthenticated,
+    hasHydrated,
+    setSession,
+    setUser,
+    clearSession,
+  } = useAuthStore();
 
   const form = useForm<AuthFormData>({
     resolver: zodResolver(authFormSchema),
@@ -45,7 +53,7 @@ export function useProfileViewModel() {
 
           setSession({
             ...refreshedSession,
-            refreshToken,
+            refreshToken: refreshedSession.refreshToken || refreshToken,
             user: profile,
           });
           return;
@@ -109,6 +117,20 @@ export function useProfileViewModel() {
     }
   }
 
+  function handleLogout() {
+    Alert.alert('Sair da conta', 'Deseja encerrar a sessão neste dispositivo?', [
+      {
+        text: 'Cancelar',
+        style: 'cancel',
+      },
+      {
+        text: 'Sair',
+        style: 'destructive',
+        onPress: clearSession,
+      },
+    ]);
+  }
+
   return {
     form,
     mode,
@@ -116,8 +138,9 @@ export function useProfileViewModel() {
     isSubmitting,
     isRefreshing,
     isAuthenticated,
+    hasHydrated,
     setMode,
-    clearSession,
+    handleLogout,
     handleRefreshProfile,
     onSubmit: form.handleSubmit(submit),
   };

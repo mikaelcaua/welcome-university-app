@@ -3,6 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button, FormSelect } from '@/components';
 import { theme } from '@/theme';
+
 import { useCourseSubjectViewModel } from './useCourseSubjectViewModel';
 
 export default function CourseSubjectScreen() {
@@ -57,8 +58,8 @@ export default function CourseSubjectScreen() {
                 !isCourseSelected
                   ? 'Escolha um curso acima primeiro'
                   : loadingSubjects
-                  ? 'Carregando disciplinas...'
-                  : 'Toque para escolher...'
+                    ? 'Carregando disciplinas...'
+                    : 'Toque para escolher...'
               }
               options={subjects}
               disabled={!isCourseSelected || loadingSubjects}

@@ -13,11 +13,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FormInput } from '@/components';
 import { University } from '@/interfaces';
 import { theme } from '@/theme';
+
 import { UniversityCard } from '../components/UniversityCard';
 import { useUniversityViewModel } from './useUniversityViewModel';
 
 export default function UniversitiesScreen() {
-  const { loading, filteredUniversities, form, handleSelectUniversity } = useUniversityViewModel();
+  const { loading, filteredUniversities, form, handleSelectUniversity } =
+    useUniversityViewModel();
   const insets = useSafeAreaInsets();
 
   const renderItem = ({ item }: { item: University }) => (

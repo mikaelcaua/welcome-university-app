@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Pressable,
   ScrollView,
   StatusBar,
@@ -22,11 +23,30 @@ export default function ProfileScreen() {
     isSubmitting,
     isRefreshing,
     isAuthenticated,
+    hasHydrated,
     setMode,
-    clearSession,
+    handleLogout,
     handleRefreshProfile,
     onSubmit,
   } = useProfileViewModel();
+
+  if (!hasHydrated) {
+    return (
+      <View
+        style={[
+          styles.container,
+          styles.loadingContainer,
+          { paddingTop: insets.top, paddingBottom: insets.bottom },
+        ]}
+      >
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor={theme.colors.background}
+        />
+        <ActivityIndicator size="large" color={theme.colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <View
@@ -45,15 +65,6 @@ export default function ProfileScreen() {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
-        <View style={styles.heroCard}>
-          <Text style={styles.eyebrow}>PERFIL</Text>
-          <Text style={styles.title}>Autenticação, sessão e identidade</Text>
-          <Text style={styles.subtitle}>
-            Esta área cobre cadastro, login, renovação de sessão e leitura do
-            perfil autenticado.
-          </Text>
-        </View>
-
         {isAuthenticated && user ? (
           <View style={styles.section}>
             <View style={styles.profileCard}>
@@ -74,28 +85,23 @@ export default function ProfileScreen() {
                 <InfoItem label="Acesso" value={user.role} />
                 <InfoItem label="Status" value="Sessão ativa" />
               </View>
-            </View>
 
-            <View style={styles.supportCard}>
-              <Text style={styles.supportTitle}>Casos de uso habilitados</Text>
-              <Text style={styles.supportBody}>
-                Você já pode enviar prova pela tab `Enviar`. Perfis `APPROVER`,
-                `ADMIN` e `DEV` podem receber os fluxos de revisão aqui depois.
-              </Text>
+              <View style={styles.actionsRow}>
+                <Button
+                  title={isRefreshing ? "Atualizando..." : "Atualizar perfil"}
+                  onPress={handleRefreshProfile}
+                  isLoading={isRefreshing}
+                  variant="outline"
+                  style={styles.actionButton}
+                />
+                <Button
+                  title="Sair"
+                  onPress={handleLogout}
+                  variant="outline"
+                  style={styles.actionButton}
+                />
+              </View>
             </View>
-
-            <Button
-              title={
-                isRefreshing ? "Atualizando perfil..." : "Atualizar perfil"
-              }
-              onPress={handleRefreshProfile}
-              isLoading={isRefreshing}
-            />
-            <Button
-              title="Sair da conta"
-              variant="outline"
-              onPress={clearSession}
-            />
           </View>
         ) : (
           <View style={styles.section}>
@@ -151,14 +157,6 @@ export default function ProfileScreen() {
                 isLoading={isSubmitting}
               />
             </View>
-
-            <View style={styles.supportCard}>
-              <Text style={styles.supportTitle}>Depois do login</Text>
-              <Text style={styles.supportBody}>
-                A API deve retornar `accessToken`, `refreshToken` e os dados
-                básicos do usuário. Com isso o app libera `Enviar` e `Perfil`.
-              </Text>
-            </View>
           </View>
         )}
       </ScrollView>
@@ -210,6 +208,10 @@ const styles = StyleSheet.create({
     padding: theme.spacing.l,
     paddingBottom: 132,
     gap: theme.spacing.l,
+  },
+  loadingContainer: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   heroCard: {
     backgroundColor: theme.colors.surface,
@@ -303,6 +305,13 @@ const styles = StyleSheet.create({
   },
   infoGrid: {
     gap: theme.spacing.s,
+  },
+  actionsRow: {
+    flexDirection: "row",
+    gap: theme.spacing.s,
+  },
+  actionButton: {
+    flex: 1,
   },
   infoItem: {
     flexDirection: "row",

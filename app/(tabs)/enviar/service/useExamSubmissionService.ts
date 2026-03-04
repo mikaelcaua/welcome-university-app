@@ -2,26 +2,25 @@ import { useCallback } from 'react';
 
 import { Exam, ExamUploadRequest } from '@/interfaces';
 import { apiRequest } from '@/lib/api';
+import { LocalAttachment } from '@/lib/filesystem';
 
 interface SubmitExamPayload extends ExamUploadRequest {
   accessToken: string;
-  pdfUri: string;
-  fileName: string;
+  file: LocalAttachment;
 }
 
 export function useExamSubmissionService() {
   const submitExam = useCallback(async (payload: SubmitExamPayload): Promise<Exam> => {
     const formData = new FormData();
 
-    formData.append('name', payload.name);
     formData.append('examYear', String(payload.examYear));
     formData.append('semester', String(payload.semester));
     formData.append('type', payload.type);
     formData.append('subjectId', String(payload.subjectId));
     formData.append('file', {
-      uri: payload.pdfUri,
-      name: normalizeFileName(payload.fileName),
-      type: 'application/pdf',
+      uri: payload.file.uri,
+      name: normalizeFileName(payload.file),
+      type: payload.file.mimeType,
     } as never);
 
     return apiRequest<Exam>('/exams', {
@@ -38,12 +37,12 @@ export function useExamSubmissionService() {
   };
 }
 
-function normalizeFileName(fileName: string) {
-  const trimmed = fileName.trim();
+function normalizeFileName(file: LocalAttachment) {
+  const trimmed = file.name.trim();
 
   if (!trimmed) {
-    return 'prova.pdf';
+    return file.kind === 'pdf' ? 'prova.pdf' : 'anexo-prova.jpg';
   }
 
-  return trimmed.toLowerCase().endsWith('.pdf') ? trimmed : `${trimmed}.pdf`;
+  return trimmed;
 }

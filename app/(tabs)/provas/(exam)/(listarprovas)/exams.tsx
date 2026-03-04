@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
   listContent: {
     padding: theme.spacing.m,
   },
-  // Estilos da Seção (Divisor de Anos)
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button, FormInput, FormSelect } from '@/components';
@@ -30,11 +31,17 @@ export default function ExamSubmissionScreen() {
     handleStateSelect,
     handleUniversitySelect,
     handleCourseSelect,
+    handlePickImage,
+    handlePickPdf,
+    clearSelectedFile,
     goToProfile,
     onSubmit,
     hasSelectedState,
     hasSelectedUniversity,
     hasSelectedCourse,
+    hasSelectedAttachment,
+    selectedFileName,
+    selectedFileKind,
   } = useExamSubmissionViewModel();
 
   if (!isAuthenticated) {
@@ -51,19 +58,9 @@ export default function ExamSubmissionScreen() {
         />
         <View style={styles.lockedWrapper}>
           <View style={styles.heroCard}>
-            <Text style={styles.eyebrow}>ENVIAR</Text>
-            <Text style={styles.title}>Envio protegido por autenticação</Text>
             <Text style={styles.subtitle}>
-              Apenas usuários autenticados podem anexar provas em PDF. Faça
-              login na tab `Perfil` para liberar o formulário completo.
-            </Text>
-          </View>
-
-          <View style={styles.infoCard}>
-            <Text style={styles.infoTitle}>Caso de uso coberto</Text>
-            <Text style={styles.infoText}>
-              A submissão envia nome, ano, semestre, tipo, disciplina e arquivo
-              PDF. A API cria a prova com status `PENDING`.
+              Apenas usuários autenticados podem anexar provas em foto ou PDF.
+              Faça login na tab `Perfil` para liberar o formulário completo.
             </Text>
           </View>
 
@@ -91,10 +88,18 @@ export default function ExamSubmissionScreen() {
       >
         <View style={styles.heroCard}>
           <Text style={styles.eyebrow}>ENVIAR</Text>
-          <Text style={styles.title}>Submeta uma prova em PDF</Text>
+          <Text style={styles.title}>Submeta uma prova</Text>
           <Text style={styles.subtitle}>
             Sessão ativa para {user?.name || 'usuário autenticado'}. Preencha os
-            campos e envie o PDF para revisão.
+            campos e anexe uma foto da galeria ou um PDF para revisão.
+          </Text>
+        </View>
+
+        <View style={styles.infoCard}>
+          <Text style={styles.infoTitle}>Nome gerado pela API</Text>
+          <Text style={styles.infoText}>
+            O backend monta o nome da prova usando disciplina, período e tipo.
+            Aqui você só informa os dados acadêmicos e escolhe o arquivo.
           </Text>
         </View>
 
@@ -144,15 +149,6 @@ export default function ExamSubmissionScreen() {
 
           <FormInput
             control={form.control}
-            name="name"
-            label="Nome da prova"
-            placeholder="Ex: Cálculo II - P2"
-            iconName="description"
-            error={form.formState.errors.name?.message}
-          />
-
-          <FormInput
-            control={form.control}
             name="examYear"
             label="Ano"
             placeholder="2025"
@@ -181,28 +177,76 @@ export default function ExamSubmissionScreen() {
             error={form.formState.errors.type?.message}
           />
 
-          <FormInput
-            control={form.control}
-            name="fileName"
-            label="Nome do arquivo"
-            placeholder="prova-calculo-2-p2.pdf"
-            iconName="attach-file"
-            error={form.formState.errors.fileName?.message}
-          />
+          <View style={styles.attachmentSection}>
+            <Text style={styles.attachmentLabel}>Anexo</Text>
+            <Text style={styles.attachmentDescription}>
+              Escolha uma foto da galeria ou um PDF do dispositivo.
+            </Text>
 
-          <FormInput
-            control={form.control}
-            name="pdfUri"
-            label="URL ou URI do PDF"
-            placeholder="https://.../arquivo.pdf"
-            iconName="link"
-            autoCapitalize="none"
-            error={form.formState.errors.pdfUri?.message}
-          />
+            <View style={styles.attachmentActions}>
+              <Button
+                title="Escolher foto"
+                variant="outline"
+                onPress={handlePickImage}
+              />
+              <Button
+                title="Escolher PDF"
+                variant="outline"
+                onPress={handlePickPdf}
+              />
+            </View>
+
+            {hasSelectedAttachment ? (
+              <View style={styles.attachmentCard}>
+                <View style={styles.attachmentMeta}>
+                  <MaterialIcons
+                    name={selectedFileKind === 'pdf' ? 'picture-as-pdf' : 'image'}
+                    size={22}
+                    color={
+                      selectedFileKind === 'pdf'
+                        ? theme.colors.pdf
+                        : theme.colors.primary
+                    }
+                  />
+                  <View style={styles.attachmentTextWrapper}>
+                    <Text style={styles.attachmentName}>{selectedFileName}</Text>
+                    <Text style={styles.attachmentHint}>
+                      {selectedFileKind === 'pdf'
+                        ? 'PDF selecionado para envio'
+                        : 'Imagem selecionada para envio'}
+                    </Text>
+                  </View>
+                </View>
+
+                <Button
+                  title="Remover anexo"
+                  variant="outline"
+                  onPress={clearSelectedFile}
+                />
+              </View>
+            ) : (
+              <View style={styles.attachmentEmptyState}>
+                <MaterialIcons
+                  name="attach-file"
+                  size={20}
+                  color={theme.colors.textLight}
+                />
+                <Text style={styles.attachmentEmptyText}>
+                  Nenhum arquivo anexado ainda.
+                </Text>
+              </View>
+            )}
+
+            {form.formState.errors.fileUri?.message ? (
+              <Text style={styles.attachmentError}>
+                {form.formState.errors.fileUri.message}
+              </Text>
+            ) : null}
+          </View>
         </View>
 
         <Button
-          title={isSubmitting ? 'Enviando prova...' : 'Enviar prova'}
+          title={isSubmitting ? "Enviando prova..." : "Enviar prova"}
           onPress={onSubmit}
           isLoading={isSubmitting}
         />
@@ -231,7 +275,7 @@ const styles = StyleSheet.create({
   lockedWrapper: {
     flex: 1,
     padding: theme.spacing.l,
-    justifyContent: 'center',
+    justifyContent: "center",
     gap: theme.spacing.l,
   },
   heroCard: {
@@ -244,13 +288,13 @@ const styles = StyleSheet.create({
   },
   eyebrow: {
     fontSize: 12,
-    fontWeight: '700',
+    fontWeight: "700",
     letterSpacing: 1,
     color: theme.colors.primary,
   },
   title: {
     fontSize: 28,
-    fontWeight: '700',
+    fontWeight: "700",
     color: theme.colors.text,
   },
   subtitle: {
@@ -278,6 +322,64 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.l,
     padding: theme.spacing.l,
     gap: theme.spacing.m,
+  },
+  attachmentSection: {
+    gap: theme.spacing.s,
+  },
+  attachmentLabel: {
+    ...theme.text.body,
+    fontWeight: '600',
+    color: theme.colors.text,
+  },
+  attachmentDescription: {
+    ...theme.text.caption,
+  },
+  attachmentActions: {
+    gap: theme.spacing.s,
+  },
+  attachmentCard: {
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.m,
+    backgroundColor: theme.colors.surfaceAlt,
+    padding: theme.spacing.m,
+    gap: theme.spacing.m,
+  },
+  attachmentMeta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.s,
+  },
+  attachmentTextWrapper: {
+    flex: 1,
+    gap: theme.spacing.xs,
+  },
+  attachmentName: {
+    color: theme.colors.text,
+    fontWeight: '600',
+  },
+  attachmentHint: {
+    ...theme.text.caption,
+  },
+  attachmentEmptyState: {
+    minHeight: 56,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: theme.colors.border,
+    borderRadius: theme.borderRadius.m,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: theme.spacing.s,
+    paddingHorizontal: theme.spacing.m,
+  },
+  attachmentEmptyText: {
+    color: theme.colors.textLight,
+  },
+  attachmentError: {
+    color: theme.colors.error,
+    fontSize: 12,
+    marginLeft: theme.spacing.xs,
   },
   loadingInline: {
     flexDirection: 'row',

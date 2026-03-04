@@ -7,7 +7,6 @@ export const submitExamSchema = z.object({
   universityId: z.number().min(1, 'Selecione uma universidade.'),
   courseId: z.number().min(1, 'Selecione um curso.'),
   subjectId: z.number().min(1, 'Selecione uma disciplina.'),
-  name: z.string().trim().min(3, 'Informe o nome da prova.'),
   examYear: z
     .string()
     .trim()
@@ -17,8 +16,12 @@ export const submitExamSchema = z.object({
     .string()
     .refine((value) => value === '1' || value === '2', 'Escolha um semestre válido.'),
   type: z.nativeEnum(ExamType),
-  pdfUri: z.string().trim().min(1, 'Informe a URI local do PDF.'),
-  fileName: z.string().trim().min(1, 'Informe um nome para o arquivo.'),
+  fileUri: z.string().trim().min(1, 'Selecione uma foto ou PDF para anexar.'),
+  fileName: z.string().trim().min(1, 'Nenhum arquivo foi selecionado.'),
+  fileMimeType: z.string().trim().min(1, 'Não foi possível identificar o tipo do arquivo.'),
+  fileKind: z
+    .string()
+    .refine((value) => value === 'image' || value === 'pdf', 'Selecione uma foto ou PDF.'),
 });
 
 export type SubmitExamFormData = z.infer<typeof submitExamSchema>;
