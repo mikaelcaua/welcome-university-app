@@ -1,0 +1,4708 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "RF7Gx",
+      "x": 0,
+      "y": 0,
+      "name": "Fluxo do App Atual",
+      "width": 1840,
+      "height": 210,
+      "fill": "$surface",
+      "cornerRadius": 20,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "$border"
+      },
+      "layout": "vertical",
+      "gap": 14,
+      "padding": [
+        20,
+        24
+      ],
+      "children": [
+        {
+          "type": "text",
+          "id": "CaCVv",
+          "name": "guideTitle",
+          "fill": "$text",
+          "content": "Welcome University App • Fluxo Completo",
+          "fontFamily": "Inter",
+          "fontSize": 30,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "H3O5g",
+          "name": "guideSub",
+          "fill": "$text-light",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Rotas mapeadas do código: /provas → /provas/universities → /provas/courses → /provas/exams | /enviar (bloqueado/autenticado) | /perfil (loading/login/autenticado)",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "500"
+        },
+        {
+          "type": "frame",
+          "id": "f8hiB",
+          "name": "flowLine",
+          "width": "fill_container",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "SQEYo",
+              "name": "chipProvas1",
+              "height": 38,
+              "fill": "$primary-light",
+              "cornerRadius": 999,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1eNc6",
+                  "fill": "$primary",
+                  "content": "/provas",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "HDMOJ",
+              "name": "arrow1",
+              "fill": "$text-light",
+              "content": "→",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "ApF3b",
+              "name": "chipProvas2",
+              "height": 38,
+              "fill": "$primary-light",
+              "cornerRadius": 999,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eAAMx",
+                  "fill": "$primary",
+                  "content": "/provas/universities",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "W8ce3",
+              "name": "arrow2",
+              "fill": "$text-light",
+              "content": "→",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "TzETc",
+              "name": "chipProvas3",
+              "height": 38,
+              "fill": "$primary-light",
+              "cornerRadius": 999,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "JgJFh",
+                  "fill": "$primary",
+                  "content": "/provas/courses",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "m7CIp",
+              "name": "arrow3",
+              "fill": "$text-light",
+              "content": "→",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "ssD01",
+              "name": "chipProvas4",
+              "height": 38,
+              "fill": "$primary-light",
+              "cornerRadius": 999,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "OkODj",
+                  "fill": "$primary",
+                  "content": "/provas/exams",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "6Th1v",
+              "name": "chipEnviar",
+              "height": 38,
+              "fill": "$surface-alt",
+              "cornerRadius": 999,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "7zvga",
+                  "fill": "$text",
+                  "content": "/enviar",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "9lZTu",
+              "name": "chipPerfil",
+              "height": 38,
+              "fill": "$surface-alt",
+              "cornerRadius": 999,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Jtrc1",
+                  "fill": "$text",
+                  "content": "/perfil",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ZCCR3",
+      "x": 1860,
+      "y": 0,
+      "name": "Tokens e Componentes",
+      "width": 560,
+      "height": 3060,
+      "fill": "$surface",
+      "cornerRadius": 20,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "$border"
+      },
+      "layout": "vertical",
+      "gap": 22,
+      "children": [
+        {
+          "type": "text",
+          "id": "Nt7pz",
+          "name": "panelTitle",
+          "fill": "$text",
+          "content": "Theme + Componentes Base",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "7js5f",
+          "name": "panelSub",
+          "fill": "$text-light",
+          "content": "Tokens derivados de theme/index.ts e blocos usados nas telas de provas, enviar e perfil.",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "500"
+        },
+        {
+          "type": "frame",
+          "id": "VuGrG",
+          "name": "Cores Principais",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "text",
+              "id": "bcVyc",
+              "name": "colorTitle",
+              "fill": "$text",
+              "content": "Color tokens",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "IPLVy",
+              "name": "colorGrid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sTVdG",
+                  "name": "swatchPrimary",
+                  "width": "fill_container",
+                  "height": 42,
+                  "fill": "$primary",
+                  "cornerRadius": 10,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FGuZk",
+                      "fill": "$text-inverted",
+                      "content": "primary • #0056D2",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HCR6y",
+                  "name": "swatchSurface",
+                  "width": "fill_container",
+                  "height": 42,
+                  "fill": "$surface",
+                  "cornerRadius": 10,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jxeAj",
+                      "fill": "$text",
+                      "content": "surface • #FFFFFF",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IEaX4",
+                  "name": "swatchBackground",
+                  "width": "fill_container",
+                  "height": 42,
+                  "fill": "$background",
+                  "cornerRadius": 10,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "S43Dk",
+                      "fill": "$text",
+                      "content": "background • #F8FAFC",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mupBF",
+                  "name": "swatchSuccess",
+                  "width": "fill_container",
+                  "height": 42,
+                  "fill": "$green-600",
+                  "cornerRadius": 10,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "A0VjY",
+                      "fill": "$text-inverted",
+                      "content": "green-600 • CTA cursos",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WnUvt",
+                  "name": "swatchPdf",
+                  "width": "fill_container",
+                  "height": 42,
+                  "fill": "$red-50",
+                  "cornerRadius": 10,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$red-100"
+                  },
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "2DYdv",
+                      "fill": "$pdf",
+                      "content": "pdf • #DC2626",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "1cwe8",
+          "name": "Componentes",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "text",
+              "id": "ixuTQ",
+              "name": "componentTitle",
+              "fill": "$text",
+              "content": "Component previews",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "oacha",
+              "name": "ButtonPrimary",
+              "width": "fill_container",
+              "height": 50,
+              "fill": "$primary",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "5X763",
+                  "fill": "$text-inverted",
+                  "content": "Button / primary",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "kQVAz",
+              "name": "ButtonOutline",
+              "width": "fill_container",
+              "height": 50,
+              "fill": "$surface",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$primary"
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ydqt5",
+                  "fill": "$primary",
+                  "content": "Button / outline",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "l7PgY",
+              "name": "FormInput",
+              "width": "fill_container",
+              "height": 48,
+              "fill": "$surface-alt",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "aMGvH",
+                  "fill": "$text-light",
+                  "content": "FormInput • Buscar...",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bvAuI",
+              "name": "FormSelect",
+              "width": "fill_container",
+              "height": 50,
+              "fill": "$surface",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "padding": [
+                0,
+                16
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RzZkf",
+                  "fill": "$text-light",
+                  "content": "FormSelect • Toque para escolher",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "EMMCX",
+                  "fill": "$text-light",
+                  "content": "⌄",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "IhvgE",
+              "name": "StateCardSearch",
+              "width": "fill_container",
+              "height": 76,
+              "fill": "$surface",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "xmY6P",
+                  "width": 42,
+                  "height": 42,
+                  "fill": "$primary-light",
+                  "cornerRadius": 21,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "4UnNh",
+                      "fill": "$primary",
+                      "content": "MA",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "loJdX",
+                  "fill": "$text",
+                  "content": "Maranhão",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "xCtZA",
+                  "fill": "$text-light",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "EdYlY",
+      "x": 0,
+      "y": 260,
+      "name": "/provas • Buscar Estado",
+      "width": 402,
+      "height": 874,
+      "fill": "$background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "sZWAd",
+          "name": "Header",
+          "width": "fill_container",
+          "fill": "$primary",
+          "cornerRadius": [
+            0,
+            0,
+            30,
+            30
+          ],
+          "layout": "vertical",
+          "gap": 8,
+          "padding": [
+            20,
+            24,
+            24,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "0ZPF3",
+              "name": "titleP1",
+              "fill": "$white",
+              "content": "Olá, Universitário!",
+              "fontFamily": "Inter",
+              "fontSize": 28,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "BSlb0",
+              "name": "subP1",
+              "fill": "$blue-100",
+              "content": "Para começar, encontre seu estado abaixo.",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "500"
+            },
+            {
+              "type": "frame",
+              "id": "CO0ny",
+              "name": "searchP1",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "$white",
+              "cornerRadius": 12,
+              "gap": 10,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qJqGv",
+                  "fill": "$text-light",
+                  "content": "⌕",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "k8hTV",
+                  "fill": "$text-light",
+                  "content": "Buscar estado (ex: SP, Maranhão...)",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "FFo4i",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "vBQzf",
+              "fill": "$white",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "DyQPh",
+              "fill": "$white",
+              "content": "● ● ●",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ZIlKe",
+          "name": "List",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "padding": [
+            16,
+            16,
+            8,
+            16
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "UnOvG",
+              "name": "State MA",
+              "width": "fill_container",
+              "height": 74,
+              "fill": "$surface",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "QTt6N",
+                  "width": 42,
+                  "height": 42,
+                  "fill": "$primary-light",
+                  "cornerRadius": 21,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NZ9TQ",
+                      "fill": "$primary",
+                      "content": "MA",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "foo0u",
+                  "fill": "$text",
+                  "content": "Maranhão",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "YiKQz",
+                  "fill": "$text-light",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NvH5W",
+              "name": "State SP",
+              "width": "fill_container",
+              "height": 74,
+              "fill": "$surface",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "CAaoO",
+                  "width": 42,
+                  "height": 42,
+                  "fill": "$primary-light",
+                  "cornerRadius": 21,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mHlEl",
+                      "fill": "$primary",
+                      "content": "SP",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "1cFcb",
+                  "fill": "$text",
+                  "content": "São Paulo",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "I1gUh",
+                  "fill": "$text-light",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zzjBv",
+              "name": "State RJ",
+              "width": "fill_container",
+              "height": 74,
+              "fill": "$surface",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "rZmP6",
+                  "width": 42,
+                  "height": 42,
+                  "fill": "$primary-light",
+                  "cornerRadius": 21,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ik9J5",
+                      "fill": "$primary",
+                      "content": "RJ",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "H9Qwo",
+                  "fill": "$text",
+                  "content": "Rio de Janeiro",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "onCiH",
+                  "fill": "$text-light",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kSW3W",
+          "name": "Tab Bar",
+          "width": "fill_container",
+          "height": 108,
+          "padding": [
+            12,
+            16,
+            16,
+            16
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "flM7q",
+              "name": "tabPillP1",
+              "width": "fill_container",
+              "height": 84,
+              "fill": "$surface",
+              "cornerRadius": 32,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 4,
+              "padding": [
+                10,
+                8
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "lmSIg",
+                  "name": "Tab Provas Active",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$primary",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LPvsK",
+                      "fill": "$white",
+                      "content": "☰",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fQqlR",
+                      "fill": "$white",
+                      "content": "PROVAS",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NtCky",
+                  "name": "Tab Enviar",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "buju8",
+                      "fill": "$text-light",
+                      "content": "⇪",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "L56l1",
+                      "fill": "$text-light",
+                      "content": "ENVIAR",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mzREs",
+                  "name": "Tab Perfil",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oeSQD",
+                      "fill": "$text-light",
+                      "content": "◉",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "p5WfC",
+                      "fill": "$text-light",
+                      "content": "PERFIL",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "O6IjW",
+      "x": 0,
+      "y": 230,
+      "name": "labelP1",
+      "fill": "$text",
+      "content": "Tela 1 • /provas",
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": "700"
+    },
+    {
+      "type": "frame",
+      "id": "unWpj",
+      "x": 460,
+      "y": 260,
+      "name": "/provas/universities • Instituições",
+      "width": 402,
+      "height": 874,
+      "fill": "$background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "eWARP",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "$primary",
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "9OfeU",
+              "fill": "$white",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "tkmrY",
+              "fill": "$white",
+              "content": "● ● ●",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "wOn2t",
+          "name": "Header",
+          "width": "fill_container",
+          "fill": "$primary",
+          "cornerRadius": [
+            0,
+            0,
+            30,
+            30
+          ],
+          "layout": "vertical",
+          "gap": 8,
+          "padding": [
+            12,
+            24,
+            24,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "xqPQm",
+              "name": "rowP2",
+              "width": "fill_container",
+              "height": 32,
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yeUDn",
+                  "fill": "$white",
+                  "content": "←",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "TLSjC",
+                  "fill": "$white",
+                  "content": "Instituições",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Bzsxp",
+              "name": "subP2",
+              "fill": "$blue-100",
+              "content": "Selecione a universidade onde você estuda.",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "500"
+            },
+            {
+              "type": "frame",
+              "id": "vWZJE",
+              "name": "searchP2",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "$white",
+              "cornerRadius": 12,
+              "gap": 10,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rNmEi",
+                  "fill": "$text-light",
+                  "content": "⌕",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "Q2fSE",
+                  "fill": "$text-light",
+                  "content": "Buscar universidade (Ex: UFMA, USP...)",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "1i4Rp",
+          "name": "listWrapP2",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "id": "IfXNH",
+              "name": "UFMA",
+              "width": "fill_container",
+              "height": 86,
+              "fill": "$surface",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "kP3od",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "$primary-light",
+                  "cornerRadius": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SRhHq",
+                      "fill": "$primary",
+                      "content": "🏛",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "SWO8M",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fLvgy",
+                      "fill": "$text",
+                      "content": "Universidade Federal do Maranhão",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZtL4o",
+                      "fill": "$text-light",
+                      "content": "UFMA",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "B0kOO",
+                  "fill": "$text-light",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jrT3F",
+              "name": "USP",
+              "width": "fill_container",
+              "height": 86,
+              "fill": "$surface",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "SR1yc",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "$primary-light",
+                  "cornerRadius": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vPlKH",
+                      "fill": "$primary",
+                      "content": "🏛",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "JCzi3",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "0rUnr",
+                      "fill": "$text",
+                      "content": "Universidade de São Paulo",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "AqCUs",
+                      "fill": "$text-light",
+                      "content": "USP",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "aKSCi",
+                  "fill": "$text-light",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "FWvph",
+              "name": "UFBA",
+              "width": "fill_container",
+              "height": 86,
+              "fill": "$surface",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "SczzD",
+                  "width": 48,
+                  "height": 48,
+                  "fill": "$primary-light",
+                  "cornerRadius": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "08oF3",
+                      "fill": "$primary",
+                      "content": "🏛",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "RsX0K",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xH8TP",
+                      "fill": "$text",
+                      "content": "Universidade Federal da Bahia",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VGaCy",
+                      "fill": "$text-light",
+                      "content": "UFBA",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "kYiaE",
+                  "fill": "$text-light",
+                  "content": "›",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Pi68n",
+              "name": "loadingP2",
+              "width": "fill_container",
+              "height": 48,
+              "layout": "vertical",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "CnshQ",
+                  "fill": "$text-light",
+                  "content": "Estado alternativo: loading + empty list",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "1teOr",
+      "x": 460,
+      "y": 230,
+      "name": "labelP2",
+      "fill": "$text",
+      "content": "Tela 2 • /provas/universities",
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": "700"
+    },
+    {
+      "type": "frame",
+      "id": "qPzxy",
+      "x": 920,
+      "y": 260,
+      "name": "/provas/courses • Curso e Disciplina",
+      "width": 402,
+      "height": 874,
+      "fill": "$background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "WweYY",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "$primary",
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "HMNzZ",
+              "fill": "$white",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "Y1DA0",
+              "fill": "$white",
+              "content": "● ● ●",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nEwvM",
+          "name": "Header",
+          "width": "fill_container",
+          "fill": "$primary",
+          "layout": "vertical",
+          "gap": 8,
+          "padding": [
+            12,
+            24,
+            50,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "5UfSS",
+              "name": "rowP3",
+              "width": "fill_container",
+              "height": 32,
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hvmma",
+                  "fill": "$white",
+                  "content": "←",
+                  "fontFamily": "Inter",
+                  "fontSize": 22,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "text",
+                  "id": "sWcr7",
+                  "fill": "$white",
+                  "content": "O que você estuda?",
+                  "fontFamily": "Inter",
+                  "fontSize": 26,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "sW4Hk",
+              "name": "subP3",
+              "fill": "$blue-100",
+              "content": "Filtre por curso e disciplina para encontrar as provas exatas.",
+              "fontFamily": "Inter",
+              "fontSize": 15,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "k8u3R",
+          "name": "Form Shell",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": "$surface",
+          "cornerRadius": [
+            30,
+            30,
+            0,
+            0
+          ],
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            24,
+            24,
+            16,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "PIGl7",
+              "name": "Course Select",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Zd9Bg",
+                  "fill": "$text",
+                  "content": "SELECIONE O CURSO",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "hY0Ff",
+                  "width": "fill_container",
+                  "height": 50,
+                  "fill": "$surface",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "5iG1V",
+                      "fill": "$text-light",
+                      "content": "Toque para escolher...",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "of5Es",
+                      "fill": "$text-light",
+                      "content": "⌄",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RoWPg",
+              "name": "Subject Select",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "8nEri",
+                  "fill": "$text",
+                  "content": "SELECIONE A DISCIPLINA",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "MgYfG",
+                  "width": "fill_container",
+                  "height": 50,
+                  "fill": "$surface-alt",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "c1a7c",
+                      "fill": "$text-light",
+                      "content": "Escolha um curso acima primeiro",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Vqt1x",
+                      "fill": "$text-light",
+                      "content": "⌄",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GWoTD",
+              "name": "hintP3",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "T9CRk",
+                  "fill": "$text-light",
+                  "content": "Estados alternativos: loadingCourses/loadingSubjects",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OHjUa",
+          "name": "Footer",
+          "width": "fill_container",
+          "height": 96,
+          "fill": "$surface",
+          "padding": [
+            20,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "RQiIn",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "$green-600",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Ap8d8",
+                  "fill": "$white",
+                  "content": "Ver Provas Disponíveis",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "33edl",
+      "x": 920,
+      "y": 230,
+      "name": "labelP3",
+      "fill": "$text",
+      "content": "Tela 3 • /provas/courses",
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": "700"
+    },
+    {
+      "type": "frame",
+      "id": "QozIU",
+      "x": 1380,
+      "y": 260,
+      "name": "/provas/exams • Listar Provas",
+      "width": 402,
+      "height": 874,
+      "fill": "$background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "sj6Ov",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "$surface",
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "W9eXO",
+              "fill": "$text",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "hTxO2",
+              "fill": "$text",
+              "content": "● ● ●",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "QFDH0",
+          "name": "Header",
+          "width": "fill_container",
+          "height": 72,
+          "fill": "$surface",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "gap": 12,
+          "padding": [
+            8,
+            16,
+            12,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "kMj18",
+              "fill": "$text",
+              "content": "←",
+              "fontFamily": "Inter",
+              "fontSize": 24
+            },
+            {
+              "type": "frame",
+              "id": "JM0oN",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "aPcJ6",
+                  "fill": "$text",
+                  "content": "Provas e Exames",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "VGFJr",
+                  "fill": "$text-light",
+                  "content": "Material de estudo disponível",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "hUdd1",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 10,
+          "children": [
+            {
+              "type": "frame",
+              "id": "m3uyM",
+              "name": "Section 2025.2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f5KUQ",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "1fMCO",
+                      "height": 28,
+                      "fill": "$primary-light",
+                      "cornerRadius": 12,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "77r6L",
+                          "fill": "$primary",
+                          "content": "2025.2",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "0yjMy",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dtf9W",
+                  "width": "fill_container",
+                  "height": 76,
+                  "fill": "$surface",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "gap": 10,
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pBRMZ",
+                      "width": 40,
+                      "height": 40,
+                      "fill": "$red-50",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$red-100"
+                      },
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "30RRh",
+                          "fill": "$pdf",
+                          "content": "PDF",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hkytk",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "A4JRJ",
+                          "fill": "$text",
+                          "content": "Cálculo Diferencial",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "INWyu",
+                          "fill": "$text-light",
+                          "content": "Semestre 2025.2",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "M2S7x",
+                      "height": 26,
+                      "fill": "$blue-100",
+                      "cornerRadius": 6,
+                      "padding": [
+                        0,
+                        8
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "S2DYb",
+                          "fill": "$blue-700",
+                          "content": "P2",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "IkZzU",
+              "name": "Section 2025.1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "RLYbU",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "IdLeV",
+                      "height": 28,
+                      "fill": "$primary-light",
+                      "cornerRadius": 12,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "M1ZQ2",
+                          "fill": "$primary",
+                          "content": "2025.1",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vgI76",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KiXsW",
+                  "width": "fill_container",
+                  "height": 76,
+                  "fill": "$surface",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "gap": 10,
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ITtZJ",
+                      "width": 40,
+                      "height": 40,
+                      "fill": "$red-50",
+                      "cornerRadius": 8,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$red-100"
+                      },
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Ep6Lb",
+                          "fill": "$pdf",
+                          "content": "PDF",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WSngC",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "GEHzD",
+                          "fill": "$text",
+                          "content": "Estruturas de Dados",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "0JdiV",
+                          "fill": "$text-light",
+                          "content": "Semestre 2025.1",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FLTru",
+                      "height": 26,
+                      "fill": "$orange-100",
+                      "cornerRadius": 6,
+                      "padding": [
+                        0,
+                        8
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "7BEgO",
+                          "fill": "$warning",
+                          "content": "REC",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jqvo3",
+              "name": "emptyHintP4",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "i9i6h",
+                  "fill": "$text-light",
+                  "content": "Estado alternativo: loading/empty",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "U6Shp",
+      "x": 1380,
+      "y": 230,
+      "name": "labelP4",
+      "fill": "$text",
+      "content": "Tela 4 • /provas/exams",
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": "700"
+    },
+    {
+      "type": "frame",
+      "id": "oqUGs",
+      "x": 0,
+      "y": 1280,
+      "name": "/enviar • Bloqueado",
+      "width": 402,
+      "height": 874,
+      "fill": "$background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "dpLjE",
+          "name": "statusE1",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "PRc8k",
+              "fill": "$text",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "Y4SIJ",
+              "fill": "$text",
+              "content": "● ● ●",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "3or3u",
+          "name": "contentE1",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "mcFDz",
+              "name": "heroE1",
+              "width": "fill_container",
+              "fill": "$surface",
+              "cornerRadius": 20,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "BXswy",
+                  "fill": "$text",
+                  "content": "Acesso restrito",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "zwt90",
+                  "fill": "$text-light",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Apenas usuários autenticados podem anexar provas em foto ou PDF. Faça login na tab Perfil para liberar o formulário completo.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "AESzK",
+              "name": "ctaE1",
+              "width": "fill_container",
+              "height": 50,
+              "fill": "$primary",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Pr1vi",
+                  "fill": "$white",
+                  "content": "Ir para Perfil",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YH19C",
+          "name": "tabWrapE1",
+          "width": "fill_container",
+          "height": 108,
+          "padding": [
+            12,
+            16,
+            16,
+            16
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "t5Dxy",
+              "name": "tabPillE1",
+              "width": "fill_container",
+              "height": 84,
+              "fill": "$surface",
+              "cornerRadius": 32,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 4,
+              "padding": [
+                10,
+                8
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "bCPwJ",
+                  "name": "tabProvasE1",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rddVR",
+                      "fill": "$text-light",
+                      "content": "☰",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "pnL7R",
+                      "fill": "$text-light",
+                      "content": "PROVAS",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OqQ1O",
+                  "name": "tabEnviarE1",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$primary",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YSIoF",
+                      "fill": "$white",
+                      "content": "⇪",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "PYfZB",
+                      "fill": "$white",
+                      "content": "ENVIAR",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yolo1",
+                  "name": "tabPerfilE1",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KFXcN",
+                      "fill": "$text-light",
+                      "content": "◉",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "J77oq",
+                      "fill": "$text-light",
+                      "content": "PERFIL",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "9Z8zc",
+      "x": 0,
+      "y": 1250,
+      "name": "labelE1",
+      "fill": "$text",
+      "content": "Tela 5 • /enviar (não autenticado)",
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": "700"
+    },
+    {
+      "type": "frame",
+      "id": "qgbWU",
+      "x": 460,
+      "y": 1280,
+      "name": "/enviar • Formulário autenticado",
+      "width": 402,
+      "height": 874,
+      "fill": "$background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "tou2I",
+          "name": "statusE2",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "6IC5d",
+              "fill": "$text",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "TeO2r",
+              "fill": "$text",
+              "content": "● ● ●",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "CLDPB",
+          "name": "Scroll Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            24,
+            24,
+            12,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "uDhgy",
+              "name": "heroE2",
+              "width": "fill_container",
+              "fill": "$surface",
+              "cornerRadius": 20,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sxdN5",
+                  "fill": "$primary",
+                  "content": "ENVIAR",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "d0xsl",
+                  "fill": "$text",
+                  "content": "Submeta uma prova",
+                  "fontFamily": "Inter",
+                  "fontSize": 28,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "ShtWA",
+                  "fill": "$text-light",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Sessão ativa para usuário autenticado. Preencha os campos e anexe foto ou PDF.",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "THewJ",
+              "name": "Form Card",
+              "width": "fill_container",
+              "fill": "$surface",
+              "cornerRadius": 20,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2e9t0",
+                  "name": "selectE2a",
+                  "width": "fill_container",
+                  "height": 50,
+                  "fill": "$surface",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XRJw0",
+                      "fill": "$text",
+                      "content": "Estado",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "SXt7n",
+                      "fill": "$text-light",
+                      "content": "⌄",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "1Mwh8",
+                  "name": "selectE2b",
+                  "width": "fill_container",
+                  "height": 50,
+                  "fill": "$surface",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "66ZSZ",
+                      "fill": "$text",
+                      "content": "Universidade",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CLlt3",
+                      "fill": "$text-light",
+                      "content": "⌄",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "8rsoX",
+                  "name": "selectE2c",
+                  "width": "fill_container",
+                  "height": 50,
+                  "fill": "$surface",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "LunIe",
+                      "fill": "$text",
+                      "content": "Curso / Disciplina",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "0wjzH",
+                      "fill": "$text-light",
+                      "content": "⌄",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EaHrD",
+                  "name": "yearE2",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "$surface-alt",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "4AhfW",
+                      "fill": "$text",
+                      "content": "Ano • 2025",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ChEfN",
+                  "name": "attachE2",
+                  "width": "fill_container",
+                  "fill": "$surface-alt",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Mf8mJ",
+                      "fill": "$text",
+                      "content": "Anexo",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "cFFww",
+                      "fill": "$text-light",
+                      "content": "Escolha foto ou PDF",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "PM8EB",
+                      "width": "fill_container",
+                      "height": 44,
+                      "cornerRadius": 10,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1,
+                        "fill": "$border"
+                      },
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PVZtX",
+                          "fill": "$text-light",
+                          "content": "Nenhum arquivo anexado ainda.",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fLU2S",
+              "name": "submitE2",
+              "width": "fill_container",
+              "height": 50,
+              "fill": "$primary",
+              "cornerRadius": 12,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "4XHj7",
+                  "fill": "$white",
+                  "content": "Enviar prova",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "7zORQ",
+              "name": "loadingE2",
+              "fill": "$text-light",
+              "content": "loadingCascade: Atualizando filtros...",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "oTqDp",
+          "name": "tabWrapE2",
+          "width": "fill_container",
+          "height": 108,
+          "padding": [
+            12,
+            16,
+            16,
+            16
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "moJdB",
+              "name": "tabPillE2",
+              "width": "fill_container",
+              "height": 84,
+              "fill": "$surface",
+              "cornerRadius": 32,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 4,
+              "padding": [
+                10,
+                8
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "AtuZK",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pboC9",
+                      "fill": "$text-light",
+                      "content": "☰",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "P4Uqi",
+                      "fill": "$text-light",
+                      "content": "PROVAS",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "h4qMn",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$primary",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EhwDM",
+                      "fill": "$white",
+                      "content": "⇪",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "yukZj",
+                      "fill": "$white",
+                      "content": "ENVIAR",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HwHBx",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tcCCq",
+                      "fill": "$text-light",
+                      "content": "◉",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "37QRC",
+                      "fill": "$text-light",
+                      "content": "PERFIL",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "jEDkN",
+      "x": 460,
+      "y": 1250,
+      "name": "labelE2",
+      "fill": "$text",
+      "content": "Tela 6 • /enviar (autenticado)",
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": "700"
+    },
+    {
+      "type": "frame",
+      "id": "J3NfF",
+      "x": 0,
+      "y": 2300,
+      "name": "/perfil • Loading hydration",
+      "width": 402,
+      "height": 874,
+      "fill": "$background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ySKBM",
+          "name": "statusR1",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "8mb4W",
+              "fill": "$text",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "RwSDe",
+              "fill": "$text",
+              "content": "● ● ●",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kSOvO",
+          "name": "loadingWrapR1",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "y5JaV",
+              "width": 48,
+              "height": 48,
+              "cornerRadius": 24,
+              "stroke": {
+                "align": "inside",
+                "thickness": 4,
+                "fill": "$primary"
+              }
+            },
+            {
+              "type": "text",
+              "id": "Fw0Sj",
+              "fill": "$text-light",
+              "content": "Carregando sessão...",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "6bwFo",
+          "name": "tabWrapR1",
+          "width": "fill_container",
+          "height": 108,
+          "padding": [
+            12,
+            16,
+            16,
+            16
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "oprOu",
+              "name": "tabPillR1",
+              "width": "fill_container",
+              "height": 84,
+              "fill": "$surface",
+              "cornerRadius": 32,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 4,
+              "padding": [
+                10,
+                8
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "aWuqL",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "4rR4Q",
+                      "fill": "$text-light",
+                      "content": "☰",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "2btOt",
+                      "fill": "$text-light",
+                      "content": "PROVAS",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Psffa",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "znPqu",
+                      "fill": "$text-light",
+                      "content": "⇪",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "6ZPyD",
+                      "fill": "$text-light",
+                      "content": "ENVIAR",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FTS2j",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$primary",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xuw0p",
+                      "fill": "$white",
+                      "content": "◉",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "z9wSb",
+                      "fill": "$white",
+                      "content": "PERFIL",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "JS6yz",
+      "x": 0,
+      "y": 2270,
+      "name": "labelR1",
+      "fill": "$text",
+      "content": "Tela 7 • /perfil (hasHydrated=false)",
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": "700"
+    },
+    {
+      "type": "frame",
+      "id": "o79cj",
+      "x": 460,
+      "y": 2300,
+      "name": "/perfil • Login/Registro",
+      "width": 402,
+      "height": 874,
+      "fill": "$background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "4eX67",
+          "name": "statusR2",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "YJvWo",
+              "fill": "$text",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "G5xZa",
+              "fill": "$text",
+              "content": "● ● ●",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "qmRn2",
+          "name": "contentR2",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            24,
+            24,
+            8,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "FbByp",
+              "name": "segmentedR2",
+              "width": "fill_container",
+              "height": 62,
+              "fill": "$surface",
+              "cornerRadius": 20,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 4,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "MYGDj",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$primary",
+                  "cornerRadius": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UAPo8",
+                      "fill": "$white",
+                      "content": "Entrar",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xopwi",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "7PV9E",
+                      "fill": "$text",
+                      "content": "Criar conta",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jdxq9",
+              "name": "formR2",
+              "width": "fill_container",
+              "fill": "$surface",
+              "cornerRadius": 20,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "QSZH0",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "$surface-alt",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "T3iOg",
+                      "fill": "$text-light",
+                      "content": "Email • voce@universidade.edu.br",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nrR0E",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "$surface-alt",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border"
+                  },
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vQGCu",
+                      "fill": "$text-light",
+                      "content": "Senha • ••••••",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "T4wGY",
+                  "width": "fill_container",
+                  "height": 50,
+                  "fill": "$primary",
+                  "cornerRadius": 12,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "7yWGs",
+                      "fill": "$white",
+                      "content": "Entrar",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Iu0Tz",
+                  "fill": "$error",
+                  "content": "Erro de validação (schema): email inválido / senha < 6",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "K5BQk",
+              "name": "spacerR2",
+              "width": "fill_container",
+              "height": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "gK2CW",
+          "name": "tabWrapR2",
+          "width": "fill_container",
+          "height": 108,
+          "padding": [
+            12,
+            16,
+            16,
+            16
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "QTWLk",
+              "name": "tabPillR2",
+              "width": "fill_container",
+              "height": 84,
+              "fill": "$surface",
+              "cornerRadius": 32,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 4,
+              "padding": [
+                10,
+                8
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "jA2MQ",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "M1ips",
+                      "fill": "$text-light",
+                      "content": "☰",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jcpRJ",
+                      "fill": "$text-light",
+                      "content": "PROVAS",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "leFnJ",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pAX9j",
+                      "fill": "$text-light",
+                      "content": "⇪",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qXsIH",
+                      "fill": "$text-light",
+                      "content": "ENVIAR",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZDp0J",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$primary",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "nY3nH",
+                      "fill": "$white",
+                      "content": "◉",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WH94j",
+                      "fill": "$white",
+                      "content": "PERFIL",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "pnZzl",
+      "x": 460,
+      "y": 2270,
+      "name": "labelR2",
+      "fill": "$text",
+      "content": "Tela 8 • /perfil (não autenticado)",
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": "700"
+    },
+    {
+      "type": "frame",
+      "id": "XO5ll",
+      "x": 938,
+      "y": 2300,
+      "name": "/perfil • Autenticado",
+      "width": 402,
+      "height": 874,
+      "fill": "$background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "TUlYu",
+          "name": "statusR3",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Wj1ds",
+              "fill": "$text",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "5Gy0M",
+              "fill": "$text",
+              "content": "● ● ●",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "K5GzL",
+          "name": "contentR3",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            24,
+            24,
+            8,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "U4HLW",
+              "name": "cardR3",
+              "width": "fill_container",
+              "fill": "$surface",
+              "cornerRadius": 20,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "RcZqQ",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "OBc7V",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ZqpA2",
+                          "fill": "$text",
+                          "content": "Ana Souza",
+                          "fontFamily": "Inter",
+                          "fontSize": 22,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "QArg4",
+                          "fill": "$text-light",
+                          "content": "ana@universidade.edu.br",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "5CrEK",
+                      "height": 30,
+                      "fill": "$primary-light",
+                      "cornerRadius": 20,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "5WCUg",
+                          "fill": "$primary",
+                          "content": "USER",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "GFnSJ",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hRm0t",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "5eGxQ",
+                          "fill": "$text-light",
+                          "content": "ID",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ldgbY",
+                          "fill": "$text",
+                          "content": "42",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "3hFuD",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "sIswy",
+                          "fill": "$text-light",
+                          "content": "Acesso",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "6xSu3",
+                          "fill": "$text",
+                          "content": "USER",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "2zCBr",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "7GME5",
+                          "fill": "$text-light",
+                          "content": "Status",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tTE8s",
+                          "fill": "$text",
+                          "content": "Sessão ativa",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wZM6v",
+                  "width": "fill_container",
+                  "height": 50,
+                  "fill": "$surface",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$primary"
+                  },
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "7jnvX",
+                      "fill": "$primary",
+                      "content": "Sair",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "m4JFF",
+              "name": "refreshHintR3",
+              "fill": "$text-light",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Estados adicionais: isRefreshing + confirmação de logout",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "500"
+            },
+            {
+              "type": "frame",
+              "id": "TWcgF",
+              "name": "spacerR3",
+              "width": "fill_container",
+              "height": "fill_container"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ns4CD",
+          "name": "tabWrapR3",
+          "width": "fill_container",
+          "height": 108,
+          "padding": [
+            12,
+            16,
+            16,
+            16
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "BW996",
+              "name": "tabPillR3",
+              "width": "fill_container",
+              "height": 84,
+              "fill": "$surface",
+              "cornerRadius": 32,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border"
+              },
+              "gap": 4,
+              "padding": [
+                10,
+                8
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zARW9",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pl7u9",
+                      "fill": "$text-light",
+                      "content": "☰",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "5enEz",
+                      "fill": "$text-light",
+                      "content": "PROVAS",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KZODX",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "IZlDa",
+                      "fill": "$text-light",
+                      "content": "⇪",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "AVe2T",
+                      "fill": "$text-light",
+                      "content": "ENVIAR",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "9qLKV",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$primary",
+                  "cornerRadius": 26,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GyvB1",
+                      "fill": "$white",
+                      "content": "◉",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "U9KNp",
+                      "fill": "$white",
+                      "content": "PERFIL",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "OeoM1",
+      "x": 938,
+      "y": 2270,
+      "name": "labelR3",
+      "fill": "$text",
+      "content": "Tela 9 • /perfil (autenticado)",
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "6izmE",
+      "x": 0,
+      "y": 200,
+      "name": "rowTitle1",
+      "fill": "$primary",
+      "content": "Fluxo PROVAS (tab bar visível apenas na tela inicial)",
+      "fontFamily": "Inter",
+      "fontSize": 20,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "sxr1T",
+      "x": 0,
+      "y": 2200,
+      "name": "rowTitle2",
+      "fill": "$primary",
+      "content": "Fluxo PERFIL e autenticação",
+      "fontFamily": "Inter",
+      "fontSize": 20,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "DrVH6",
+      "x": 0,
+      "y": 1220,
+      "name": "rowTitle3",
+      "fill": "$primary",
+      "content": "Fluxo ENVIAR",
+      "fontFamily": "Inter",
+      "fontSize": 20,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "7KCgj",
+      "x": 418,
+      "y": 685,
+      "name": "arrowP12",
+      "fill": "$primary",
+      "content": "➡",
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "hMhA3",
+      "x": 878,
+      "y": 685,
+      "name": "arrowP23",
+      "fill": "$primary",
+      "content": "➡",
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "2B1QG",
+      "x": 1338,
+      "y": 685,
+      "name": "arrowP34",
+      "fill": "$primary",
+      "content": "➡",
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "m7LBy",
+      "x": 418,
+      "y": 1705,
+      "name": "arrowE12",
+      "fill": "$primary",
+      "content": "➡",
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "u6fta",
+      "x": 418,
+      "y": 2725,
+      "name": "arrowR12",
+      "fill": "$primary",
+      "content": "➡",
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "pWA7P",
+      "x": 878,
+      "y": 2725,
+      "name": "arrowR23",
+      "fill": "$primary",
+      "content": "➡",
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "87d9O",
+      "x": 120,
+      "y": 2168,
+      "name": "noteBlockedToProfile",
+      "fill": "$text-light",
+      "content": "Ação: Ir para Perfil →",
+      "fontFamily": "Inter",
+      "fontSize": 12,
+      "fontWeight": "600"
+    },
+    {
+      "type": "frame",
+      "id": "V5M28",
+      "x": 1380,
+      "y": 1180,
+      "name": "Legendas",
+      "width": 402,
+      "height": 148,
+      "fill": "$surface",
+      "cornerRadius": 16,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "$border"
+      },
+      "layout": "vertical",
+      "gap": 8,
+      "children": [
+        {
+          "type": "text",
+          "id": "sz7Kf",
+          "fill": "$text",
+          "content": "Cobertura de estados",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "ZSgDj",
+          "fill": "$text-light",
+          "content": "• Loading: provas, enviar, perfil",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "id": "0R3RB",
+          "fill": "$text-light",
+          "content": "• Empty/Error: listas e validações de formulário",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "id": "wlohb",
+          "fill": "$text-light",
+          "content": "• Auth gating: enviar depende de perfil autenticado",
+          "fontFamily": "Inter",
+          "fontSize": 13,
+          "fontWeight": "500"
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0056D2"
+        },
+        {
+          "value": "#0056D2"
+        },
+        {
+          "value": "#0056D2"
+        },
+        {
+          "value": "#0056D2"
+        }
+      ]
+    },
+    "background": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F8FAFC"
+        },
+        {
+          "value": "#F8FAFC"
+        }
+      ]
+    },
+    "black": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#000000"
+        },
+        {
+          "value": "#000000"
+        }
+      ]
+    },
+    "blue-100": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DBEAFE"
+        },
+        {
+          "value": "#DBEAFE"
+        }
+      ]
+    },
+    "blue-50": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#EFF6FF"
+        },
+        {
+          "value": "#EFF6FF"
+        }
+      ]
+    },
+    "blue-700": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0056D2"
+        },
+        {
+          "value": "#0056D2"
+        }
+      ]
+    },
+    "blue-800": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1E40AF"
+        },
+        {
+          "value": "#1E40AF"
+        }
+      ]
+    },
+    "border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E2E8F0"
+        },
+        {
+          "value": "#E2E8F0"
+        }
+      ]
+    },
+    "error": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#EF4444"
+        },
+        {
+          "value": "#EF4444"
+        }
+      ]
+    },
+    "green-500": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#22C55E"
+        },
+        {
+          "value": "#22C55E"
+        }
+      ]
+    },
+    "green-600": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#16A34A"
+        },
+        {
+          "value": "#16A34A"
+        }
+      ]
+    },
+    "loading": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0056D2"
+        },
+        {
+          "value": "#0056D2"
+        }
+      ]
+    },
+    "orange-100": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFEDD5"
+        },
+        {
+          "value": "#FFEDD5"
+        }
+      ]
+    },
+    "orange-500": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F97316"
+        },
+        {
+          "value": "#F97316"
+        }
+      ]
+    },
+    "pdf": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DC2626"
+        },
+        {
+          "value": "#DC2626"
+        }
+      ]
+    },
+    "primary-light": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#EFF6FF"
+        },
+        {
+          "value": "#EFF6FF"
+        }
+      ]
+    },
+    "red-100": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FEE2E2"
+        },
+        {
+          "value": "#FEE2E2"
+        }
+      ]
+    },
+    "red-50": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FEF2F2"
+        },
+        {
+          "value": "#FEF2F2"
+        }
+      ]
+    },
+    "red-500": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#EF4444"
+        },
+        {
+          "value": "#EF4444"
+        }
+      ]
+    },
+    "red-600": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DC2626"
+        },
+        {
+          "value": "#DC2626"
+        }
+      ]
+    },
+    "secondary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1E40AF"
+        },
+        {
+          "value": "#1E40AF"
+        }
+      ]
+    },
+    "slate-100": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F1F5F9"
+        },
+        {
+          "value": "#F1F5F9"
+        }
+      ]
+    },
+    "slate-200": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E2E8F0"
+        },
+        {
+          "value": "#E2E8F0"
+        }
+      ]
+    },
+    "slate-300": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBD5E1"
+        },
+        {
+          "value": "#CBD5E1"
+        }
+      ]
+    },
+    "slate-400": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#94A3B8"
+        },
+        {
+          "value": "#94A3B8"
+        }
+      ]
+    },
+    "slate-50": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F8FAFC"
+        },
+        {
+          "value": "#F8FAFC"
+        }
+      ]
+    },
+    "slate-500": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#64748B"
+        },
+        {
+          "value": "#64748B"
+        }
+      ]
+    },
+    "slate-600": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#475569"
+        },
+        {
+          "value": "#475569"
+        }
+      ]
+    },
+    "slate-700": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#334155"
+        },
+        {
+          "value": "#334155"
+        }
+      ]
+    },
+    "slate-800": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1E293B"
+        },
+        {
+          "value": "#1E293B"
+        }
+      ]
+    },
+    "slate-900": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#0F172A"
+        },
+        {
+          "value": "#0F172A"
+        }
+      ]
+    },
+    "success": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#22C55E"
+        },
+        {
+          "value": "#22C55E"
+        }
+      ]
+    },
+    "surface": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#FFFFFF"
+        }
+      ]
+    },
+    "surface-alt": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F1F5F9"
+        },
+        {
+          "value": "#F1F5F9"
+        }
+      ]
+    },
+    "text": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#1E293B"
+        },
+        {
+          "value": "#1E293B"
+        }
+      ]
+    },
+    "text-inverted": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#FFFFFF"
+        }
+      ]
+    },
+    "text-light": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#64748B"
+        },
+        {
+          "value": "#64748B"
+        }
+      ]
+    },
+    "transparent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#00000000"
+        },
+        {
+          "value": "#00000000"
+        }
+      ]
+    },
+    "warning": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F97316"
+        },
+        {
+          "value": "#F97316"
+        }
+      ]
+    },
+    "white": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#FFFFFF"
+        }
+      ]
+    }
+  }
+}
