@@ -12,14 +12,15 @@ import {
 } from "@/lib/filesystem";
 import { useAuthStore } from "@/store";
 
-import { useCourseSubjectService } from "../../provas/(course_and_subject)/service/useCourseSubjectService";
-import { useStateService } from "../../provas/(state)/services/useStateService";
-import { useUniversityService } from "../../provas/(university)/service/useUniversityService";
 import {
   SubmitExamFormData,
   submitExamSchema,
-} from "../schemas/submitExamSchema";
-import { useExamSubmissionService } from "../service/useExamSubmissionService";
+} from "../../schemas/submitExamSchema";
+import { useStateService } from "@/app/(tabs)/provas/services/useStateService";
+import { useUniversityService } from "@/app/(tabs)/provas/services/useUniversityService";
+
+import { useExamSubmissionService } from "../../service/useExamSubmissionService";
+import { useCourseSubjectService } from "@/app/(tabs)/provas/services/useCourseSubjectService";
 
 const semesterOptions = [
   { id: "1", name: "1º semestre" },

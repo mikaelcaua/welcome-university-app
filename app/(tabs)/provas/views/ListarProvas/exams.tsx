@@ -11,7 +11,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { theme } from '@/theme';
 
-import { ExamCard } from '../components/ExamCard';
+import { ExamCard } from '../../components/Exam/ExamCard';
 import { useExamsViewModel } from './useExamsViewModel';
 
 export default function ExamsScreen() {

@@ -9,8 +9,8 @@ import { useSelectedFiltersStore } from '@/store';
 import {
   SearchUniversityFormData,
   searchUniversitySchema,
-} from '../schemas/searchUniversitySchema';
-import { useUniversityService } from '../service/useUniversityService';
+} from '../../schemas/searchUniversitySchema';
+import { useUniversityService } from '../../services/useUniversityService';
 
 export function useUniversityViewModel() {
   const [loading, setLoading] = useState(false);

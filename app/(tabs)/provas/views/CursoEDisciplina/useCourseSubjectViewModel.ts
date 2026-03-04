@@ -6,8 +6,11 @@ import { Course, Subject } from '@/interfaces';
 import { useWelcomeUniversityNavigation } from '@/navigation/useWelcomeUniversityNavigation';
 import { useSelectedFiltersStore } from '@/store/useSelectedFiltersStore';
 
-import { CourseSubjectFormData, courseSubjectSchema } from '../schemas/courseSubjectSchema';
-import { useCourseSubjectService } from '../service/useCourseSubjectService';
+import {
+  CourseSubjectFormData,
+  courseSubjectSchema,
+} from '../../schemas/courseSubjectSchema';
+import { useCourseSubjectService } from '../../services/useCourseSubjectService';
 
 export function useCourseSubjectViewModel() {
   const [loadingCourses, setLoadingCourses] = useState(false);

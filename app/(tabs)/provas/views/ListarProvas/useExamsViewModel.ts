@@ -4,7 +4,7 @@ import { Exam, ExamSection } from '@/interfaces';
 import { useWelcomeUniversityNavigation } from '@/navigation/useWelcomeUniversityNavigation';
 import { useSelectedFiltersStore } from '@/store';
 
-import { useExamsService } from '../service/useExamsService';
+import { useExamsService } from '../../services/useExamsService';
 
 export function useExamsViewModel() {
   const [loading, setLoading] = useState(true);

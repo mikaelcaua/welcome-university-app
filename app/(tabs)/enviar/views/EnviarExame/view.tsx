@@ -5,14 +5,14 @@ import {
   StyleSheet,
   Text,
   View,
-} from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { Button, FormInput, FormSelect } from '@/components';
-import { theme } from '@/theme';
+import { Button, FormInput, FormSelect } from "@/components";
+import { theme } from "@/theme";
 
-import { useExamSubmissionViewModel } from './useExamSubmissionViewModel';
+import { useExamSubmissionViewModel } from "./useExamSubmissionViewModel";
 
 export default function ExamSubmissionScreen() {
   const insets = useSafeAreaInsets();
@@ -90,16 +90,8 @@ export default function ExamSubmissionScreen() {
           <Text style={styles.eyebrow}>ENVIAR</Text>
           <Text style={styles.title}>Submeta uma prova</Text>
           <Text style={styles.subtitle}>
-            Sessão ativa para {user?.name || 'usuário autenticado'}. Preencha os
+            Sessão ativa para {user?.name || "usuário autenticado"}. Preencha os
             campos e anexe uma foto da galeria ou um PDF para revisão.
-          </Text>
-        </View>
-
-        <View style={styles.infoCard}>
-          <Text style={styles.infoTitle}>Nome gerado pela API</Text>
-          <Text style={styles.infoText}>
-            O backend monta o nome da prova usando disciplina, período e tipo.
-            Aqui você só informa os dados acadêmicos e escolhe o arquivo.
           </Text>
         </View>
 
@@ -200,20 +192,24 @@ export default function ExamSubmissionScreen() {
               <View style={styles.attachmentCard}>
                 <View style={styles.attachmentMeta}>
                   <MaterialIcons
-                    name={selectedFileKind === 'pdf' ? 'picture-as-pdf' : 'image'}
+                    name={
+                      selectedFileKind === "pdf" ? "picture-as-pdf" : "image"
+                    }
                     size={22}
                     color={
-                      selectedFileKind === 'pdf'
+                      selectedFileKind === "pdf"
                         ? theme.colors.pdf
                         : theme.colors.primary
                     }
                   />
                   <View style={styles.attachmentTextWrapper}>
-                    <Text style={styles.attachmentName}>{selectedFileName}</Text>
+                    <Text style={styles.attachmentName}>
+                      {selectedFileName}
+                    </Text>
                     <Text style={styles.attachmentHint}>
-                      {selectedFileKind === 'pdf'
-                        ? 'PDF selecionado para envio'
-                        : 'Imagem selecionada para envio'}
+                      {selectedFileKind === "pdf"
+                        ? "PDF selecionado para envio"
+                        : "Imagem selecionada para envio"}
                     </Text>
                   </View>
                 </View>
@@ -328,7 +324,7 @@ const styles = StyleSheet.create({
   },
   attachmentLabel: {
     ...theme.text.body,
-    fontWeight: '600',
+    fontWeight: "600",
     color: theme.colors.text,
   },
   attachmentDescription: {
@@ -346,8 +342,8 @@ const styles = StyleSheet.create({
     gap: theme.spacing.m,
   },
   attachmentMeta: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: theme.spacing.s,
   },
   attachmentTextWrapper: {
@@ -356,7 +352,7 @@ const styles = StyleSheet.create({
   },
   attachmentName: {
     color: theme.colors.text,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   attachmentHint: {
     ...theme.text.caption,
@@ -364,12 +360,12 @@ const styles = StyleSheet.create({
   attachmentEmptyState: {
     minHeight: 56,
     borderWidth: 1,
-    borderStyle: 'dashed',
+    borderStyle: "dashed",
     borderColor: theme.colors.border,
     borderRadius: theme.borderRadius.m,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
     gap: theme.spacing.s,
     paddingHorizontal: theme.spacing.m,
   },
@@ -382,9 +378,9 @@ const styles = StyleSheet.create({
     marginLeft: theme.spacing.xs,
   },
   loadingInline: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: theme.spacing.s,
   },
   loadingText: {

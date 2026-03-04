@@ -14,7 +14,7 @@ import { FormInput } from '@/components';
 import { University } from '@/interfaces';
 import { theme } from '@/theme';
 
-import { UniversityCard } from '../components/UniversityCard';
+import { UniversityCard } from '../../components/University/UniversityCard';
 import { useUniversityViewModel } from './useUniversityViewModel';
 
 export default function UniversitiesScreen() {

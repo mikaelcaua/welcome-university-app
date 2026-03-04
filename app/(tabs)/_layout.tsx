@@ -1,9 +1,13 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import { Tabs, usePathname } from "expo-router";
 
 import { theme } from "@/theme";
 
 export default function TabsLayout() {
+  const pathname = usePathname();
+  const isInProvasFlow = pathname.startsWith("/provas");
+  const isProvasInitialScreen = pathname === "/provas";
+
   return (
     <Tabs
       screenOptions={{
@@ -12,6 +16,7 @@ export default function TabsLayout() {
         tabBarInactiveTintColor: theme.colors.textLight,
         tabBarShowLabel: true,
         tabBarStyle: {
+          display: isInProvasFlow && !isProvasInitialScreen ? "none" : "flex",
           position: "absolute",
           height: 84,
           bottom: 16,

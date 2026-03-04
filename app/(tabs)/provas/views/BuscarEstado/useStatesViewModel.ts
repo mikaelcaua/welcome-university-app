@@ -6,8 +6,11 @@ import { State } from '@/interfaces';
 import { useWelcomeUniversityNavigation } from '@/navigation/useWelcomeUniversityNavigation';
 import { useSelectedFiltersStore } from '@/store';
 
-import { SearchStateFormData, searchStateSchema } from '../schemas/searchStateSchema';
-import { useStateService } from '../services/useStateService';
+import {
+  SearchStateFormData,
+  searchStateSchema,
+} from '../../schemas/searchStateSchema';
+import { useStateService } from '../../services/useStateService';
 
 export function useStatesViewModel() {
   const [loading, setLoading] = useState(false);

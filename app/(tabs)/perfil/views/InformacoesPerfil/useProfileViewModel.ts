@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 import { useAuthService } from '@/services/auth/useAuthService';
 import { useAuthStore } from '@/store';
 
-import { AuthFormData, authFormSchema } from '../schemas/authFormSchema';
+import { AuthFormData, authFormSchema } from '../../schemas/authFormSchema';
 
 type AuthMode = 'login' | 'register';
 

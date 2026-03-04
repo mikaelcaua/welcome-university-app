@@ -14,7 +14,7 @@ import { FormInput } from '@/components';
 import { State } from '@/interfaces';
 import { theme } from '@/theme';
 
-import { StateCardSearch } from '../components/StateCardSearch';
+import { StateCardSearch } from '../../components/State/StateCardSearch';
 import { useStatesViewModel } from './useStatesViewModel';
 
 export default function StatesScreen() {
