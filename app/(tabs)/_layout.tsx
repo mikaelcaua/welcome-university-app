@@ -1,12 +1,20 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { Tabs, usePathname } from "expo-router";
 
+import { UserRole } from "@/interfaces";
+import { useAuthStore } from "@/store";
 import { theme } from "@/theme";
 
 export default function TabsLayout() {
   const pathname = usePathname();
   const isInProvasFlow = pathname.startsWith("/provas");
   const isProvasInitialScreen = pathname === "/provas";
+  const { hasHydrated, user } = useAuthStore();
+  const canAccessReviewTab =
+    hasHydrated &&
+    (user?.role === UserRole.APPROVER ||
+      user?.role === UserRole.ADMIN ||
+      user?.role === UserRole.DEV);
 
   return (
     <Tabs
@@ -60,6 +68,17 @@ export default function TabsLayout() {
           ),
         }}
       />
+      {canAccessReviewTab ? (
+        <Tabs.Screen
+          name="aprovar"
+          options={{
+            title: "APROVAR",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="fact-check" size={size} color={color} />
+            ),
+          }}
+        />
+      ) : null}
       <Tabs.Screen
         name="perfil"
         options={{

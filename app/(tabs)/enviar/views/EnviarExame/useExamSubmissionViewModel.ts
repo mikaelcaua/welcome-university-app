@@ -4,12 +4,14 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Alert } from "react-native";
 
-import { Course, ExamType, State, Subject, University } from "@/interfaces";
+import { Course, ExamType, State, Subject, University, UserRole } from "@/interfaces";
+import { ApiError } from "@/lib/api";
 import {
   LocalAttachment,
   pickImageFromLibrary,
   pickPdfDocument,
 } from "@/lib/filesystem";
+import { useAuthService } from "@/services/auth/useAuthService";
 import { useAuthStore } from "@/store";
 
 import {
@@ -58,7 +60,9 @@ export function useExamSubmissionViewModel() {
   const [loadingCascade, setLoadingCascade] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { accessToken, isAuthenticated, user } = useAuthStore();
+  const { refresh } = useAuthService();
+  const { accessToken, refreshToken, isAuthenticated, user, setSession, clearSession } =
+    useAuthStore();
   const { getAllStates } = useStateService();
   const { getUniversitiesByState } = useUniversityService();
   const { getCoursesByUniversity, getSubjectsByCourse } =
@@ -148,38 +152,65 @@ export function useExamSubmissionViewModel() {
 
     try {
       setIsSubmitting(true);
-      await submitExam({
-        accessToken,
-        examYear: Number(values.examYear),
-        semester: toSemester(values.semester),
-        type: values.type,
-        subjectId: values.subjectId,
-        file: {
-          uri: values.fileUri.trim(),
-          name: values.fileName.trim(),
-          mimeType: values.fileMimeType.trim(),
-          kind: toAttachmentKind(values.fileKind),
-        },
-      });
-
-      form.reset(defaultValues);
-      setUniversities([]);
-      setCourses([]);
-      setSubjects([]);
-
-      Alert.alert(
-        "Prova enviada",
-        "A submissão foi criada com status pendente para revisão.",
-      );
+      await submitWithToken(accessToken, values);
     } catch (error) {
-      Alert.alert("Falha no envio", getErrorMessage(error));
+      if (isAuthenticationError(error) && refreshToken) {
+        try {
+          const refreshedSession = await refresh(refreshToken);
+          setSession({
+            ...refreshedSession,
+            refreshToken: refreshedSession.refreshToken || refreshToken,
+            user: refreshedSession.user,
+          });
+          await submitWithToken(refreshedSession.accessToken, values);
+        } catch (refreshError) {
+          clearSession();
+          Alert.alert("Sessão inválida", getErrorMessage(refreshError));
+          return;
+        }
+      } else {
+        Alert.alert("Falha no envio", getErrorMessage(error));
+        return;
+      }
     } finally {
       setIsSubmitting(false);
     }
+
+    form.reset(defaultValues);
+    setUniversities([]);
+    setCourses([]);
+    setSubjects([]);
+
+    Alert.alert(
+      "Prova enviada",
+      user?.role && user.role !== UserRole.USER
+        ? "A submissão foi aprovada automaticamente para o seu perfil."
+        : "A submissão foi criada com status pendente para revisão.",
+    );
+  }
+
+  async function submitWithToken(currentAccessToken: string, values: SubmitExamFormData) {
+    await submitExam({
+      accessToken: currentAccessToken,
+      examYear: Number(values.examYear),
+      semester: toSemester(values.semester),
+      type: values.type,
+      subjectId: values.subjectId,
+      file: {
+        uri: values.fileUri.trim(),
+        name: values.fileName.trim(),
+        mimeType: values.fileMimeType.trim(),
+        kind: toAttachmentKind(values.fileKind),
+      },
+    });
   }
 
   function goToProfile() {
     router.push("/perfil");
+  }
+
+  function goToCurrentPendingExams() {
+    router.push("/enviar/pending");
   }
 
   async function handlePickImage() {
@@ -261,6 +292,7 @@ export function useExamSubmissionViewModel() {
     handlePickPdf,
     clearSelectedFile,
     goToProfile,
+    goToCurrentPendingExams,
     onSubmit: form.handleSubmit(submit),
     hasSelectedState: Boolean(form.watch("stateId")),
     hasSelectedUniversity: Boolean(form.watch("universityId")),
@@ -285,4 +317,23 @@ function toSemester(value: string): 1 | 2 {
 
 function toAttachmentKind(value: string): LocalAttachment["kind"] {
   return value === "pdf" ? "pdf" : "image";
+}
+
+function isAuthenticationError(error: unknown) {
+  if (error instanceof ApiError) {
+    return error.status === 401 || error.status === 403;
+  }
+
+  if (error instanceof Error) {
+    const message = error.message.toLowerCase();
+    return (
+      message.includes("401") ||
+      message.includes("403") ||
+      message.includes("unauthorized") ||
+      message.includes("forbidden") ||
+      message.includes("token")
+    );
+  }
+
+  return false;
 }

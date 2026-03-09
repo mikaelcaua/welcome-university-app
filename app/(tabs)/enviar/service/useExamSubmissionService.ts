@@ -32,8 +32,17 @@ export function useExamSubmissionService() {
     });
   }, []);
 
+  const getCurrentUserPendingExams = useCallback(async (accessToken: string): Promise<Exam[]> => {
+    return apiRequest<Exam[]>('/users/me/exams/pending', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  }, []);
+
   return {
     submitExam,
+    getCurrentUserPendingExams,
   };
 }
 

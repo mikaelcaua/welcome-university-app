@@ -3,6 +3,16 @@ const API_HOST = "mikael-dev";
 
 export const API_URL = `http://${API_HOST}:${API_PORT}`;
 
+export class ApiError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = "ApiError";
+    this.status = status;
+  }
+}
+
 export async function apiRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
   const isFormData = typeof FormData !== 'undefined' && init.body instanceof FormData;
@@ -20,7 +30,7 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}): Promi
   const data = rawBody ? safeJsonParse(rawBody) : null;
 
   if (!response.ok) {
-    throw new Error(extractApiErrorMessage(data, rawBody));
+    throw new ApiError(extractApiErrorMessage(data, rawBody), response.status);
   }
 
   return data as T;

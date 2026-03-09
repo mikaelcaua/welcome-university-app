@@ -35,6 +35,7 @@ export default function ExamSubmissionScreen() {
     handlePickPdf,
     clearSelectedFile,
     goToProfile,
+    goToCurrentPendingExams,
     onSubmit,
     hasSelectedState,
     hasSelectedUniversity,
@@ -86,6 +87,12 @@ export default function ExamSubmissionScreen() {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
+        <Button
+          title="Ver pendentes atuais"
+          variant="outline"
+          onPress={goToCurrentPendingExams}
+        />
+
         <View style={styles.heroCard}>
           <Text style={styles.eyebrow}>ENVIAR</Text>
           <Text style={styles.title}>Submeta uma prova</Text>
