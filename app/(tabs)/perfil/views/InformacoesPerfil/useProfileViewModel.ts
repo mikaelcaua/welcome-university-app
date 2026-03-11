@@ -6,7 +6,11 @@ import { Alert } from 'react-native';
 import { useAuthService } from '@/services/auth/useAuthService';
 import { useAuthStore } from '@/store';
 
-import { AuthFormData, authFormSchema } from '../../schemas/authFormSchema';
+import {
+  AuthFormData,
+  authFormSchema,
+  registerAuthFormSchema,
+} from '../../schemas/authFormSchema';
 
 type AuthMode = 'login' | 'register';
 
@@ -83,6 +87,24 @@ export function useProfileViewModel() {
   }, [accessToken, handleRefreshProfile, isAuthenticated, user]);
 
   async function submit(values: AuthFormData) {
+    form.clearErrors();
+
+    if (mode === 'register') {
+      const parsed = registerAuthFormSchema.safeParse(values);
+
+      if (!parsed.success) {
+        for (const issue of parsed.error.issues) {
+          const field = issue.path[0];
+
+          if (field === 'name' || field === 'email' || field === 'password') {
+            form.setError(field, { type: 'manual', message: issue.message });
+          }
+        }
+
+        return;
+      }
+    }
+
     try {
       setIsSubmitting(true);
 
