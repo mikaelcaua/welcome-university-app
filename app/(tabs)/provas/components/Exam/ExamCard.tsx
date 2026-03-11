@@ -108,10 +108,10 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     borderWidth: 1,
     borderColor: theme.colors.border,
-    ...theme.shadows.soft,
   },
   pressed: {
     backgroundColor: theme.colors.surfaceAlt,
+    borderColor: '#6366F1',
   },
   iconContainer: {
     width: 40,

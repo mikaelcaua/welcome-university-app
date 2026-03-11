@@ -74,15 +74,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   outlineContainer: {
-    backgroundColor: 'transparent',
+    backgroundColor: theme.colors.surface,
     borderWidth: 1,
-    borderColor: theme.colors.primary,
+    borderColor: theme.colors.border,
   },
   outlinePressed: {
-    backgroundColor: theme.colors.primaryLight,
+    backgroundColor: theme.colors.surfaceAlt,
   },
   outlineText: {
-    color: theme.colors.primary,
+    color: theme.colors.text,
     fontWeight: 'bold',
     fontSize: 16,
   },

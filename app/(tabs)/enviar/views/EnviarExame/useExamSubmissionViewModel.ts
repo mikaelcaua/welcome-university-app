@@ -272,6 +272,7 @@ export function useExamSubmissionViewModel() {
 
   const selectedFileName = form.watch("fileName");
   const selectedFileKind = form.watch("fileKind");
+  const selectedFileUri = form.watch("fileUri");
 
   return {
     form,
@@ -297,9 +298,10 @@ export function useExamSubmissionViewModel() {
     hasSelectedState: Boolean(form.watch("stateId")),
     hasSelectedUniversity: Boolean(form.watch("universityId")),
     hasSelectedCourse: Boolean(form.watch("courseId")),
-    hasSelectedAttachment: Boolean(form.watch("fileUri")),
+    hasSelectedAttachment: Boolean(selectedFileUri),
     selectedFileName,
     selectedFileKind,
+    selectedFileUri,
   };
 }
 

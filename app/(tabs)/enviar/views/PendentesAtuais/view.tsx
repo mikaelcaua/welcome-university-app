@@ -36,7 +36,7 @@ export default function CurrentPendingExamsScreen() {
 
   return (
     <View style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-      <StatusBar barStyle="dark-content" backgroundColor={theme.colors.background} />
+      <StatusBar barStyle="light-content" backgroundColor={theme.colors.background} />
 
       <View style={styles.header}>
         <Pressable onPress={goBack} style={styles.backButton}>
@@ -67,9 +67,8 @@ export default function CurrentPendingExamsScreen() {
             <View style={styles.centerCard}>
               <Text style={styles.emptyTitle}>Sem pendências</Text>
               <Text style={styles.emptyDescription}>
-                Você não possui provas pendentes no momento.
+                Você não possui envios pendentes no momento.
               </Text>
-              <Button title="Voltar para Enviar" variant="outline" onPress={goBack} />
             </View>
           }
           renderItem={({ item }) => (
@@ -135,9 +134,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: theme.spacing.l,
     paddingBottom: theme.spacing.m,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
-    backgroundColor: theme.colors.surface,
+    borderBottomWidth: 0,
+    backgroundColor: theme.colors.background,
     gap: theme.spacing.m,
   },
   backButton: {
@@ -160,7 +158,7 @@ const styles = StyleSheet.create({
     gap: theme.spacing.m,
   },
   card: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: '#111827',
     borderWidth: 1,
     borderColor: theme.colors.border,
     borderRadius: theme.borderRadius.l,

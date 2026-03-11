@@ -20,7 +20,7 @@ export default function ExamsScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <StatusBar barStyle="dark-content" backgroundColor={theme.colors.surface} />
+      <StatusBar barStyle="light-content" backgroundColor="#1E1B4B" />
 
       <View style={[styles.header, { paddingTop: insets.top + theme.spacing.s }]}>
         <TouchableOpacity onPress={goBack} style={styles.backButton}>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: theme.spacing.m,
     paddingBottom: theme.spacing.m,
-    backgroundColor: theme.colors.surface,
+    backgroundColor: '#1E1B4B',
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
     zIndex: 10,
@@ -85,15 +85,17 @@ const styles = StyleSheet.create({
   },
   backText: {
     fontSize: 24,
-    color: theme.colors.text,
+    color: '#C7D2FE',
     fontWeight: '300',
   },
   headerTitle: {
     ...theme.text.title,
     fontSize: 18,
+    color: '#E0E7FF',
   },
   headerSubtitle: {
     ...theme.text.caption,
+    color: '#A5B4FC',
   },
   content: {
     flex: 1,
@@ -110,8 +112,8 @@ const styles = StyleSheet.create({
   sectionTitle: {
     ...theme.text.title,
     fontSize: 14,
-    color: theme.colors.primary,
-    backgroundColor: theme.colors.primaryLight,
+    color: '#C7D2FE',
+    backgroundColor: '#312E81',
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 12,

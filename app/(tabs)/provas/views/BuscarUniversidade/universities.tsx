@@ -36,7 +36,7 @@ export default function UniversitiesScreen() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-        <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
+        <StatusBar barStyle="light-content" backgroundColor="#0D9488" />
 
         <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
           <View style={styles.headerTopRow}>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: theme.spacing.l,
     paddingBottom: theme.spacing.xl,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: '#0D9488',
     borderBottomLeftRadius: theme.borderRadius.xl,
     borderBottomRightRadius: theme.borderRadius.xl,
     ...theme.shadows.default,
@@ -120,13 +120,13 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 16,
-    color: theme.colors.blue[100],
+    color: '#99F6E4',
     marginBottom: theme.spacing.l,
   },
   searchInput: {
-    backgroundColor: theme.colors.white,
-    borderWidth: 0,
-    ...theme.shadows.soft,
+    backgroundColor: '#0B1220',
+    borderWidth: 1,
+    borderColor: '#134E4A',
     height: 52,
   },
   content: {

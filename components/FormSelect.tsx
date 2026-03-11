@@ -64,7 +64,9 @@ export function FormSelect<T extends FieldValues>({
         control={control}
         name={name}
         render={({ field: { value, onChange } }) => {
-          const selectedOption = options.find((opt) => opt.id === value);
+          const selectedOption = options.find((opt) =>
+            areOptionIdsEqual(opt.id, value),
+          );
 
           return (
             <>
@@ -88,12 +90,27 @@ export function FormSelect<T extends FieldValues>({
                   {selectedOption ? selectedOption.name : placeholder}
                 </Text>
 
-                <MaterialIcons
-                  name="keyboard-arrow-down"
-                  size={24}
-                  color={disabled ? theme.colors.textLight : theme.colors.text}
-                />
+                {disabled ? (
+                  <View style={styles.disabledBadge}>
+                    <MaterialIcons
+                      name="lock-outline"
+                      size={14}
+                      color={theme.colors.textLight}
+                    />
+                  </View>
+                ) : (
+                  <MaterialIcons
+                    name="keyboard-arrow-down"
+                    size={24}
+                    color={theme.colors.text}
+                  />
+                )}
               </Pressable>
+              {disabled ? (
+                <Text style={styles.disabledHint}>
+                  Disponível após selecionar os campos anteriores.
+                </Text>
+              ) : null}
 
               {/* O Modal Bottom Sheet */}
               <Modal
@@ -157,7 +174,8 @@ export function FormSelect<T extends FieldValues>({
                           <TouchableOpacity
                             style={[
                               styles.optionItem,
-                              value === item.id && styles.selectedOptionItem,
+                              areOptionIdsEqual(value, item.id) &&
+                                styles.selectedOptionItem,
                             ]}
                             onPress={() => {
                               onChange(item.id);
@@ -168,12 +186,13 @@ export function FormSelect<T extends FieldValues>({
                             <Text
                               style={[
                                 styles.optionText,
-                                value === item.id && styles.selectedOptionText,
+                                areOptionIdsEqual(value, item.id) &&
+                                  styles.selectedOptionText,
                               ]}
                             >
                               {item.name}
                             </Text>
-                            {value === item.id && (
+                            {areOptionIdsEqual(value, item.id) && (
                               <MaterialIcons
                                 name="check"
                                 size={20}
@@ -209,21 +228,21 @@ const styles = StyleSheet.create({
   },
   // Estilos do Input Trigger
   input: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: theme.colors.surfaceAlt,
     borderRadius: theme.borderRadius.m,
     paddingHorizontal: theme.spacing.m,
-    height: 50, // Altura confortável
+    height: 50,
     borderWidth: 1,
     borderColor: theme.colors.border,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    ...theme.shadows.soft,
   },
   disabledInput: {
-    backgroundColor: theme.colors.slate[100],
-    borderColor: theme.colors.slate[200],
-    opacity: 0.7,
+    backgroundColor: theme.colors.background,
+    borderColor: theme.colors.slate[700],
+    borderStyle: "dashed",
+    opacity: 0.9,
   },
   inputError: {
     borderColor: theme.colors.error,
@@ -239,6 +258,29 @@ const styles = StyleSheet.create({
   },
   disabledText: {
     color: theme.colors.textLight,
+    opacity: 0.9,
+  },
+  disabledBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: theme.spacing.xs,
+    borderWidth: 1,
+    borderColor: theme.colors.slate[700],
+    borderRadius: theme.borderRadius.s,
+    paddingHorizontal: theme.spacing.s,
+    paddingVertical: 4,
+    backgroundColor: theme.colors.surfaceAlt,
+  },
+  disabledBadgeText: {
+    ...theme.text.caption,
+    color: theme.colors.textLight,
+    fontWeight: "700",
+  },
+  disabledHint: {
+    ...theme.text.caption,
+    color: theme.colors.textLight,
+    marginTop: theme.spacing.xs,
+    marginLeft: theme.spacing.xs,
   },
   errorText: {
     color: theme.colors.error,
@@ -253,16 +295,17 @@ const styles = StyleSheet.create({
   // Estilos do Modal
   modalOverlay: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.6)", // Mais escuro para foco
+    backgroundColor: "rgba(0,0,0,0.7)",
     justifyContent: "flex-end",
   },
   modalContent: {
     backgroundColor: theme.colors.surface,
     borderTopLeftRadius: theme.borderRadius.l,
     borderTopRightRadius: theme.borderRadius.l,
-    height: "70%", // Ocupa 70% da tela
+    height: "70%",
     paddingBottom: theme.spacing.xl,
-    ...theme.shadows.strong,
+    borderTopWidth: 1,
+    borderColor: theme.colors.border,
   },
   modalHeader: {
     flexDirection: "row",
@@ -310,13 +353,13 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing.m,
     paddingHorizontal: theme.spacing.l,
     borderBottomWidth: 1,
-    borderBottomColor: theme.colors.slate[100],
+    borderBottomColor: theme.colors.border,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
   selectedOptionItem: {
-    backgroundColor: theme.colors.primaryLight,
+    backgroundColor: theme.colors.surfaceAlt,
   },
   optionText: {
     fontSize: 16,
@@ -332,3 +375,18 @@ const styles = StyleSheet.create({
     color: theme.colors.textLight,
   },
 });
+
+function areOptionIdsEqual(
+  valueA: Option["id"] | unknown,
+  valueB: Option["id"] | unknown,
+) {
+  if (valueA === undefined || valueA === null || valueA === "") {
+    return false;
+  }
+
+  if (valueB === undefined || valueB === null || valueB === "") {
+    return false;
+  }
+
+  return String(valueA) === String(valueB);
+}

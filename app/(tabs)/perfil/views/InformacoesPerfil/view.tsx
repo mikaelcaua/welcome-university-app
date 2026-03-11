@@ -21,12 +21,10 @@ export default function ProfileScreen() {
     mode,
     user,
     isSubmitting,
-    isRefreshing,
     isAuthenticated,
     hasHydrated,
     setMode,
     handleLogout,
-    handleRefreshProfile,
     onSubmit,
   } = useProfileViewModel();
 
@@ -40,7 +38,7 @@ export default function ProfileScreen() {
         ]}
       >
         <StatusBar
-          barStyle="dark-content"
+          barStyle="light-content"
           backgroundColor={theme.colors.background}
         />
         <ActivityIndicator size="large" color={theme.colors.primary} />
@@ -56,7 +54,7 @@ export default function ProfileScreen() {
       ]}
     >
       <StatusBar
-        barStyle="dark-content"
+        barStyle="light-content"
         backgroundColor={theme.colors.background}
       />
 

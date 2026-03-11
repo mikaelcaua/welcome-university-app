@@ -30,7 +30,7 @@ export default function CourseSubjectScreen() {
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-      <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
+      <StatusBar barStyle="light-content" backgroundColor="#C2410C" />
 
       <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
         <View style={styles.headerTopRow}>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: theme.spacing.l,
     paddingBottom: theme.spacing.xxl + 20,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: '#C2410C',
     zIndex: 0,
   },
   headerTopRow: {
@@ -127,15 +127,15 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 16,
-    color: theme.colors.blue[100],
+    color: '#FDBA74',
     lineHeight: 22,
     maxWidth: '90%',
   },
   formCardContainer: {
     flex: 1,
     backgroundColor: theme.colors.surface,
-    borderTopLeftRadius: theme.borderRadius.xl,
-    borderTopRightRadius: theme.borderRadius.xl,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     marginTop: -theme.spacing.xl,
     ...theme.shadows.strong,
     paddingTop: theme.spacing.xl,
@@ -155,6 +155,6 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     height: 56,
-    backgroundColor: theme.colors.green[600],
+    backgroundColor: '#EA580C',
   },
 });

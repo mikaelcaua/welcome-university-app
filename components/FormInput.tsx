@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.m,
     borderWidth: 1,
     borderColor: theme.colors.border,
-    height: 48,
+    height: 50,
     paddingHorizontal: theme.spacing.m,
   },
   input: {

@@ -37,19 +37,20 @@ const styles = StyleSheet.create({
     padding: theme.spacing.m,
     marginBottom: theme.spacing.s,
     borderRadius: theme.borderRadius.m,
-    ...theme.shadows.soft,
     borderWidth: 1,
     borderColor: theme.colors.border,
   },
   containerPressed: {
     backgroundColor: theme.colors.surfaceAlt,
-    borderColor: theme.colors.primary,
+    borderColor: '#0D9488',
   },
   iconContainer: {
     width: 48,
     height: 48,
     borderRadius: theme.borderRadius.m,
-    backgroundColor: theme.colors.primaryLight,
+    backgroundColor: '#0F172A',
+    borderWidth: 1,
+    borderColor: '#0D9488',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: theme.spacing.m,
@@ -65,5 +66,6 @@ const styles = StyleSheet.create({
   subName: {
     ...theme.text.caption,
     marginTop: 2,
+    color: '#99F6E4',
   },
 });

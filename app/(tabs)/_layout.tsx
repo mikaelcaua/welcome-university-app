@@ -47,7 +47,7 @@ export default function TabsLayout() {
           fontWeight: "700",
           letterSpacing: 0.6,
         },
-        tabBarActiveBackgroundColor: theme.colors.primary,
+        tabBarActiveBackgroundColor: "#F59E0B",
       }}
     >
       <Tabs.Screen
@@ -68,17 +68,16 @@ export default function TabsLayout() {
           ),
         }}
       />
-      {canAccessReviewTab ? (
-        <Tabs.Screen
-          name="aprovar"
-          options={{
-            title: "APROVAR",
-            tabBarIcon: ({ color, size }) => (
-              <MaterialIcons name="fact-check" size={size} color={color} />
-            ),
-          }}
-        />
-      ) : null}
+      <Tabs.Screen
+        name="aprovar"
+        options={{
+          title: "APROVAR",
+          href: canAccessReviewTab ? "/aprovar" : null,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="fact-check" size={size} color={color} />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="perfil"
         options={{

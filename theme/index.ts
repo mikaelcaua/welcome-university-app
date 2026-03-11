@@ -83,15 +83,15 @@ export const theme = {
 
     pdf: palette.red[600],
 
-    background: palette.slate[50],
-    surface: palette.white,
-    surfaceAlt: palette.slate[100],
+    background: '#0B1220',
+    surface: '#111827',
+    surfaceAlt: '#0F172A',
 
-    text: palette.slate[800],
-    textLight: palette.slate[500],
-    textInverted: palette.white,
+    text: '#E5E7EB',
+    textLight: '#94A3B8',
+    textInverted: '#F8FAFC',
 
-    border: palette.slate[200],
+    border: '#334155',
     loading: palette.blue[700],
     error: palette.red[500],
     success: palette.green[500],
@@ -118,21 +118,21 @@ export const theme = {
     title: {
       fontWeight: 'bold' as const,
       fontSize: 18,
-      color: palette.slate[800],
+      color: '#E5E7EB',
     },
     header: {
       fontWeight: 'bold' as const,
       fontSize: 24,
-      color: palette.blue[700],
+      color: '#E5E7EB',
     },
     body: {
       fontSize: 14,
-      color: palette.slate[600],
+      color: '#CBD5E1',
       lineHeight: 20,
     },
     caption: {
       fontSize: 12,
-      color: palette.slate[500],
+      color: '#94A3B8',
     },
   },
 
@@ -141,14 +141,14 @@ export const theme = {
       elevation: 4,
       shadowColor: palette.black,
       shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.08,
+      shadowOpacity: 0.2,
       shadowRadius: 8,
     },
     soft: {
       elevation: 2,
       shadowColor: palette.black,
       shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.05,
+      shadowOpacity: 0.16,
       shadowRadius: 4,
     },
     strong: {

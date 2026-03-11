@@ -2,33 +2,34 @@ import {
   ActivityIndicator,
   FlatList,
   Linking,
-  Pressable,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   TextInput,
   View,
-} from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+} from "react-native";
+import { useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { Button, FormSelect } from '@/components';
-import { Exam, ExamType } from '@/interfaces';
-import { theme } from '@/theme';
+import { AttachmentPreviewModal, Button, FormSelect } from "@/components";
+import { Exam, ExamType } from "@/interfaces";
+import { theme } from "@/theme";
 
-import { useExamReviewViewModel } from './useExamReviewViewModel';
+import { useExamReviewViewModel } from "./useExamReviewViewModel";
 
 const examTypeLabels: Record<ExamType, string> = {
-  EXAM: 'Exame',
-  PROVA1: 'Prova 1',
-  PROVA2: 'Prova 2',
-  PROVA3: 'Prova 3',
-  RECUPERACAO: 'Recuperação',
-  FINAL: 'Final',
+  EXAM: "Exame",
+  PROVA1: "Prova 1",
+  PROVA2: "Prova 2",
+  PROVA3: "Prova 3",
+  RECUPERACAO: "Recuperação",
+  FINAL: "Final",
 };
 
 export default function AprovarProvasScreen() {
   const insets = useSafeAreaInsets();
+  const [previewExam, setPreviewExam] = useState<Exam | null>(null);
   const {
     form,
     states,
@@ -63,13 +64,13 @@ export default function AprovarProvasScreen() {
     return null;
   }
 
+  const previewFileName = previewExam
+    ? previewExam.name ||
+      `${previewExam.subjectName} - ${previewExam.examYear}.${previewExam.semester}`
+    : "";
+
   const filtersCard = (
     <View style={styles.filterCard}>
-      <Text style={styles.filterTitle}>Contexto acadêmico</Text>
-      <Text style={styles.filterSubtitle}>
-        Preencha estado, universidade, curso e disciplina para listar pendências.
-      </Text>
-
       <FormSelect
         control={form.control}
         name="stateId"
@@ -115,7 +116,7 @@ export default function AprovarProvasScreen() {
       />
 
       <Button
-        title={loading ? 'Buscando pendências...' : 'Buscar pendências'}
+        title={loading ? "Buscando pendências..." : "Buscar pendências"}
         onPress={onSubmitFilters}
         isLoading={loading}
         disabled={loadingCascade}
@@ -138,7 +139,7 @@ export default function AprovarProvasScreen() {
       ]}
     >
       <StatusBar
-        barStyle="dark-content"
+        barStyle="light-content"
         backgroundColor={theme.colors.background}
       />
 
@@ -161,7 +162,7 @@ export default function AprovarProvasScreen() {
           }}
           refreshing={loading}
           ListHeaderComponent={
-            <View style={styles.content}>
+            <View style={styles.listHeaderContent}>
               {filtersCard}
               <View style={styles.listWrapper}>
                 <Text style={styles.listTitle}>Pendências encontradas</Text>
@@ -199,20 +200,18 @@ export default function AprovarProvasScreen() {
                 <Text style={styles.metadata}>
                   Período {item.examYear}.{item.semester}
                 </Text>
-                <Text style={styles.metadata}>Enviado por {item.uploadedBy.name}</Text>
-                <Text style={styles.metadata}>Em {formatDate(item.createdAt)}</Text>
+                <Text style={styles.metadata}>
+                  Enviado por {item.uploadedBy.name}
+                </Text>
+                <Text style={styles.metadata}>
+                  Em {formatDate(item.createdAt)}
+                </Text>
 
-                <Pressable
-                  onPress={() => {
-                    void openPdf(item);
-                  }}
-                  style={({ pressed }) => [
-                    styles.openPdfButton,
-                    pressed ? styles.openPdfButtonPressed : null,
-                  ]}
-                >
-                  <Text style={styles.openPdfText}>Abrir PDF para revisar</Text>
-                </Pressable>
+                <Button
+                  title="Visualizar anexo"
+                  variant="outline"
+                  onPress={() => setPreviewExam(item)}
+                />
 
                 <TextInput
                   value={getReviewNote(item.id)}
@@ -257,14 +256,25 @@ export default function AprovarProvasScreen() {
           keyboardShouldPersistTaps="handled"
         >
           {filtersCard}
-          <View style={styles.centerCard}>
-            <Text style={styles.emptyTitle}>Selecione os filtros</Text>
-            <Text style={styles.emptyDescription}>
-              Defina o contexto acadêmico e toque em Buscar pendências.
-            </Text>
-          </View>
         </ScrollView>
       )}
+
+      <AttachmentPreviewModal
+        visible={Boolean(previewExam)}
+        title="Anexo para revisão"
+        fileKind="pdf"
+        fileUri={previewExam?.pdfUrl ?? ""}
+        fileName={previewFileName}
+        actionLabel="Abrir PDF no dispositivo"
+        onActionPress={() => {
+          if (!previewExam) {
+            return;
+          }
+
+          void openPdf(previewExam);
+        }}
+        onClose={() => setPreviewExam(null)}
+      />
     </View>
   );
 }
@@ -277,7 +287,7 @@ async function openPdf(exam: Exam) {
   try {
     await Linking.openURL(exam.pdfUrl);
   } catch (error) {
-    console.error('Não foi possível abrir o PDF', error);
+    console.error("Não foi possível abrir o PDF", error);
   }
 }
 
@@ -285,10 +295,10 @@ function formatDate(value: string) {
   const date = new Date(value);
 
   if (Number.isNaN(date.getTime())) {
-    return 'data indisponível';
+    return "data indisponível";
   }
 
-  return date.toLocaleDateString('pt-BR');
+  return date.toLocaleDateString("pt-BR");
 }
 
 const styles = StyleSheet.create({
@@ -300,9 +310,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.l,
     paddingTop: theme.spacing.s,
     paddingBottom: theme.spacing.m,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
-    backgroundColor: theme.colors.surface,
+    borderBottomWidth: 0,
+    backgroundColor: theme.colors.background,
   },
   title: {
     ...theme.text.title,
@@ -319,9 +328,9 @@ const styles = StyleSheet.create({
     gap: theme.spacing.m,
   },
   filterCard: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: "#172554",
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: "transparent",
     borderRadius: theme.borderRadius.l,
     padding: theme.spacing.l,
     gap: theme.spacing.s,
@@ -336,9 +345,9 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.s,
   },
   loadingInline: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: theme.spacing.s,
     marginTop: theme.spacing.s,
   },
@@ -349,7 +358,7 @@ const styles = StyleSheet.create({
   listTitle: {
     ...theme.text.body,
     color: theme.colors.text,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   listSubtitle: {
     ...theme.text.caption,
@@ -360,8 +369,11 @@ const styles = StyleSheet.create({
     paddingTop: theme.spacing.s,
     gap: theme.spacing.m,
   },
+  listHeaderContent: {
+    gap: theme.spacing.m,
+  },
   card: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: "#111827",
     borderWidth: 1,
     borderColor: theme.colors.border,
     borderRadius: theme.borderRadius.l,
@@ -369,26 +381,26 @@ const styles = StyleSheet.create({
     gap: theme.spacing.s,
   },
   cardHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
     gap: theme.spacing.s,
   },
   subjectName: {
     ...theme.text.body,
     color: theme.colors.text,
-    fontWeight: '700',
+    fontWeight: "700",
     flex: 1,
   },
   badge: {
     backgroundColor: theme.colors.primaryLight,
     color: theme.colors.primary,
-    fontWeight: '700',
+    fontWeight: "700",
     fontSize: 12,
     paddingHorizontal: theme.spacing.s,
     paddingVertical: 6,
     borderRadius: theme.borderRadius.s,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   metadata: {
     ...theme.text.caption,
@@ -405,23 +417,8 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
     fontSize: 14,
   },
-  openPdfButton: {
-    borderRadius: theme.borderRadius.m,
-    borderWidth: 1,
-    borderColor: theme.colors.primary,
-    paddingHorizontal: theme.spacing.m,
-    paddingVertical: theme.spacing.s,
-    alignSelf: 'flex-start',
-  },
-  openPdfButtonPressed: {
-    backgroundColor: theme.colors.primaryLight,
-  },
-  openPdfText: {
-    color: theme.colors.primary,
-    fontWeight: '600',
-  },
   actionsRow: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: theme.spacing.s,
   },
   actionButton: {
@@ -435,7 +432,7 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.border,
     backgroundColor: theme.colors.surface,
     padding: theme.spacing.l,
-    alignItems: 'center',
+    alignItems: "center",
     gap: theme.spacing.s,
   },
   loadingText: {
@@ -445,11 +442,11 @@ const styles = StyleSheet.create({
   emptyTitle: {
     ...theme.text.body,
     color: theme.colors.text,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   emptyDescription: {
     ...theme.text.caption,
     color: theme.colors.textLight,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });

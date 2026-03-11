@@ -34,7 +34,7 @@ export default function StatesScreen() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={[styles.container, { paddingBottom: insets.bottom }]}>
-        <StatusBar barStyle="light-content" backgroundColor={theme.colors.primary} />
+        <StatusBar barStyle="light-content" backgroundColor="#1FA866" />
 
         <View style={[styles.header, { paddingTop: insets.top + theme.spacing.m }]}>
           <Text style={styles.headerTitle}>Olá, Universitário!</Text>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: theme.spacing.l,
     paddingBottom: theme.spacing.xl,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: '#1FA866',
     borderBottomLeftRadius: theme.borderRadius.xl,
     borderBottomRightRadius: theme.borderRadius.xl,
     ...theme.shadows.default,
@@ -103,14 +103,14 @@ const styles = StyleSheet.create({
   },
   headerSubtitle: {
     fontSize: 16,
-    color: theme.colors.blue[100],
+    color: '#86EFAC',
     marginBottom: theme.spacing.l,
     lineHeight: 24,
   },
   searchInput: {
-    backgroundColor: theme.colors.white,
-    borderWidth: 0,
-    ...theme.shadows.soft,
+    backgroundColor: '#0B1220',
+    borderWidth: 1,
+    borderColor: '#14532D',
     height: 52,
   },
   content: {
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
   loadingOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 86, 210, 0.7)',
+    backgroundColor: 'rgba(11, 18, 32, 0.84)',
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 20,

@@ -7,15 +7,22 @@ import {
   View,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { Button, FormInput, FormSelect } from "@/components";
+import {
+  AttachmentPreviewModal,
+  Button,
+  FormInput,
+  FormSelect,
+} from "@/components";
 import { theme } from "@/theme";
 
 import { useExamSubmissionViewModel } from "./useExamSubmissionViewModel";
 
 export default function ExamSubmissionScreen() {
   const insets = useSafeAreaInsets();
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const {
     form,
     user,
@@ -43,7 +50,14 @@ export default function ExamSubmissionScreen() {
     hasSelectedAttachment,
     selectedFileName,
     selectedFileKind,
+    selectedFileUri,
   } = useExamSubmissionViewModel();
+
+  useEffect(() => {
+    if (!hasSelectedAttachment && isPreviewOpen) {
+      setIsPreviewOpen(false);
+    }
+  }, [hasSelectedAttachment, isPreviewOpen]);
 
   if (!isAuthenticated) {
     return (
@@ -54,14 +68,13 @@ export default function ExamSubmissionScreen() {
         ]}
       >
         <StatusBar
-          barStyle="dark-content"
+          barStyle="light-content"
           backgroundColor={theme.colors.background}
         />
         <View style={styles.lockedWrapper}>
           <View style={styles.heroCard}>
             <Text style={styles.subtitle}>
               Apenas usuários autenticados podem anexar provas em foto ou PDF.
-              Faça login na tab `Perfil` para liberar o formulário completo.
             </Text>
           </View>
 
@@ -79,7 +92,7 @@ export default function ExamSubmissionScreen() {
       ]}
     >
       <StatusBar
-        barStyle="dark-content"
+        barStyle="light-content"
         backgroundColor={theme.colors.background}
       />
       <ScrollView
@@ -88,17 +101,17 @@ export default function ExamSubmissionScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <Button
-          title="Ver pendentes atuais"
+          title="Ver envios pendentes ›"
           variant="outline"
           onPress={goToCurrentPendingExams}
         />
 
         <View style={styles.heroCard}>
           <Text style={styles.eyebrow}>ENVIAR</Text>
-          <Text style={styles.title}>Submeta uma prova</Text>
+          <Text style={styles.title}>Enviar material acadêmico</Text>
           <Text style={styles.subtitle}>
             Sessão ativa para {user?.name || "usuário autenticado"}. Preencha os
-            campos e anexe uma foto da galeria ou um PDF para revisão.
+            dados da disciplina e anexe PDF ou foto da prova.
           </Text>
         </View>
 
@@ -182,19 +195,6 @@ export default function ExamSubmissionScreen() {
               Escolha uma foto da galeria ou um PDF do dispositivo.
             </Text>
 
-            <View style={styles.attachmentActions}>
-              <Button
-                title="Escolher foto"
-                variant="outline"
-                onPress={handlePickImage}
-              />
-              <Button
-                title="Escolher PDF"
-                variant="outline"
-                onPress={handlePickPdf}
-              />
-            </View>
-
             {hasSelectedAttachment ? (
               <View style={styles.attachmentCard}>
                 <View style={styles.attachmentMeta}>
@@ -221,23 +221,45 @@ export default function ExamSubmissionScreen() {
                   </View>
                 </View>
 
-                <Button
-                  title="Remover anexo"
-                  variant="outline"
-                  onPress={clearSelectedFile}
-                />
+                <View style={styles.attachmentActions}>
+                  <Button
+                    title="Visualizar anexo"
+                    variant="outline"
+                    onPress={() => setIsPreviewOpen(true)}
+                  />
+                  <Button
+                    title="Remover anexo"
+                    variant="outline"
+                    onPress={clearSelectedFile}
+                  />
+                </View>
               </View>
             ) : (
-              <View style={styles.attachmentEmptyState}>
-                <MaterialIcons
-                  name="attach-file"
-                  size={20}
-                  color={theme.colors.textLight}
-                />
-                <Text style={styles.attachmentEmptyText}>
-                  Nenhum arquivo anexado ainda.
-                </Text>
-              </View>
+              <>
+                <View style={styles.attachmentActions}>
+                  <Button
+                    title="Escolher foto"
+                    variant="outline"
+                    onPress={handlePickImage}
+                  />
+                  <Button
+                    title="Escolher PDF"
+                    variant="outline"
+                    onPress={handlePickPdf}
+                  />
+                </View>
+
+                <View style={styles.attachmentEmptyState}>
+                  <MaterialIcons
+                    name="attach-file"
+                    size={20}
+                    color={theme.colors.textLight}
+                  />
+                  <Text style={styles.attachmentEmptyText}>
+                    Nenhum arquivo anexado ainda.
+                  </Text>
+                </View>
+              </>
             )}
 
             {form.formState.errors.fileUri?.message ? (
@@ -249,7 +271,7 @@ export default function ExamSubmissionScreen() {
         </View>
 
         <Button
-          title={isSubmitting ? "Enviando prova..." : "Enviar prova"}
+          title={isSubmitting ? "Enviando prova..." : "Enviar para revisão"}
           onPress={onSubmit}
           isLoading={isSubmitting}
         />
@@ -261,6 +283,14 @@ export default function ExamSubmissionScreen() {
           </View>
         ) : null}
       </ScrollView>
+
+      <AttachmentPreviewModal
+        visible={isPreviewOpen}
+        fileKind={selectedFileKind as "" | "image" | "pdf"}
+        fileUri={selectedFileUri}
+        fileName={selectedFileName}
+        onClose={() => setIsPreviewOpen(false)}
+      />
     </View>
   );
 }
@@ -282,9 +312,9 @@ const styles = StyleSheet.create({
     gap: theme.spacing.l,
   },
   heroCard: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: "#172554",
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: "transparent",
     borderRadius: theme.borderRadius.l,
     padding: theme.spacing.l,
     gap: theme.spacing.s,
@@ -293,15 +323,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "700",
     letterSpacing: 1,
-    color: theme.colors.primary,
+    color: "#60A5FA",
   },
   title: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: "#BFDBFE",
   },
   subtitle: {
     ...theme.text.body,
+    color: "#93C5FD",
   },
   infoCard: {
     backgroundColor: theme.colors.surface,
@@ -319,9 +350,9 @@ const styles = StyleSheet.create({
     ...theme.text.body,
   },
   formCard: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: "#111827",
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: "transparent",
     borderRadius: theme.borderRadius.l,
     padding: theme.spacing.l,
     gap: theme.spacing.m,
