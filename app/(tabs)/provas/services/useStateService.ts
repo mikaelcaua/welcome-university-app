@@ -2,12 +2,19 @@ import { useCallback } from 'react';
 
 import { State } from '@/interfaces';
 import { API_URL } from '@/lib/api';
+import { CACHE_KEYS, getCachedOrFetch } from '@/lib/offlineCache';
 
 export function useStateService() {
   const getAllStates = useCallback(async (): Promise<State[]> => {
-    const res = await fetch(`${API_URL}/states`);
-    if (!res.ok) throw new Error('Erro ao carregar lista de estados');
-    return await res.json();
+    return getCachedOrFetch({
+      cacheKey: CACHE_KEYS.states,
+      alertTitle: 'Lista de estados offline',
+      request: async () => {
+        const res = await fetch(`${API_URL}/states`);
+        if (!res.ok) throw new Error('Erro ao carregar lista de estados');
+        return await res.json();
+      },
+    });
   }, []);
 
   const getStateByCode = useCallback(async (stateCode: string): Promise<State> => {

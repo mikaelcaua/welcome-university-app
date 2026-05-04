@@ -1,7 +1,6 @@
 import {
   ActivityIndicator,
   FlatList,
-  Linking,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -14,6 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { AttachmentPreviewModal, Button, FormSelect } from "@/components";
 import { Exam, ExamType } from "@/interfaces";
+import { openExamPdfWithCache } from "@/lib/examAttachmentCache";
 import { theme } from "@/theme";
 
 import { useExamReviewViewModel } from "./useExamReviewViewModel";
@@ -280,15 +280,7 @@ export default function AprovarProvasScreen() {
 }
 
 async function openPdf(exam: Exam) {
-  if (!exam.pdfUrl) {
-    return;
-  }
-
-  try {
-    await Linking.openURL(exam.pdfUrl);
-  } catch (error) {
-    console.error("Não foi possível abrir o PDF", error);
-  }
+  await openExamPdfWithCache(exam);
 }
 
 function formatDate(value: string) {

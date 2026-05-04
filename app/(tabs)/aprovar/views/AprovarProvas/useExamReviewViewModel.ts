@@ -10,6 +10,8 @@ import { useUniversityService } from '@/app/(tabs)/provas/services/useUniversity
 import { useAuthService } from '@/services/auth/useAuthService';
 import { useAuthStore } from '@/store';
 import { ApiError } from '@/lib/api';
+import { CACHE_KEYS, readCache, writeCache } from '@/lib/offlineCache';
+import { showToast } from '@/lib/toast';
 
 import { PendingExamFilters, useExamReviewService } from '../../services/useExamReviewService';
 import {
@@ -114,9 +116,21 @@ export function useExamReviewViewModel() {
       try {
         setLoading(true);
         const exams = await executeWithAuthRetry((token) => getPendingExams(token, filters));
+        await writeCache(CACHE_KEYS.pendingReviewExams(filters), exams);
         setPendingExams(exams);
       } catch (error) {
-        Alert.alert('Erro ao carregar pendências', getErrorMessage(error));
+        const cached = await readCache<Exam[]>(CACHE_KEYS.pendingReviewExams(filters));
+
+        if (cached !== null) {
+          setPendingExams(cached);
+          showToast({
+            title: 'Pendências offline',
+            message: `Não foi possível atualizar as provas pendentes agora. Mostrando a versão salva neste dispositivo. Detalhe: ${getErrorMessage(error)}`,
+            variant: 'warning',
+          });
+        } else {
+          Alert.alert('Erro ao carregar pendências', getErrorMessage(error));
+        }
       } finally {
         setLoading(false);
       }

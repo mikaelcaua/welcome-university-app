@@ -4,6 +4,8 @@ import { useRouter } from 'expo-router';
 
 import { Exam } from '@/interfaces';
 import { ApiError } from '@/lib/api';
+import { CACHE_KEYS, readCache, writeCache } from '@/lib/offlineCache';
+import { showToast } from '@/lib/toast';
 import { useAuthService } from '@/services/auth/useAuthService';
 import { useAuthStore } from '@/store';
 
@@ -59,9 +61,21 @@ export function useCurrentPendingExamsViewModel() {
     try {
       setLoading(true);
       const exams = await executeWithAuthRetry((token) => getCurrentUserPendingExams(token));
+      await writeCache(CACHE_KEYS.currentPendingExams, exams);
       setPendingExams(exams);
     } catch (error) {
-      Alert.alert('Erro ao carregar pendências', getErrorMessage(error));
+      const cached = await readCache<Exam[]>(CACHE_KEYS.currentPendingExams);
+
+      if (cached !== null) {
+        setPendingExams(cached);
+        showToast({
+          title: 'Pendências offline',
+          message: `Não foi possível atualizar suas pendências agora. Mostrando a versão salva neste dispositivo. Detalhe: ${getErrorMessage(error)}`,
+          variant: 'warning',
+        });
+      } else {
+        Alert.alert('Erro ao carregar pendências', getErrorMessage(error));
+      }
     } finally {
       setLoading(false);
     }

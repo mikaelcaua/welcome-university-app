@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 import { AppUser, AuthSession } from '@/interfaces';
+import { clearUserScopedCache } from '@/lib/offlineCache';
 import { AUTH_STORAGE_KEY, zustandStorage } from '@/lib/storage';
 
 interface AuthState {
@@ -48,11 +49,13 @@ export const useAuthStore = create<AuthState>()(
           isAuthenticated: true,
         })),
       setHasHydrated: (value) => set({ hasHydrated: value }),
-      clearSession: () =>
+      clearSession: () => {
+        void clearUserScopedCache();
         set({
           ...initialState,
           hasHydrated: true,
-        }),
+        });
+      },
     }),
     {
       name: AUTH_STORAGE_KEY,

@@ -1,7 +1,6 @@
 import {
   ActivityIndicator,
   FlatList,
-  Linking,
   Pressable,
   StatusBar,
   StyleSheet,
@@ -10,8 +9,8 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Button } from '@/components';
 import { Exam, ExamType } from '@/interfaces';
+import { openExamPdfWithCache } from '@/lib/examAttachmentCache';
 import { theme } from '@/theme';
 
 import { useCurrentPendingExamsViewModel } from './useCurrentPendingExamsViewModel';
@@ -103,15 +102,7 @@ export default function CurrentPendingExamsScreen() {
 }
 
 async function openPdf(exam: Exam) {
-  if (!exam.pdfUrl) {
-    return;
-  }
-
-  try {
-    await Linking.openURL(exam.pdfUrl);
-  } catch (error) {
-    console.error('Não foi possível abrir o PDF', error);
-  }
+  await openExamPdfWithCache(exam);
 }
 
 function formatDate(value: string) {

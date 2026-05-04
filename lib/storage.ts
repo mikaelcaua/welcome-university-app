@@ -9,4 +9,6 @@ export const storage = {
   getItem: AsyncStorage.getItem,
   setItem: AsyncStorage.setItem,
   removeItem: AsyncStorage.removeItem,
+  getAllKeys: AsyncStorage.getAllKeys,
+  multiRemove: AsyncStorage.multiRemove,
 };

@@ -1,8 +1,9 @@
 import { FontAwesome } from '@expo/vector-icons';
 import React, { useEffect, useRef } from 'react';
-import { Animated, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Exam, ExamType } from '@/interfaces';
+import { openExamPdfWithCache } from '@/lib/examAttachmentCache';
 import { theme } from '@/theme';
 
 interface ExamCardProps {
@@ -59,11 +60,7 @@ export function ExamCard({ exam, index }: ExamCardProps) {
   }, [fadeAnim, index, translateY]);
 
   function handleOpenPdf() {
-    if (exam.pdfUrl) {
-      Linking.openURL(exam.pdfUrl).catch((err) =>
-        console.error('Não foi possível abrir o PDF', err),
-      );
-    }
+    void openExamPdfWithCache(exam);
   }
 
   return (

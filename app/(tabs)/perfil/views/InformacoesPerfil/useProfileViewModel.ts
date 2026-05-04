@@ -3,6 +3,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Alert } from 'react-native';
 
+import { AppUser } from '@/interfaces';
+import { CACHE_KEYS, readCache, writeCache } from '@/lib/offlineCache';
+import { showToast } from '@/lib/toast';
 import { useAuthService } from '@/services/auth/useAuthService';
 import { useAuthStore } from '@/store';
 
@@ -48,12 +51,14 @@ export function useProfileViewModel() {
     try {
       setIsRefreshing(true);
       const profile = await getAuthenticatedUser(accessToken);
+      await writeCache(CACHE_KEYS.profile, profile);
       setUser(profile);
     } catch (error) {
       if (refreshToken) {
         try {
           const refreshedSession = await refresh(refreshToken);
           const profile = await getAuthenticatedUser(refreshedSession.accessToken);
+          await writeCache(CACHE_KEYS.profile, profile);
 
           setSession({
             ...refreshedSession,
@@ -61,9 +66,33 @@ export function useProfileViewModel() {
             user: profile,
           });
           return;
-        } catch {
+        } catch (refreshError) {
+          const cachedProfile = await readCache<AppUser>(CACHE_KEYS.profile);
+
+          if (cachedProfile !== null) {
+            setUser(cachedProfile);
+            showToast({
+              title: 'Perfil offline',
+              message: `Não foi possível atualizar seu perfil agora. Mostrando os dados salvos neste dispositivo. Detalhe: ${getErrorMessage(refreshError)}`,
+              variant: 'warning',
+            });
+            return;
+          }
+
           clearSession();
         }
+      }
+
+      const cachedProfile = await readCache<AppUser>(CACHE_KEYS.profile);
+
+      if (cachedProfile !== null) {
+        setUser(cachedProfile);
+        showToast({
+          title: 'Perfil offline',
+          message: `Não foi possível atualizar seu perfil agora. Mostrando os dados salvos neste dispositivo. Detalhe: ${getErrorMessage(error)}`,
+          variant: 'warning',
+        });
+        return;
       }
 
       Alert.alert('Sessão inválida', getErrorMessage(error));
@@ -122,6 +151,7 @@ export function useProfileViewModel() {
             });
 
       const profile = await getAuthenticatedUser(session.accessToken).catch(() => session.user);
+      await writeCache(CACHE_KEYS.profile, profile);
 
       setSession({
         ...session,
