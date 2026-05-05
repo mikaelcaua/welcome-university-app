@@ -1,5 +1,6 @@
 import { storage } from './storage';
 import { showToast } from './toast';
+import { buildOfflineCacheMessage, getSafeErrorMessage } from '@/utils/apiErrorMessage';
 
 const CACHE_PREFIX = 'welcome-university.cache';
 
@@ -84,7 +85,7 @@ export async function getCachedOrFetch<T>({
   cacheKey,
   request,
   alertTitle,
-  fallbackMessage = 'Não foi possível atualizar os dados agora. Mostrando a versão salva neste dispositivo.',
+  fallbackMessage,
 }: CachedRequestOptions<T>): Promise<T> {
   try {
     const data = await request();
@@ -96,7 +97,9 @@ export async function getCachedOrFetch<T>({
     if (cached !== null) {
       showToast({
         title: alertTitle,
-        message: `${fallbackMessage} Detalhe: ${getErrorMessage(error)}`,
+        message: fallbackMessage
+          ? `${fallbackMessage} Mensagem da API: ${getErrorMessage(error)}`
+          : buildOfflineCacheMessage(error),
         variant: 'warning',
       });
       return cached;
@@ -107,9 +110,5 @@ export async function getCachedOrFetch<T>({
 }
 
 export function getErrorMessage(error: unknown) {
-  if (error instanceof Error) {
-    return error.message;
-  }
-
-  return 'Erro inesperado.';
+  return getSafeErrorMessage(error);
 }

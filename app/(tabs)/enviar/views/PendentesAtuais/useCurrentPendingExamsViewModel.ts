@@ -8,6 +8,7 @@ import { CACHE_KEYS, readCache, writeCache } from '@/lib/offlineCache';
 import { showToast } from '@/lib/toast';
 import { useAuthService } from '@/services/auth/useAuthService';
 import { useAuthStore } from '@/store';
+import { buildOfflineCacheMessage, getSafeErrorMessage } from '@/utils/apiErrorMessage';
 
 import { useExamSubmissionService } from '../../service/useExamSubmissionService';
 
@@ -70,7 +71,7 @@ export function useCurrentPendingExamsViewModel() {
         setPendingExams(cached);
         showToast({
           title: 'Pendências offline',
-          message: `Não foi possível atualizar suas pendências agora. Mostrando a versão salva neste dispositivo. Detalhe: ${getErrorMessage(error)}`,
+          message: buildOfflineCacheMessage(error),
           variant: 'warning',
         });
       } else {
@@ -104,11 +105,7 @@ export function useCurrentPendingExamsViewModel() {
 }
 
 function getErrorMessage(error: unknown) {
-  if (error instanceof Error) {
-    return error.message;
-  }
-
-  return 'Erro inesperado.';
+  return getSafeErrorMessage(error);
 }
 
 function isAuthenticationError(error: unknown) {

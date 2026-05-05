@@ -8,6 +8,7 @@ import { CACHE_KEYS, readCache, writeCache } from '@/lib/offlineCache';
 import { showToast } from '@/lib/toast';
 import { useAuthService } from '@/services/auth/useAuthService';
 import { useAuthStore } from '@/store';
+import { buildOfflineCacheMessage, getSafeErrorMessage } from '@/utils/apiErrorMessage';
 
 import {
   AuthFormData,
@@ -73,7 +74,7 @@ export function useProfileViewModel() {
             setUser(cachedProfile);
             showToast({
               title: 'Perfil offline',
-              message: `Não foi possível atualizar seu perfil agora. Mostrando os dados salvos neste dispositivo. Detalhe: ${getErrorMessage(refreshError)}`,
+              message: buildOfflineCacheMessage(refreshError),
               variant: 'warning',
             });
             return;
@@ -89,7 +90,7 @@ export function useProfileViewModel() {
         setUser(cachedProfile);
         showToast({
           title: 'Perfil offline',
-          message: `Não foi possível atualizar seu perfil agora. Mostrando os dados salvos neste dispositivo. Detalhe: ${getErrorMessage(error)}`,
+          message: buildOfflineCacheMessage(error),
           variant: 'warning',
         });
         return;
@@ -199,9 +200,5 @@ export function useProfileViewModel() {
 }
 
 function getErrorMessage(error: unknown) {
-  if (error instanceof Error) {
-    return error.message;
-  }
-
-  return 'Erro inesperado.';
+  return getSafeErrorMessage(error);
 }

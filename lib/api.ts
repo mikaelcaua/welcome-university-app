@@ -1,4 +1,5 @@
 import { WELCOME_UNIVERSITY_API_URL } from "@/utils/envs";
+import { sanitizeApiErrorMessage } from "@/utils/apiErrorMessage";
 
 export const API_URL = WELCOME_UNIVERSITY_API_URL;
 
@@ -49,7 +50,7 @@ function safeJsonParse(rawBody: string) {
 
 function extractApiErrorMessage(data: unknown, fallback: string) {
   if (typeof data === "string" && data.trim()) {
-    return data;
+    return sanitizeApiErrorMessage(data);
   }
 
   if (data && typeof data === "object") {
@@ -61,9 +62,9 @@ function extractApiErrorMessage(data: unknown, fallback: string) {
           : null;
 
     if (errorMessage) {
-      return errorMessage;
+      return sanitizeApiErrorMessage(errorMessage);
     }
   }
 
-  return fallback || "Não foi possível concluir a requisição.";
+  return sanitizeApiErrorMessage(fallback || "Não foi possível concluir a requisição.");
 }

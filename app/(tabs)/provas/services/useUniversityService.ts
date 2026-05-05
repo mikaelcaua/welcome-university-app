@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { University } from '@/interfaces';
-import { API_URL } from '@/lib/api';
+import { apiRequest } from '@/lib/api';
 import { CACHE_KEYS, getCachedOrFetch } from '@/lib/offlineCache';
 
 export function useUniversityService() {
@@ -9,15 +9,7 @@ export function useUniversityService() {
     return getCachedOrFetch({
       cacheKey: CACHE_KEYS.universitiesByState(stateId),
       alertTitle: 'Universidades offline',
-      request: async () => {
-        const res = await fetch(`${API_URL}/states/${stateId}/universities`);
-
-        if (!res.ok) {
-          throw new Error('Erro ao carregar universidades deste estado.');
-        }
-
-        return await res.json();
-      },
+      request: () => apiRequest<University[]>(`/states/${stateId}/universities`),
     });
   }, []);
 
