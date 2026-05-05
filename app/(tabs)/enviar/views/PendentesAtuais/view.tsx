@@ -91,7 +91,7 @@ export default function CurrentPendingExamsScreen() {
                   pressed ? styles.openPdfButtonPressed : null,
                 ]}
               >
-                <Text style={styles.openPdfText}>Abrir PDF</Text>
+                <Text style={styles.openPdfText}>Abrir anexo</Text>
               </Pressable>
             </View>
           )}

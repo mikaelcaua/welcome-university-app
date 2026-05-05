@@ -13,7 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { AttachmentPreviewModal, Button, FormSelect } from "@/components";
 import { Exam, ExamType } from "@/interfaces";
-import { openExamPdfWithCache } from "@/lib/examAttachmentCache";
+import { getExamAttachmentKind, openExamPdfWithCache } from "@/lib/examAttachmentCache";
 import { theme } from "@/theme";
 
 import { useExamReviewViewModel } from "./useExamReviewViewModel";
@@ -257,10 +257,10 @@ export default function AprovarProvasScreen() {
       <AttachmentPreviewModal
         visible={Boolean(previewExam)}
         title="Anexo para revisão"
-        fileKind="pdf"
+        fileKind={previewExam ? getExamAttachmentKind(previewExam.pdfUrl) : ""}
         fileUri={previewExam?.pdfUrl ?? ""}
         fileName={previewFileName}
-        actionLabel="Abrir PDF no dispositivo"
+        actionLabel="Abrir anexo"
         onActionPress={() => {
           if (!previewExam) {
             return;

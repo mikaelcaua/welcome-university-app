@@ -2,13 +2,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 
+import { ExamAttachmentKind } from "@/interfaces";
 import { theme } from "@/theme";
 
 import { Button } from "./Button";
 
 interface AttachmentPreviewModalProps {
   visible: boolean;
-  fileKind: "image" | "pdf" | "";
+  fileKind: ExamAttachmentKind | "";
   fileUri: string;
   fileName: string;
   title?: string;
@@ -43,7 +44,7 @@ export function AttachmentPreviewModal({
             </Pressable>
           </View>
 
-          {fileKind === "image" && fileUri ? (
+          {fileKind === ExamAttachmentKind.IMAGE && fileUri ? (
             <Image
               source={{ uri: fileUri }}
               style={styles.previewImage}
@@ -52,11 +53,13 @@ export function AttachmentPreviewModal({
           ) : (
             <View style={styles.previewPdfCard}>
               <MaterialIcons
-                name="picture-as-pdf"
+                name={fileKind === ExamAttachmentKind.PDF ? "picture-as-pdf" : "insert-drive-file"}
                 size={40}
                 color={theme.colors.pdf}
               />
-              <Text style={styles.previewPdfTitle}>Arquivo PDF anexado</Text>
+              <Text style={styles.previewPdfTitle}>
+                {fileKind === ExamAttachmentKind.PDF ? "Arquivo PDF anexado" : "Anexo selecionado"}
+              </Text>
               <Text style={styles.previewPdfName} numberOfLines={2}>
                 {fileName}
               </Text>

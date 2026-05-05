@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { Exam, ExamUploadRequest } from '@/interfaces';
+import { Exam, ExamAttachmentKind, ExamUploadRequest } from '@/interfaces';
 import { apiRequest } from '@/lib/api';
 import { LocalAttachment } from '@/lib/filesystem';
 
@@ -50,7 +50,7 @@ function normalizeFileName(file: LocalAttachment) {
   const trimmed = file.name.trim();
 
   if (!trimmed) {
-    return file.kind === 'pdf' ? 'prova.pdf' : 'anexo-prova.jpg';
+    return file.kind === ExamAttachmentKind.PDF ? 'prova.pdf' : 'anexo-prova.jpg';
   }
 
   return trimmed;

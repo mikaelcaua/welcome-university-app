@@ -16,6 +16,7 @@ import {
   FormInput,
   FormSelect,
 } from "@/components";
+import { ExamAttachmentKind } from "@/interfaces";
 import { theme } from "@/theme";
 
 import { useExamSubmissionViewModel } from "./useExamSubmissionViewModel";
@@ -191,11 +192,11 @@ export default function ExamSubmissionScreen() {
                 <View style={styles.attachmentMeta}>
                   <MaterialIcons
                     name={
-                      selectedFileKind === "pdf" ? "picture-as-pdf" : "image"
+                      selectedFileKind === ExamAttachmentKind.PDF ? "picture-as-pdf" : "image"
                     }
                     size={22}
                     color={
-                      selectedFileKind === "pdf"
+                      selectedFileKind === ExamAttachmentKind.PDF
                         ? theme.colors.pdf
                         : theme.colors.primary
                     }
@@ -205,7 +206,7 @@ export default function ExamSubmissionScreen() {
                       {selectedFileName}
                     </Text>
                     <Text style={styles.attachmentHint}>
-                      {selectedFileKind === "pdf"
+                      {selectedFileKind === ExamAttachmentKind.PDF
                         ? "PDF selecionado para envio"
                         : "Imagem selecionada para envio"}
                     </Text>
@@ -277,7 +278,7 @@ export default function ExamSubmissionScreen() {
 
       <AttachmentPreviewModal
         visible={isPreviewOpen}
-        fileKind={selectedFileKind as "" | "image" | "pdf"}
+        fileKind={selectedFileKind as "" | ExamAttachmentKind}
         fileUri={selectedFileUri}
         fileName={selectedFileName}
         onClose={() => setIsPreviewOpen(false)}

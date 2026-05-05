@@ -1,6 +1,9 @@
 import * as ImagePicker from 'expo-image-picker';
+import * as ImageManipulator from 'expo-image-manipulator';
 
-export type LocalAttachmentKind = 'image' | 'pdf';
+import { ExamAttachmentKind } from '@/interfaces';
+
+export type LocalAttachmentKind = ExamAttachmentKind;
 
 export interface LocalAttachment {
   uri: string;
@@ -27,12 +30,13 @@ export async function pickImageFromLibrary(): Promise<LocalAttachment | null> {
   }
 
   const asset = result.assets[0];
+  const convertedImage = await convertImageToCompressedJpeg(asset);
 
   return {
-    uri: asset.uri,
-    name: normalizeFileName(asset.fileName, asset.uri, 'anexo-prova.jpg'),
-    mimeType: asset.mimeType ?? detectMimeType(asset.fileName ?? asset.uri),
-    kind: 'image',
+    uri: convertedImage.uri,
+    name: withJpegExtension(normalizeFileName(asset.fileName, asset.uri, 'anexo-prova.jpg')),
+    mimeType: 'image/jpeg',
+    kind: ExamAttachmentKind.IMAGE,
   };
 }
 
@@ -55,7 +59,7 @@ export async function pickPdfDocument(): Promise<LocalAttachment | null> {
     uri: asset.uri,
     name: normalizeFileName(asset.name, asset.uri, 'prova.pdf'),
     mimeType: asset.mimeType ?? 'application/pdf',
-    kind: 'pdf',
+    kind: ExamAttachmentKind.PDF,
   };
 }
 
@@ -96,6 +100,29 @@ function detectMimeType(fileName: string) {
   }
 
   return 'image/jpeg';
+}
+
+async function convertImageToCompressedJpeg(asset: ImagePicker.ImagePickerAsset) {
+  const maxDimension = Math.max(asset.width ?? 0, asset.height ?? 0);
+  const resizeAction =
+    maxDimension > 1800
+      ? [
+          asset.width && asset.width >= (asset.height ?? 0)
+            ? { resize: { width: 1800 } }
+            : { resize: { height: 1800 } },
+        ]
+      : [];
+
+  return ImageManipulator.manipulateAsync(asset.uri, resizeAction, {
+    compress: 0.72,
+    format: ImageManipulator.SaveFormat.JPEG,
+  });
+}
+
+function withJpegExtension(fileName: string) {
+  const baseName = fileName.replace(/\.[^/.]+$/, '').trim();
+
+  return `${baseName || 'anexo-prova'}.jpg`;
 }
 
 async function loadDocumentPicker() {

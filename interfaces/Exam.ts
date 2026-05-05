@@ -15,6 +15,11 @@ export enum ExamStatus {
   REJECTED = 'REJECTED',
 }
 
+export enum ExamAttachmentKind {
+  IMAGE = 'image',
+  PDF = 'pdf',
+}
+
 export interface ExamPeriodQuery {
   subjectId?: number;
   period?: `${number}.${1 | 2}`;

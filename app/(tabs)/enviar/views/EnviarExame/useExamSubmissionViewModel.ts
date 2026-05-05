@@ -4,7 +4,15 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Alert } from "react-native";
 
-import { Course, ExamType, State, Subject, University, UserRole } from "@/interfaces";
+import {
+  Course,
+  ExamAttachmentKind,
+  ExamType,
+  State,
+  Subject,
+  University,
+  UserRole,
+} from "@/interfaces";
 import { ApiError } from "@/lib/api";
 import {
   LocalAttachment,
@@ -318,7 +326,7 @@ function toSemester(value: string): 1 | 2 {
 }
 
 function toAttachmentKind(value: string): LocalAttachment["kind"] {
-  return value === "pdf" ? "pdf" : "image";
+  return value === ExamAttachmentKind.PDF ? ExamAttachmentKind.PDF : ExamAttachmentKind.IMAGE;
 }
 
 function isAuthenticationError(error: unknown) {

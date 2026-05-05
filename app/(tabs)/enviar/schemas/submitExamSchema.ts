@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { ExamType } from '@/interfaces';
+import { ExamAttachmentKind, ExamType } from '@/interfaces';
 
 export const submitExamSchema = z.object({
   stateId: z.number().min(1, 'Selecione um estado.'),
@@ -20,8 +20,8 @@ export const submitExamSchema = z.object({
   fileName: z.string().trim().min(1, 'Nenhum arquivo foi selecionado.'),
   fileMimeType: z.string().trim().min(1, 'Não foi possível identificar o tipo do arquivo.'),
   fileKind: z
-    .string()
-    .refine((value) => value === 'image' || value === 'pdf', 'Selecione uma foto ou PDF.'),
+    .union([z.literal(''), z.nativeEnum(ExamAttachmentKind)])
+    .refine((value) => value !== '', 'Selecione uma foto ou PDF.'),
 });
 
 export type SubmitExamFormData = z.infer<typeof submitExamSchema>;
