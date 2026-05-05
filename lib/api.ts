@@ -1,4 +1,6 @@
-export const API_URL = process.env.WELCOME_UNIVERSITY_API_BASE_URL ?? "";
+import { WELCOME_UNIVERSITY_API_URL } from "@/utils/envs";
+
+export const API_URL = WELCOME_UNIVERSITY_API_URL;
 
 export class ApiError extends Error {
   status: number;
