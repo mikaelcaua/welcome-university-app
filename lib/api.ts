@@ -1,4 +1,4 @@
-export const API_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? "";
+export const API_URL = process.env.WELCOME_UNIVERSITY_API_BASE_URL ?? "";
 
 export class ApiError extends Error {
   status: number;
@@ -10,12 +10,16 @@ export class ApiError extends Error {
   }
 }
 
-export async function apiRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
+export async function apiRequest<T>(
+  path: string,
+  init: RequestInit = {},
+): Promise<T> {
   const headers = new Headers(init.headers);
-  const isFormData = typeof FormData !== 'undefined' && init.body instanceof FormData;
+  const isFormData =
+    typeof FormData !== "undefined" && init.body instanceof FormData;
 
-  if (init.body && !isFormData && !headers.has('Content-Type')) {
-    headers.set('Content-Type', 'application/json');
+  if (init.body && !isFormData && !headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/json");
   }
 
   const response = await fetch(`${API_URL}${path}`, {
@@ -42,22 +46,22 @@ function safeJsonParse(rawBody: string) {
 }
 
 function extractApiErrorMessage(data: unknown, fallback: string) {
-  if (typeof data === 'string' && data.trim()) {
+  if (typeof data === "string" && data.trim()) {
     return data;
   }
 
-  if (data && typeof data === 'object') {
+  if (data && typeof data === "object") {
     const errorMessage =
-      'message' in data && typeof data.message === 'string'
+      "message" in data && typeof data.message === "string"
         ? data.message
-        : 'error' in data && typeof data.error === 'string'
-        ? data.error
-        : null;
+        : "error" in data && typeof data.error === "string"
+          ? data.error
+          : null;
 
     if (errorMessage) {
       return errorMessage;
     }
   }
 
-  return fallback || 'Não foi possível concluir a requisição.';
+  return fallback || "Não foi possível concluir a requisição.";
 }
