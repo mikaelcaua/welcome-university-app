@@ -143,11 +143,6 @@ export default function AprovarProvasScreen() {
         backgroundColor={theme.colors.background}
       />
 
-      <View style={styles.header}>
-        <Text style={styles.title}>Aprovar Provas</Text>
-        <Text style={styles.subtitle}>Revisão de submissões pendentes</Text>
-      </View>
-
       {hasAppliedFilters ? (
         <FlatList
           data={pendingExams}
