@@ -1,15 +1,16 @@
 import * as FileSystem from 'expo-file-system/legacy';
-import { Linking, Platform } from 'react-native';
+import { router } from 'expo-router';
 
 import { Exam } from '@/interfaces';
 
-import { getErrorMessage } from './offlineCache';
 import { showToast } from './toast';
 
 const EXAM_ATTACHMENTS_DIRECTORY = `${FileSystem.cacheDirectory ?? ''}welcome-university/exams/`;
 
-export async function openExamPdfWithCache(exam: Exam) {
-  if (!exam.pdfUrl) {
+export function openExamPdfWithCache(exam: Exam) {
+  const pdfUrl = normalizePdfUrl(exam.pdfUrl);
+
+  if (!pdfUrl) {
     showToast({
       title: 'PDF indisponível',
       message: 'Esta prova não possui um anexo para abrir.',
@@ -18,69 +19,69 @@ export async function openExamPdfWithCache(exam: Exam) {
     return;
   }
 
-  const localUri = getExamPdfCacheUri(exam);
-
-  try {
-    await ensureExamAttachmentsDirectory();
-    const downloaded = await FileSystem.downloadAsync(exam.pdfUrl, localUri);
-
-    if (downloaded.status < 200 || downloaded.status >= 300) {
-      throw new Error(`Download retornou status ${downloaded.status}.`);
-    }
-
-    await openLocalFile(downloaded.uri);
-  } catch (error) {
-    const cachedFile = await FileSystem.getInfoAsync(localUri);
-
-    if (cachedFile.exists) {
-      showToast({
-        title: 'Abrindo prova offline',
-        message: `Não foi possível baixar a versão mais recente. Abrindo o anexo salvo neste dispositivo. Detalhe: ${getErrorMessage(error)}`,
-        variant: 'warning',
-      });
-      await openLocalFile(localUri);
-      return;
-    }
-
-    showToast({
-      title: 'Erro ao abrir prova',
-      message: `Não foi possível baixar o anexo e ainda não existe uma cópia salva neste dispositivo. Detalhe: ${getErrorMessage(error)}`,
-      variant: 'error',
-    });
-  }
+  router.push({
+    pathname: '/pdf-viewer',
+    params: {
+      pdfUrl,
+      fileName: getExamPdfFileName(exam),
+    },
+  });
 }
 
-async function ensureExamAttachmentsDirectory() {
+export async function downloadPdfToCache(pdfUrl: string, fileName: string) {
+  const normalizedPdfUrl = normalizePdfUrl(pdfUrl);
+
+  if (!normalizedPdfUrl) {
+    throw new Error('URL do PDF indisponível.');
+  }
+
+  await ensureExamAttachmentsDirectory();
+
+  const localUri = `${EXAM_ATTACHMENTS_DIRECTORY}${sanitizeFileName(fileName)}`;
+  const downloaded = await FileSystem.downloadAsync(normalizedPdfUrl, localUri);
+
+  if (downloaded.status < 200 || downloaded.status >= 300) {
+    throw new Error(`Download retornou status ${downloaded.status}.`);
+  }
+
+  return downloaded.uri;
+}
+
+export function normalizePdfUrl(pdfUrl: string) {
+  const trimmedPdfUrl = pdfUrl.trim();
+
+  if (!trimmedPdfUrl) {
+    return '';
+  }
+
+  return trimmedPdfUrl.replace(/\/(exams-bucket)\/\1\//, '/$1/');
+}
+
+function ensureExamAttachmentsDirectory() {
   if (!FileSystem.cacheDirectory) {
     throw new Error('Diretório de cache indisponível nesta plataforma.');
   }
 
-  const info = await FileSystem.getInfoAsync(EXAM_ATTACHMENTS_DIRECTORY);
+  return FileSystem.getInfoAsync(EXAM_ATTACHMENTS_DIRECTORY).then((info) => {
+    if (!info.exists) {
+      return FileSystem.makeDirectoryAsync(EXAM_ATTACHMENTS_DIRECTORY, { intermediates: true });
+    }
 
-  if (!info.exists) {
-    await FileSystem.makeDirectoryAsync(EXAM_ATTACHMENTS_DIRECTORY, { intermediates: true });
-  }
+    return undefined;
+  });
 }
 
-function getExamPdfCacheUri(exam: Exam) {
-  const fileName = `${exam.id}-${hashString(exam.pdfUrl)}.pdf`;
-  return `${EXAM_ATTACHMENTS_DIRECTORY}${fileName}`;
+function getExamPdfFileName(exam: Exam) {
+  const baseName = exam.name || `${exam.subjectName}-${exam.examYear}.${exam.semester}`;
+
+  return sanitizeFileName(baseName.endsWith('.pdf') ? baseName : `${baseName}.pdf`);
 }
 
-async function openLocalFile(uri: string) {
-  const targetUri =
-    Platform.OS === 'android' ? await FileSystem.getContentUriAsync(uri) : uri;
+function sanitizeFileName(fileName: string) {
+  const sanitized = fileName
+    .trim()
+    .replace(/[/:*?"<>|\\]/g, '-')
+    .replace(/\s+/g, ' ');
 
-  await Linking.openURL(targetUri);
-}
-
-function hashString(value: string) {
-  let hash = 0;
-
-  for (let index = 0; index < value.length; index += 1) {
-    hash = (hash << 5) - hash + value.charCodeAt(index);
-    hash |= 0;
-  }
-
-  return Math.abs(hash).toString(36);
+  return sanitized || 'prova.pdf';
 }

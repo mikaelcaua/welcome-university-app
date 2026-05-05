@@ -10,5 +10,5 @@ export const storage = {
   setItem: AsyncStorage.setItem,
   removeItem: AsyncStorage.removeItem,
   getAllKeys: AsyncStorage.getAllKeys,
-  multiRemove: AsyncStorage.multiRemove,
+  multiRemove: (keys: readonly string[]) => Promise.all(keys.map((key) => AsyncStorage.removeItem(key))),
 };
