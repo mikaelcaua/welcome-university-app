@@ -80,28 +80,6 @@ function normalizeFileName(
   return lastSegment || fallback;
 }
 
-function detectMimeType(fileName: string) {
-  const normalized = fileName.toLowerCase();
-
-  if (normalized.endsWith('.png')) {
-    return 'image/png';
-  }
-
-  if (normalized.endsWith('.webp')) {
-    return 'image/webp';
-  }
-
-  if (normalized.endsWith('.heic')) {
-    return 'image/heic';
-  }
-
-  if (normalized.endsWith('.pdf')) {
-    return 'application/pdf';
-  }
-
-  return 'image/jpeg';
-}
-
 async function convertImageToCompressedJpeg(asset: ImagePicker.ImagePickerAsset) {
   const maxDimension = Math.max(asset.width ?? 0, asset.height ?? 0);
   const resizeAction =
