@@ -1,7 +1,4 @@
-const API_PORT = 8081;
-const API_HOST = "mikael-dev";
-
-export const API_URL = `http://${API_HOST}:${API_PORT}`;
+export const API_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? "";
 
 export class ApiError extends Error {
   status: number;

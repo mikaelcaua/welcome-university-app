@@ -106,15 +106,6 @@ export default function ExamSubmissionScreen() {
           onPress={goToCurrentPendingExams}
         />
 
-        <View style={styles.heroCard}>
-          <Text style={styles.eyebrow}>ENVIAR</Text>
-          <Text style={styles.title}>Enviar material acadêmico</Text>
-          <Text style={styles.subtitle}>
-            Sessão ativa para {user?.name || "usuário autenticado"}. Preencha os
-            dados da disciplina e anexe PDF ou foto da prova.
-          </Text>
-        </View>
-
         <View style={styles.formCard}>
           <FormSelect
             control={form.control}
