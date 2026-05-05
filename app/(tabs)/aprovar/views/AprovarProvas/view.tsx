@@ -8,12 +8,11 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { AttachmentPreviewModal, Button, FormSelect } from "@/components";
+import { Button, FormSelect } from "@/components";
 import { Exam, ExamType } from "@/interfaces";
-import { getExamAttachmentKind, openExamPdfWithCache } from "@/lib/examAttachmentCache";
+import { openExamPdfWithCache } from "@/lib/examAttachmentCache";
 import { theme } from "@/theme";
 
 import { useExamReviewViewModel } from "./useExamReviewViewModel";
@@ -29,7 +28,6 @@ const examTypeLabels: Record<ExamType, string> = {
 
 export default function AprovarProvasScreen() {
   const insets = useSafeAreaInsets();
-  const [previewExam, setPreviewExam] = useState<Exam | null>(null);
   const {
     form,
     states,
@@ -63,11 +61,6 @@ export default function AprovarProvasScreen() {
   if (!isAuthenticated || !hasReviewPermission) {
     return null;
   }
-
-  const previewFileName = previewExam
-    ? previewExam.name ||
-      `${previewExam.subjectName} - ${previewExam.examYear}.${previewExam.semester}`
-    : "";
 
   const filtersCard = (
     <View style={styles.filterCard}>
@@ -203,9 +196,9 @@ export default function AprovarProvasScreen() {
                 </Text>
 
                 <Button
-                  title="Visualizar anexo"
+                  title="Abrir anexo"
                   variant="outline"
-                  onPress={() => setPreviewExam(item)}
+                  onPress={() => openPdf(item)}
                 />
 
                 <TextInput
@@ -254,28 +247,12 @@ export default function AprovarProvasScreen() {
         </ScrollView>
       )}
 
-      <AttachmentPreviewModal
-        visible={Boolean(previewExam)}
-        title="Anexo para revisão"
-        fileKind={previewExam ? getExamAttachmentKind(previewExam.pdfUrl) : ""}
-        fileUri={previewExam?.pdfUrl ?? ""}
-        fileName={previewFileName}
-        actionLabel="Abrir anexo"
-        onActionPress={() => {
-          if (!previewExam) {
-            return;
-          }
-
-          void openPdf(previewExam);
-        }}
-        onClose={() => setPreviewExam(null)}
-      />
     </View>
   );
 }
 
-async function openPdf(exam: Exam) {
-  await openExamPdfWithCache(exam);
+function openPdf(exam: Exam) {
+  openExamPdfWithCache(exam);
 }
 
 function formatDate(value: string) {

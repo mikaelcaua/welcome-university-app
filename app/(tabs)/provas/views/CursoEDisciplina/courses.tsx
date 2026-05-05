@@ -40,7 +40,7 @@ export default function CourseSubjectScreen() {
           <Text style={styles.headerTitle}>O que você estuda?</Text>
         </View>
         <Text style={styles.headerSubtitle}>
-          Filtre por curso e disciplina para encontrar as provas exatas.
+          Filtre por curso e disciplina para encontrar as provas.
         </Text>
       </View>
 

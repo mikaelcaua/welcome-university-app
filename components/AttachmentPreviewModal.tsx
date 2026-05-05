@@ -69,8 +69,6 @@ export function AttachmentPreviewModal({
           {actionLabel && onActionPress ? (
             <Button title={actionLabel} onPress={onActionPress} />
           ) : null}
-
-          <Button title="Fechar visualização" variant="outline" onPress={onClose} />
         </View>
       </View>
     </Modal>
